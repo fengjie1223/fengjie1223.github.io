@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>ZYNQ</title>
+      <link href="/2023/11/16/FPGA/ZYNQ/"/>
+      <url>/2023/11/16/FPGA/ZYNQ/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ZYNQ"><a href="#ZYNQ" class="headerlink" title="ZYNQ"></a>ZYNQ</h1><p>暂无内容</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> FPGA </category>
+          
+          <category> ZYNQ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ZYNQ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HIK</title>
+      <link href="/2023/11/16/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/HIK/"/>
+      <url>/2023/11/16/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/HIK/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HIK"><a href="#HIK" class="headerlink" title="HIK"></a>HIK</h1><h2 id="2K线扫-MV-CL024-91GM"><a href="#2K线扫-MV-CL024-91GM" class="headerlink" title="2K线扫(MV-CL024-91GM)"></a>2K线扫(MV-CL024-91GM)</h2><p><a href="https://www.hikrobotics.com/cn/machinevision/service/download?module=0">MVS下载地址</a></p><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615363753-1691723886693.png" alt="image"></p><h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615353379-1691723906436.png" alt="image"></p><h3 id="倍频设置"><a href="#倍频设置" class="headerlink" title="倍频设置"></a>倍频设置</h3><ol><li>IO Input 类别下</li><li>Trigger Selector 设置 Line Start</li><li>Trigger Mode 设置 On</li><li>Trigger Source 设置 Frequency Conveter</li><li>Frequency Converter Contol 类别下</li><li>Input Source 选择 Line0（用哪个选哪个）</li><li>Multiplier 设置 倍频系数 （最大32倍频）</li></ol><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615365774-1691724214518.png" alt="image"></p><h3 id="编码器模式-部分验证"><a href="#编码器模式-部分验证" class="headerlink" title="编码器模式  (部分验证)"></a>编码器模式  (部分验证)</h3><p><strong>简述</strong>：正反转功能支持42亿，按300周长，每圈1000脉冲计算，可倒转1288490.1882米（一百二十万米） ，  与Basler相同（开启两相输入相当于4倍频，一相输入则相当于2倍频）</p><ol><li>IO Input 类别下</li><li>Trigger Selector 设置 Line Start</li><li>Trigger Mode 设置 On</li><li>Trigger Source 设置 Encoder Module Out</li><li>Encoder Control 类别下</li><li>Encoder Selector 选择 Encoder0</li><li>Encoder Source A 选择 Line0（用哪个选哪个）</li><li>Encoder Source B 选择 Line1</li><li>Encoder Trigger Mode 选择Any Direction（任意方向）还有仅正向或仅反向可选择</li><li>Encoder Counter Mode 选择 Follow Direction&#x2F;Backward Direction（根据方向选择）</li><li>Encoder Counter Max 设置 4294967294</li><li>Encoder Max Reverse Counter 设置 4294967294</li></ol><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615371599-1691725072234.png" alt="image"><br><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615373196-1695182858207.png" alt="image"></p><h4 id="调试中遇到的问题"><a href="#调试中遇到的问题" class="headerlink" title="调试中遇到的问题"></a>调试中遇到的问题</h4><ul><li>若仅使用1路差分拍照，则Encoder Max Reverse Counter 必须设置未0，否则不出图</li></ul><h3 id="输出IO-（已验证）"><a href="#输出IO-（已验证）" class="headerlink" title="输出IO  （已验证）"></a>输出IO  （已验证）</h3><p><strong>简述</strong>： 相机相应功能触发时输出信号给外部设备</p><ol><li>Line Selector 选择 Line3（用哪个选哪个）</li><li>Line Mode 选择 Strobe    (频闪输出)</li><li>Line Source 选择 fram end Active （其它说明：曝光开始有效，会每一行曝光都输出信号）</li><li>Strobe Enable 点击开启</li><li>Strobe Line Duration(us) 设置 10000</li></ol><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615374610-1695187721608.png" alt="image"></p><p>信号输出类型如下</p><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615375788-1691726273784.png" alt="image"></p><h3 id="变帧-（动态图像高度）"><a href="#变帧-（动态图像高度）" class="headerlink" title="变帧 （动态图像高度）"></a>变帧 （动态图像高度）</h3><p><strong>简述</strong>: 相机输出图像的图像高度可变。最高为设定的图像高度。触发行数不足图像高度则根据Partial Image Output Mode 的设置输出图像，若触发行数超过图像高度，则立即输图像高度行数的图像，并继续触发行。</p><ol><li><p>接线</p><ul><li>行信号输入： Line0</li><li>帧信号输入： Line3</li></ul></li><li><p>设置</p><ul><li><p>触发选择器：行开始</p></li><li><p>触发模式：开启</p></li><li><p>触发源：线路0</p></li><li><p>触发极性：上升沿</p></li><li><p>触发选择器：帧开始</p></li><li><p>触发模式：开启</p></li><li><p>触发源：线路3</p></li><li><p>触发极性：低电平</p></li><li><p>Partial Image Output Mode:PartialImageOutput  &#x2F;&#x2F; 部分图像输出模式</p></li><li><p>行触发设置<img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615381922-1695015346188.png" alt="image"></p></li><li><p>帧触发设置<img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615383255-1695015333108.png" alt="image"></p></li></ul></li><li><p>Partial Image Output Mode 其它模式说明：</p></li></ol><p><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615385540-1695015282443.png" alt="image"></p><h3 id="帧-行触发缓存"><a href="#帧-行触发缓存" class="headerlink" title="帧&#x2F;行触发缓存"></a>帧&#x2F;行触发缓存</h3><h4 id="帧触发缓存"><a href="#帧触发缓存" class="headerlink" title="帧触发缓存"></a>帧触发缓存</h4><p><strong>简述</strong>： 触发过程若接收到新的触发信号，可将该信号保留并进行处理。在处理当前信号时，触发缓存使能最多能保留 3 个触发信号等待处理。</p><ol><li>设置<ul><li>帧触发缓存使能通过 Acquisition Control 属性下的 Trigger Cache Enable 参数进行控制（说明：必须开启帧触发才可以适用该功能）</li><li><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615391295-1695176925059.png" alt="image"></li><li>不开启该功能，则触发图像过程中接收到帧信号，则忽略帧信号</li><li>若开启该功能，则触发图像过程中接收到帧信号，则保留帧信号，直到当前图像完成后，立即继续开始第二个帧信号的图像触发，保留的帧信号数量最多可以达到3个。</li><li><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615392591-1695177529533.png" alt="image"></li></ul></li></ol><h4 id="行触发缓存"><a href="#行触发缓存" class="headerlink" title="行触发缓存"></a>行触发缓存</h4><p><strong>简述</strong>： 实际测试中，开启行触发缓存与关闭行触发缓存似乎并无区别。</p><ol><li>设置<ul><li><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111615394099-1695177604360.png" alt="image"></li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 相机 </category>
+          
+          <category> HIK </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 相机 </tag>
+            
+            <tag> 海康 </tag>
+            
+            <tag> HIK </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>测试-UDP-npcap</title>
+      <link href="/2023/11/15/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/udp/"/>
+      <url>/2023/11/15/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/udp/</url>
+      
+        <content type="html"><![CDATA[<h1 id="UDP传输"><a href="#UDP传输" class="headerlink" title="UDP传输"></a>UDP传输</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目经验 </category>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+            <tag> 项目经验 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>部署博客</title>
+      <link href="/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/"/>
+      <url>/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/</url>
+      
+        <content type="html"><![CDATA[<h1 id="本地部署博客"><a href="#本地部署博客" class="headerlink" title="本地部署博客"></a>本地部署博客</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下方法实现了，同一台主机，部署多个服务，不同域名访问不同服务，同一域名访问不同服务。局域网访问图床图片。的良好体验。</p><h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><ol><li>安装node.js <a href="https://nodejs.org/en/download/">下载安装包</a></li><li>安装Git</li><li>安装hexo <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li><li>初始化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li>安装hexo-deployer-git<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li><li>在_config.yml中配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/fengjie1223/fengjie1223.github.io</span><br><span class="line">  branch: main</span><br><span class="line">  token: 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   //从github设置中获取</span><br></pre></td></tr></table></figure></li><li>生产网页并上传<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d  //三个指令分别为清除，构建，上传</span><br></pre></td></tr></table></figure></li></ol><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><ol><li>建立名为 &lt;你的 GitHub 用户名&gt;.github.io 的储存库，设置为public</li><li>仓库设置General-&gt;Default branch为main</li><li>仓库设置Pages Build and deployment -&gt; Source-&gt;Github Actions</li></ol><h2 id="minio"><a href="#minio" class="headerlink" title="minio"></a>minio</h2><ol><li>安装minio    <a href="https://min.io/">下载安装包</a></li><li>部署minio    将下载好的exe文件放到准备作为图床文件夹下</li><li>启动minio     用cmd启动，或配置bat文件启动，下述代码为bat文件源码，cmd仅执行最后三行即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> @echo off</span><br><span class="line">if &quot;%1&quot; == &quot;h&quot; goto begin</span><br><span class="line">mshta vbscript:createobject(&quot;wscript.shell&quot;).run(&quot;&quot;&quot;%~nx0&quot;&quot; h&quot;,0)(window.close)&amp;&amp;exit</span><br><span class="line">:begin</span><br><span class="line">REM</span><br><span class="line">c:</span><br><span class="line">cd C:\MyServer\markdown_images</span><br><span class="line">setx MINIO_ROOT_USER admin                                  //设置用户名</span><br><span class="line">setx MINIO_ROOT_PASSWORD password                           //设置密码</span><br><span class="line">.\minio.exe server C:\MyServer\markdown_images --address :9000  //启动minio，并将端口号设置为9000（默认为9000）</span><br></pre></td></tr></table></figure></li><li>配置minio    打开127.0.0.1:9000，点击Create Bucket，创建名为mdimage的bucket</li><li>配置权限     点击mdimage仓库，设置Access Policy：为 public</li></ol><h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><ol><li>安装扩展 vscode-minio-picman （设置地址路径不要带端口号，否则自动返回的地址不带端口号）</li><li>配置vscode-minio-picman  <ol><li>配置地址 <a href="http://cnbed.com:9000/">http://cnbed.com:9000</a> （这里用了域名映射，原地址为127.0.0.1）</li><li>Access Key   uG7bf1JZBf1eCqpjEZ0S</li><li>Secret Key   HAgtVMhGuFgQkGVbIgVSuo9rOKrGODH29H7PkXCy</li><li>Bucket Name  mdimage （这里填写minio创建的仓库的名字）</li><li>Directory    images&#x2F;vscode-minio-picman<br><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111515030310-20231115150301.png" alt="image"></li></ol></li></ol><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><ol><li>配置多主机模式，将minio的IP地址及端口映射到cnbed.com</li><li>vscode 配置 minio 地址时填写cnbed.com:9000</li><li>返回的图片链接为cnbed.com&#x2F;***即可直接访问（无端口号）</li><li>路由器配置域名映射cnbed.com到服务器地址，内网即可访问图片</li><li>配置域名解析：C:\Windows\System32\drivers\etc下的hosts文件内最后一行填写&lt;IP地址 域名&gt;，端口号则由nginx解析</li><li>配置同一域名多个服务配置：server块中写多个location块即可，例：   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    # root   html;</span><br><span class="line">    # index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /blog&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000/;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /download&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:8000/;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>有些服务器不支持同域名多端口，则需要设置独立的域名，即写多个server块，路由器中也将独立的域名映射到服务器地址，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnbed.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnafgit.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最后将nginx 使用nssm工具，或使用bat脚本文件，添加到服务中</li></ol><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol><li>互联网图床 github smms qiniu等</li><li>图床工具 picgo</li><li>配合quick 脚本可以一键上传并返回链接</li><li>配合obsidian可以一键插入图片</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> github </tag>
+            
+            <tag> minio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2023/11/14/test/"/>
+      <url>/2023/11/14/test/</url>
+      
+        <content type="html"><![CDATA[<p>无内容，测试专用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Dalsa</title>
+      <link href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/"/>
+      <url>/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/</url>
+      
+        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDKWOW64&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK (WoW64)</a></p><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDK&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK For Developers</a></p><h2 id="8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1"><a href="#8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1" class="headerlink" title="8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)"></a>8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)</h2><h3 id="接口-引脚定义"><a href="#接口-引脚定义" class="headerlink" title="接口&#x2F;引脚定义"></a>接口&#x2F;引脚定义</h3><p><img src="/image/Dalsa/1699844368847.png" alt="1699844368847"></p><h3 id="倍频设置（编码器型号500，设置2000）"><a href="#倍频设置（编码器型号500，设置2000）" class="headerlink" title="倍频设置（编码器型号500，设置2000）"></a>倍频设置（编码器型号500，设置2000）</h3><ol><li>点击show more<img src="/image/Dalsa/1699845828795.png" alt="1699845828795"></li><li>Trigger Selector 选择 Single Line Trigger（Start）</li><li>Trigger Mode 选择 On</li><li>Trigger Source 选择 Rotary Encoder   （触发源选择编码器模式）</li><li>Trigger Overlap 选择 Readout</li><li>Rotary Encoder Output Mode 选择 Motion   （编码器方向：忽略方向）</li><li>Rotary Encoder Input A Source 选择 Line1 （编码器A）</li><li>Rotary Encoder Input B Source 选择 Line2 （编码器B）</li><li>Rotary Encoder Source Activation 选择 Any Edge   （边沿触发）</li><li>Rotary Encoder Multiplier 选择 1    （倍频）</li><li>Rotary Encoder Divider 选择 1   （分频）</li><li>Line Selector 选择 Line1    （设置Line1滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li><li>Line Selector 选择 Line2    （设置Line2滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li></ol><p><img src="/image/Dalsa/1699846663334.png" alt="1699846663334"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 相机 </category>
+          
+          <category> Dalsa </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Basler</title>
+      <link href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/"/>
+      <url>/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/</url>
+      
+        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="https://www.baslerweb.com/cn/downloads/software-downloads/#type=pylonsoftware;os=windows;version=all">Basler Pylon 下载链接</a></p><h2 id="2K线扫（ral2048-48gm）"><a href="#2K线扫（ral2048-48gm）" class="headerlink" title="2K线扫（ral2048_48gm）"></a>2K线扫（ral2048_48gm）</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="/image/Basler/1691373077846.png" alt="1691373077846"></p><h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="/image/Basler/1691373104156.png" alt="1691373104156"></p><p><img src="/image/Basler/1691373121526.png" alt="1691373121526"></p><h3 id="倍频设置-已验证成功"><a href="#倍频设置-已验证成功" class="headerlink" title="倍频设置    (已验证成功)"></a>倍频设置    (已验证成功)</h3><p><strong>简述</strong>：倍频模式只需要编码器一相输入即可，不需要AB两相。</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Frequency Converter</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Frequency Converter下Input Source选择Line 1（用哪个选哪个）</li><li>Signal Alignment选择Rising Edge</li><li>Multiplier输入需要倍频的系数</li><li>Prevent Overtrigger 打上对勾</li></ol><p><img src="/image/Basler/1691651655789.png" alt="1691651655789"></p><p><img src="/image/Basler/1691651686013.png" alt="1691651686013"></p><p><img src="/image/Basler/1691651821475.png" alt="1691651821475"></p><h4 id="调试过程中遇到的问题"><a href="#调试过程中遇到的问题" class="headerlink" title="调试过程中遇到的问题"></a>调试过程中遇到的问题</h4><ul><li>连接相机后立即且一直出图。<br>  解决办法：Line Debouncer Time Abs设置滤波解决</li></ul><h3 id="编码器模式-已验证成功"><a href="#编码器模式-已验证成功" class="headerlink" title="编码器模式  (已验证成功)"></a>编码器模式  (已验证成功)</h3><p><strong>简述</strong>：编码器模式正向拍照，反向不拍照且计数，恢复正向后到开始反向的位置则继续拍照。(相当于直接4倍频)</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Shaft Encoder Module Out</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase A</li><li>Shaft Encoder Module Line选择Line1(接线哪个选哪个)</li><li>Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase B</li><li>Shaft Encoder Module Line选择Line3(接线哪个选哪个)</li><li>Shaft Encoder Module Trigger Mode Any Direction 开启任意方向滴答计数</li><li>Shaft Encoder Module Counter Mode 选择Follow Direction 开启反转负计数</li><li>Shaft Encoder Module Max Reverse Counter 负计数最大值，设置为32767</li><li><strong>注意</strong>：两个计数，最大值是32767，最小值是0，若向上超过最大值则变成0开始计数，向下超过0，则变成32767</li></ol><p><img src="/image/Basler/1691655242058.png" alt="1691655242058"></p><p>思考：若使用到检测停机中，配合采集触发就绪功能，则可以解决干扰以及正反转的问题</p><h3 id="输出IO-采集就绪输出信号，未验证"><a href="#输出IO-采集就绪输出信号，未验证" class="headerlink" title="输出IO (采集就绪输出信号，未验证)"></a>输出IO (采集就绪输出信号，未验证)</h3><p><strong>简述</strong>：可以作为图像结束信号，对齐图像工位，避免受到干扰造成的影响（手册中，在线文档中都没有该功能的描述，因为要代码设置参数，且需要写下位机程序验证，需要花费较长的时间，故此没有验证，此处仅简单记录）</p><p>部分功能验证，输出IO有效</p><ol><li>类别Diagital I&#x2F;O Controls 下 Line Selector 选择 Output Line 1</li><li>Line Source 选择 Acquisition Trigger Ready</li><li>Line Output Pulse Min.Width[us] 设置为100us（似乎是最大值）</li></ol><p><img src="/image/Basler/1691720510840.png" alt="1691720510840"></p><p>备注：Line Source 只能通过代码设置选择 Acquisition Trigger Ready，相机驱动中没有提供该功能的选项</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 相机 </category>
+          
+          <category> Basler </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Artix7</title>
+      <link href="/2023/11/14/FPGA/Artix7/"/>
+      <url>/2023/11/14/FPGA/Artix7/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Artix7"><a href="#Artix7" class="headerlink" title="Artix7"></a>Artix7</h1><h2 id="XC7A100T"><a href="#XC7A100T" class="headerlink" title="XC7A100T"></a>XC7A100T</h2><h3 id="vivado-代码固化"><a href="#vivado-代码固化" class="headerlink" title="vivado&#x2F;代码固化"></a>vivado&#x2F;代码固化</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>vivado2019.2</code></pre><ol><li>双击xsetup.exe（安装包不可以放在中文路径下）</li><li>基本无脑下一步，遇到agree就勾选，遇到路径自己选</li><li>选择版次，Vivado HL System Editiom</li><li>安装时间较长耐心等待，安装完成后弹出license manger 2019.2,点击左侧load license，选择license文件。</li></ol><h3 id="verilog"><a href="#verilog" class="headerlink" title="verilog"></a>verilog</h3><h4 id="进制格式"><a href="#进制格式" class="headerlink" title="进制格式"></a>进制格式</h4><p>二进制表示：4’b0000<br>十进制表示：4’d0<br>十六进制表示：4’h0</p><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>寄存器类型<br>    reg [31:0] a;<br>线网类型<br>    wire [31:0] a;<br>参数类型<br>    parameter [31:0] a &#x3D; 32’d100;</p><h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>加减乘除取余+ - * &#x2F; %<br>位与或异或取反&amp; | ^ ~<br>小于 小于等于 大于 大于等于&lt; &lt;&#x3D; &gt; &gt;&#x3D;<br>等于 不等 &#x3D;&#x3D; !&#x3D;<br>与或非&amp;&amp; || !</p><h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><h5 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h5><p>if (a &#x3D;&#x3D; 100)<br>    b &#x3D; 1;  </p><p>if(a&#x3D;&#x3D;100)begin<br>    b &#x3D; 1;<br>    b&#x3D;2;<br>end</p><h3 id="IO-INPUT-OUTPUT"><a href="#IO-INPUT-OUTPUT" class="headerlink" title="IO&#x2F;INPUT&#x2F;OUTPUT"></a>IO&#x2F;INPUT&#x2F;OUTPUT</h3><h3 id="时钟"><a href="#时钟" class="headerlink" title="时钟"></a>时钟</h3><p>bufg 全局时钟 可以控制FPGA任何的资源</p><p>Clock Region 局域时钟 IO 逻辑资源</p><p>bufr 区域时钟 控制一个区域的时钟</p><h3 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h3><h3 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h3><h3 id="EEPROM"><a href="#EEPROM" class="headerlink" title="EEPROM"></a>EEPROM</h3><h3 id="DDR3"><a href="#DDR3" class="headerlink" title="DDR3"></a>DDR3</h3><h3 id="OV5640"><a href="#OV5640" class="headerlink" title="OV5640"></a>OV5640</h3><h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><h4 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h4><h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="代码编辑相关"><a href="#代码编辑相关" class="headerlink" title="代码编辑相关"></a>代码编辑相关</h4><ol><li>verilog-format   格式化配置简单，效果一般</li><li>iStyle           格式化需要下载源码，编译出二进制文件，效果较好（推荐使用该方式）</li><li>verible-verilog-format 格式化配置简单，效果较好    （但同一文件内出现多个always语句块时则无法格式化，故此推荐使用iStyle）</li></ol><p>三者都有相应的格式化功能，只是相应的格式化规则略有不同。</p><p>vscode编辑器 插件 Verilog-HDL&#x2F;System Verilog&#x2F;*****（支持代码关键字高亮，支持多种代码格式化）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> FPGA </category>
+          
+          <category> Artix7 </category>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
