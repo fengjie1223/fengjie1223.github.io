@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>InnoSetup-脚本定制 | 冯杰的笔记</title>
+  <meta name="keywords" content=" InnoSetup , 安装包制作 ">
+  <meta name="description" content="InnoSetup-脚本定制 | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复卷定长校准方案">
+<meta property="og:url" content="http://example.com/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="description">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-17T09:28:56.000Z">
+<meta property="article:modified_time" content="2023-11-20T06:50:50.770Z">
+<meta property="article:author" content="冯杰">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="复卷瑕疵定位系统">
+<meta property="article:tag" content="复卷">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(23)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="测试">
+            <i class="fold iconfont icon-right"></i>
+            测试
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="测试&lt;---&gt;udp">
+            
+            udp
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="产品">
+            <i class="fold iconfont icon-right"></i>
+            产品
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;差分编码器转接板">
+            
+            差分编码器转接板
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;复卷瑕疵定位系统">
+            
+            复卷瑕疵定位系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;检测停机">
+            
+            检测停机
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;一体机控制器">
+            
+            一体机控制器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="技术">
+            <i class="fold iconfont icon-right"></i>
+            技术
+            <small>(7)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;Qt">
+            
+            Qt
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;STM32">
+            
+            STM32
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="相机">
+            <i class="fold iconfont icon-right"></i>
+            相机
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;办公">
+            
+            办公
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="23">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="http://cnaf.com/download">download</a></li>
+            
+            <li><a target="_blank" href="http://cnafgit.com">git</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安装包制作</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>倍分频</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>倍频</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>差分编码器转接板</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>差分转接板</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>产品</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>复卷</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>复卷瑕疵定位系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>检测停机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>控制器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>一体机控制器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Dalsa</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libpcap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libudt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libuv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>npcap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>udp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 产品 复卷瑕疵定位系统 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/"
+           data-tag="产品,复卷瑕疵定位系统,复卷"
+           data-author="" >
+            <span class="post-title" title="复卷定长校准方案">复卷定长校准方案</span>
+            <span class="post-date" title="2023-11-17 17:28:56">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E7%BB%BC%E5%90%88/vscode/vscode-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"
+           data-tag="vscode,环境搭建"
+           data-author="" >
+            <span class="post-title" title="vscode-随用笔记">vscode-随用笔记</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 办公 "
+           href="/2023/11/17/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Windows/"
+           data-tag="环境搭建,Windows"
+           data-author="" >
+            <span class="post-title" title="Windows-环境搭建">Windows-环境搭建</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 InnoSetup "
+           href="/2023/11/17/Qt/InnoSetup/%E8%84%9A%E6%9C%AC%E5%AE%9A%E5%88%B6/"
+           data-tag="InnoSetup,安装包制作"
+           data-author="" >
+            <span class="post-title" title="InnoSetup-脚本定制">InnoSetup-脚本定制</span>
+            <span class="post-date" title="2023-11-17 16:01:18">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 InnoSetup "
+           href="/2023/11/17/Qt/InnoSetup/%E5%90%91%E5%AF%BC%E5%88%9B%E5%BB%BA/"
+           data-tag="InnoSetup,安装包制作"
+           data-author="" >
+            <span class="post-title" title="InnoSetup-向导创建">InnoSetup-向导创建</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 git "
+           href="/2023/11/17/git/git_note/"
+           data-tag="git,版本管理"
+           data-author="" >
+            <span class="post-title" title="git-随用笔记">git-随用笔记</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/UDP_socket/"
+           data-tag="Qt,技术,udp"
+           data-author="" >
+            <span class="post-title" title="UDP_socket">UDP_socket</span>
+            <span class="post-date" title="2023-11-17 15:51:54">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/Qt%E9%AB%98%E7%BA%A7/"
+           data-tag="Qt,技术"
+           data-author="" >
+            <span class="post-title" title="Qt高级">Qt高级</span>
+            <span class="post-date" title="2023-11-17 15:51:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/Qt%E5%9F%BA%E7%A1%80/"
+           data-tag="Qt,技术"
+           data-author="" >
+            <span class="post-title" title="Qt基础">Qt基础</span>
+            <span class="post-date" title="2023-11-17 15:50:54">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 一体机控制器 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E4%B8%80%E4%BD%93%E6%9C%BA/%E4%B8%80%E4%BD%93%E6%9C%BA%E6%97%B6%E9%97%B4%E5%85%AC%E5%BC%8F%E8%AE%A1%E7%AE%97/"
+           data-tag="产品,一体机控制器"
+           data-author="" >
+            <span class="post-title" title="一体机-图像处理时间计算">一体机-图像处理时间计算</span>
+            <span class="post-date" title="2023-11-17 15:28:23">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 STM32 "
+           href="/2023/11/17/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/STM32-HAL%E5%BA%93/"
+           data-tag="STM32,HAL"
+           data-author="" >
+            <span class="post-title" title="STM32-HAL库">STM32-HAL库</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 差分编码器转接板 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%8E%A5%E6%9D%BF/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/"
+           data-tag="产品,差分编码器转接板,倍分频"
+           data-author="" >
+            <span class="post-title" title="差分编码器转接板说明书">差分编码器转接板说明书</span>
+            <span class="post-date" title="2023-11-17 15:24:58">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 复卷瑕疵定位系统 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E7%91%95%E7%96%B5%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F/"
+           data-tag="产品,复卷瑕疵定位系统,复卷"
+           data-author="" >
+            <span class="post-title" title="复卷瑕疵定位系统">复卷瑕疵定位系统</span>
+            <span class="post-date" title="2023-11-17 15:10:20">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 检测停机 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E6%A3%80%E6%B5%8B%E5%81%9C%E6%9C%BA%E7%B3%BB%E7%BB%9F/"
+           data-tag="产品,检测停机,Dalsa,倍频,差分转接板,控制器"
+           data-author="" >
+            <span class="post-title" title="检测停机-Dalsa倍分频-差分转接板-控制器">检测停机-Dalsa倍分频-差分转接板-控制器</span>
+            <span class="post-date" title="2023-11-17 15:03:45">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/qudpsocket/"
+           data-tag="udp,测试,qt"
+           data-author="" >
+            <span class="post-title" title="qudpsocket">qudpsocket</span>
+            <span class="post-date" title="2023-11-17 14:49:13">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/npcap/"
+           data-tag="udp,测试,npcap"
+           data-author="" >
+            <span class="post-title" title="npcap">npcap</span>
+            <span class="post-date" title="2023-11-16 17:54:59">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libuv/"
+           data-tag="udp,测试,libuv"
+           data-author="" >
+            <span class="post-title" title="libuv">libuv</span>
+            <span class="post-date" title="2023-11-16 17:32:08">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libudt/"
+           data-tag="udp,测试,libudt"
+           data-author="" >
+            <span class="post-title" title="libudt">libudt</span>
+            <span class="post-date" title="2023-11-16 17:28:50">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libpcap/"
+           data-tag="udp,测试,libpcap"
+           data-author="" >
+            <span class="post-title" title="libpcap">libpcap</span>
+            <span class="post-date" title="2023-11-16 17:28:05">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 HIK "
+           href="/2023/11/16/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/"
+           data-tag="博客,hexo,github,minio"
+           data-author="" >
+            <span class="post-title" title="部署博客">部署博客</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 Dalsa "
+           href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2023-11-14 14:48:44">2023/11/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 Basler "
+           href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2023-11-14 14:48:44">2023/11/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Qt/InnoSetup/脚本定制" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">InnoSetup-脚本定制</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="技术">技术</a> > 
+            
+            <a  data-rel="技术&lt;---&gt;InnoSetup">InnoSetup</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">InnoSetup</a>
+            
+            <a class="color1">安装包制作</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-11-17 16:02:04'>2023-11-17 16:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#InnoSetup"><span class="toc-text">InnoSetup</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%92%8C%E5%8D%B8%E8%BD%BD%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">添加和卸载环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE%E7%A4%BA%E4%BE%8B"><span class="toc-text">完整项目示例</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="InnoSetup"><a href="#InnoSetup" class="headerlink" title="InnoSetup"></a>InnoSetup</h1><h2 id="添加和卸载环境变量"><a href="#添加和卸载环境变量" class="headerlink" title="添加和卸载环境变量"></a>添加和卸载环境变量</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[Code]</span><br><span class="line"><span class="comment">// 设置环境变量函数</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">SetEnv</span><span class="params">(aEnvName, aEnvValue: <span class="keyword">string</span>; aIsInstall, aIsInsForAllUser: Boolean)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">sOrgValue: <span class="keyword">string</span>;</span><br><span class="line">sFileName: <span class="keyword">string</span>;</span><br><span class="line">S1: AnsiString;                                                  <span class="comment">//注意类型是AnsiString,不是string</span></span><br><span class="line">bRetValue, bInsForAllUser: Boolean;</span><br><span class="line">SL: TStringList;</span><br><span class="line">x: integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">bInsForAllUser := aIsInsForAllUser;</span><br><span class="line"><span class="keyword">if</span> UsingWinNT <span class="keyword">then</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> bInsForAllUser <span class="keyword">then</span></span><br><span class="line">      bRetValue := RegQueryStringValue(HKEY_LOCAL_MACHINE, <span class="string">&#x27;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#x27;</span>, aEnvName, sOrgValue)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      bRetValue := RegQueryStringValue(HKEY_CURRENT_USER, <span class="string">&#x27;Environment&#x27;</span>, aEnvName, sOrgValue);</span><br><span class="line">    sOrgValue := Trim(sOrgValue);</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      S1 := aEnvValue;</span><br><span class="line">      <span class="keyword">if</span> pos(Uppercase(s1), Uppercase(sOrgValue)) = <span class="number">0</span> <span class="keyword">then</span> <span class="comment">//还没有加入</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> aIsInstall <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">          x := Length(sOrgValue);</span><br><span class="line">          <span class="keyword">if</span> (x &gt; <span class="number">0</span>) <span class="keyword">and</span> (StringOfChar(sOrgValue[x], <span class="number">1</span>) &lt;&gt; <span class="string">&#x27;;&#x27;</span>) <span class="keyword">then</span></span><br><span class="line">            sOrgValue := sOrgValue + <span class="string">&#x27;;&#x27;</span>;</span><br><span class="line">          sOrgValue := sOrgValue + S1;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> aIsInstall <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">          StringChangeEx(sOrgValue, S1 + <span class="string">&#x27;;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, True);</span><br><span class="line">          StringChangeEx(sOrgValue, S1, <span class="string">&#x27;&#x27;</span>, True);</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> bInsForAllUser <span class="keyword">then</span></span><br><span class="line">        RegWriteStringValue(HKEY_LOCAL_MACHINE, <span class="string">&#x27;SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#x27;</span>, aEnvName, sOrgValue)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> aIsInstall) <span class="keyword">and</span> (Trim(sOrgValue) = <span class="string">&#x27;&#x27;</span>) <span class="keyword">then</span></span><br><span class="line">          RegDeleteValue(HKEY_CURRENT_USER, <span class="string">&#x27;Environment&#x27;</span>, aEnvName)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          RegWriteStringValue(HKEY_CURRENT_USER, <span class="string">&#x27;Environment&#x27;</span>, aEnvName, sOrgValue);</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">else</span> <span class="comment">//非NT 系统,如Win98</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    SL := TStringList.Create;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">      sFileName := ExpandConstant(<span class="string">&#x27;&#123;sd&#125;\autoexec.bat&#x27;</span>);</span><br><span class="line">      LoadStringFromFile(sFileName, S1);</span><br><span class="line">      SL.Text := s1;</span><br><span class="line">      s1 :=   <span class="string">&#x27;&quot;&#x27;</span> + aEnvValue + <span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line">      s1 := <span class="string">&#x27;set &#x27;</span>+aEnvName +<span class="string">&#x27;=%path%;&#x27;</span> + s1 ;</span><br><span class="line"></span><br><span class="line">      bRetValue := False;</span><br><span class="line">      x := SL.IndexOf(s1);</span><br><span class="line">      <span class="keyword">if</span> x = -<span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> aIsInstall <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">          SL.Add(s1);</span><br><span class="line">          bRetValue := True;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">else</span> <span class="comment">//还没添加</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> aIsInstall <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">          SL.Delete(x);</span><br><span class="line">          bRetValue := True;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> bRetValue <span class="keyword">then</span></span><br><span class="line">        SL.SaveToFile(sFileName);</span><br><span class="line">    <span class="keyword">finally</span></span><br><span class="line">      SL.free;</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 安装前添加环境变量</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">CurStepChanged</span><span class="params">(CurStep: TSetupStep)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> CurStep = ssInstall <span class="keyword">then</span>                        <span class="comment">//对于(ssInstall)这个变量可依据自身需要进行更改，帮助文档中有说明(也可是安装完成之后进行写入对应变量为ssDone)</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">  <span class="comment">// 将&#123;app&#125;路径添加到path环境变量中</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;;&#x27;),true,true); //对于添加多个环境变量需要注意要添加分割符号&quot;;&quot;,否则系统会认为是一个</span></span><br><span class="line">     SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\pylon&#x27;</span>),true,true); <span class="comment">//在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">     SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\opencv&#x27;</span>),true,true); <span class="comment">//在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\x86&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">     SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\x64&#x27;</span>),true,true); <span class="comment">//在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//if CurStep = ssDone then                        //对于(ssInstall)这个变量可依据自身需要进行更改，帮助文档中有说明(也可是安装完成之后进行写入对应变量为ssDone)</span></span><br><span class="line">  <span class="comment">//begin</span></span><br><span class="line">  <span class="comment">// 将&#123;app&#125;路径添加到path环境变量中</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;;&#x27;),true,true); //对于添加多个环境变量需要注意要添加分割符号&quot;;&quot;,否则系统会认为是一个</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\pylon&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\opencv&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">    <span class="comment">// SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\x86&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">     <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\x64&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line">  <span class="comment">//end;</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卸载前删除环境变量</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">CurUninstallStepChanged</span><span class="params">(CurUninstallStep: TUninstallStep)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment">// 将&#123;app&#125;路径从path环境变量中删除</span></span><br><span class="line">  <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;;&#x27;),false,true);</span></span><br><span class="line">  SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\pylon&#x27;</span>),false,true); <span class="comment">//卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line">  SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\opencv&#x27;</span>),false,true); <span class="comment">//卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line">  <span class="comment">//SetEnv(&#x27;path&#x27;,ExpandConstant(&#x27;&#123;app&#125;\bin\x86&#x27;),false,true); //卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line">  SetEnv(<span class="string">&#x27;path&#x27;</span>,ExpandConstant(<span class="string">&#x27;&#123;app&#125;\bin\x64&#x27;</span>),false,true); <span class="comment">//卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="完整项目示例"><a href="#完整项目示例" class="headerlink" title="完整项目示例"></a>完整项目示例</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br></pre></td><td class="code"><pre><span class="line">; Script generated by the Inno Setup Script Wizard.</span><br><span class="line">; SEE THE DOCUMENTATION <span class="keyword">FOR</span> DETAILS <span class="keyword">ON</span> CREATING INNO SETUP SCRIPT FILES!</span><br><span class="line"></span><br><span class="line">#define MyAppName &quot;恒意得上位机_230809&quot;</span><br><span class="line">#define MyAppVersion &quot;<span class="number">9.22</span>.<span class="number">10.26</span>&quot;</span><br><span class="line">#define MyAppPublisher &quot;HID&quot;</span><br><span class="line">#define MyAppURL &quot;https:<span class="comment">//www.hengideal.com/&quot;</span></span><br><span class="line">#define MyAppExeName &quot;controller.exe&quot;</span><br><span class="line"></span><br><span class="line">;标准控制器</span><br><span class="line">#define btn_Controller_V9</span><br><span class="line">;检测停机V3                             </span><br><span class="line">;#define btn_RewindDetectionShutdown_V3              </span><br><span class="line">;信号转换器</span><br><span class="line">;#define btn_InputSignalConverter                    </span><br><span class="line">;一体机</span><br><span class="line">;#define btn_YiTiJi                                  </span><br><span class="line">;复卷系统</span><br><span class="line">;#define btn_Rewinding_System                        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;****************我是分割线****************</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;是否集成X线组件</span><br><span class="line">;#define btn_XLine                                   </span><br><span class="line">;定位转IO</span><br><span class="line">;#define btn_PositioningTo                           </span><br><span class="line">;检测停机V2</span><br><span class="line">;#define btn_RewindDetectionShutdown_V2              </span><br><span class="line">;光源控制器</span><br><span class="line">;#define btn_Light_source_controller                 </span><br><span class="line">;崇阳折叠机<span class="number">2</span>通道<span class="number">4</span>相机</span><br><span class="line">;#define btn_Gauze_2ch_4cam                          </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Types]</span><br><span class="line"><span class="keyword">Name</span>: Compact ;Description:&quot;简洁安装&quot;;        </span><br><span class="line"><span class="keyword">Name</span>: Full ;Description:&quot;完全安装&quot;;    </span><br><span class="line"><span class="keyword">Name</span>: Custom; Description:&quot;自定义安装&quot;;       Flags: iscustom</span><br><span class="line">;上述代码会根据写代码顺序排列选择顺序,,,Flags:iscustom,为标记该类型为自定义安装.配合下述Components代码实现选择安装</span><br><span class="line"></span><br><span class="line">#ifdef  btn_Controller_V9</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:control_v9;Description:&quot;标准控制器&quot;;Types:Full Compact Custom;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\标准控制器\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\标准控制器&quot;; Flags: ignoreversion   ;Components: control_v9</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#MyAppExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion ; Components: control_v9</span><br><span class="line">;语句后增加 Flags:fixed 字段 可强制安装</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#MyAppName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#MyAppExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:control_v9</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#MyAppExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(MyAppName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent    ;Components:control_v9</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;X线定义</span><br><span class="line">#ifdef btn_XLine</span><br><span class="line">#define X_LineName &quot;X线控制器&quot;</span><br><span class="line">#define X_LineExeName &quot;X_line.exe&quot;</span><br><span class="line">#define Xline_HMIName &quot;X线PLC设置&quot;</span><br><span class="line">#define Xline_HMIExeName &quot;Xline_HMI.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:X_Line;Description:<span class="comment">&#123;#X_LineName&#125;</span>;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\折叠机_X线\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\折叠机_X线&quot;; Flags: ignoreversion   ;Components: X_Line</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: X_Line</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#Xline_HMIExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: X_Line</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#Xline_HMIName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Xline_HMIExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:X_Line</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(X_LineName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent   ;Components:X_Line</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Xline_HMIExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(Xline_HMIName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent     ;Components:X_Line</span><br><span class="line">;上述代码将在安装完成界面添加check选项框,是否运行,或者可以添加打开更新日志之类的功能</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;一体机定义</span><br><span class="line">#ifdef btn_YiTiJi</span><br><span class="line">#define YiTiJiName &quot;一体机&quot;</span><br><span class="line">#define YiTiJiExeName &quot;YiTiJi.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:YiTiJi;Description:<span class="comment">&#123;#YiTiJiName&#125;</span>;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\包装检测一体机\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\包装检测一体机&quot;; Flags: ignoreversion   ;Components: YiTiJi</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#YiTiJiExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: YiTiJi</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#YiTiJiName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#YiTiJiExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:YiTiJi</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#YiTiJiExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(YiTiJiName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent   ;Components:YiTiJi</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;复卷系统定义</span><br><span class="line">#ifdef btn_Rewinding_System </span><br><span class="line">#define  Rewinding_SystemName &quot;复卷数据系统&quot;</span><br><span class="line">#define  Rewinding_SystemExeName &quot;复卷系统/复卷系统.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:Rewinding_System;Description:&quot;复卷系统&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\复卷系统\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\复卷系统&quot;; Flags: ignoreversion   ;Components: Rewinding_System</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#Rewinding_SystemExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\复卷系统&quot;; Flags: ignoreversion; Components: Rewinding_System</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#Rewinding_SystemName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Rewinding_SystemExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:Rewinding_System</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Rewinding_SystemExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(Rewinding_SystemName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent    ;Components:Rewinding_System</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;定位测量转IO定义</span><br><span class="line">#ifdef btn_PositioningTo </span><br><span class="line">#define  PositioningToIOName &quot;定位测量转IO&quot;</span><br><span class="line">#define  PositioningToIOExeName &quot;LocationToIO.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:PositioningToIO;Description:&quot;定位测量转IO&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\定位测量转IO\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\定位测量转IO&quot;; Flags: ignoreversion   ;Components: PositioningToIO</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#PositioningToIOExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: PositioningToIO</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#PositioningToIOName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#PositioningToIOExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:PositioningToIO</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#PositioningToIOExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(PositioningToIOName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent     ;Components:PositioningToIO</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;复卷检测停机V2定义</span><br><span class="line">#ifdef btn_RewindDetectionShutdown_V2</span><br><span class="line">#define  RewindDetectionShutdownNameV2 &quot;复卷检测停机V2&quot;</span><br><span class="line">#define  RewindDetectionShutdownExeNameV2 &quot;RewindingV2.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:RewindDetectionShutdownV2;Description:&quot;复卷检测停机V2&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\复卷检测停机\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\复卷检测停机&quot;; Flags: ignoreversion recursesubdirs createallsubdirs  ;Components: RewindDetectionShutdownV2</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#RewindDetectionShutdownExeNameV2&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: RewindDetectionShutdownV2</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownNameV2&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownExeNameV2&#125;</span>&quot;; Tasks: desktopicon      ;Components:RewindDetectionShutdownV2</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownExeNameV2&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(RewindDetectionShutdownNameV2, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent    ;Components:RewindDetectionShutdownV2</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;复卷检测停机V3定义</span><br><span class="line">#ifdef btn_RewindDetectionShutdown_V3</span><br><span class="line">#define  RewindDetectionShutdownName &quot;复卷检测停机V3&quot;</span><br><span class="line">#define  RewindDetectionShutdownExeName &quot;RewindingDetectionV3.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:RewindDetectionShutdownV3;Description:&quot;复卷检测停机V3&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\复卷检测停机\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\复卷检测停机&quot;; Flags: ignoreversion recursesubdirs createallsubdirs  ;Components: RewindDetectionShutdownV3</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#RewindDetectionShutdownExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: RewindDetectionShutdownV3</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:RewindDetectionShutdownV3</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#RewindDetectionShutdownExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(RewindDetectionShutdownName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent    ;Components:RewindDetectionShutdownV3</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;光源控制器定义</span><br><span class="line">#ifdef btn_Light_source_controller </span><br><span class="line">#define  Light_source_controllerName &quot;光源控制器&quot;</span><br><span class="line">#define  Light_source_controllerExeName &quot;Light_source_controller.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:Light_source_controller;Description:&quot;光源控制器&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\光源控制器\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\光源控制器&quot;; Flags: ignoreversion   ;Components: Light_source_controller</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#Light_source_controllerExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: Light_source_controller</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#Light_source_controllerName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Light_source_controllerExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:Light_source_controller</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Light_source_controllerExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(Light_source_controllerName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent    ;Components:Light_source_controller</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;纱布折叠机_两通道_四相机定义</span><br><span class="line">#ifdef btn_Gauze_2ch_4cam </span><br><span class="line">#define  Gauze_2ch_4camName &quot;纱布折叠机_两通道_四相机&quot;</span><br><span class="line">#define  Gauze_2ch_4camExeName &quot;Gauze_2ch_4cam.exe&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:Gauze_2ch_4cam;Description:&quot;纱布折叠机_两通道_四相机&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\折叠机_双通道四相机\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\折叠机_双通道四相机&quot;; Flags: ignoreversion   ;Components: Gauze_2ch_4cam</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#Gauze_2ch_4camExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: Gauze_2ch_4cam</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line"><span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#Gauze_2ch_4camName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Gauze_2ch_4camExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:Gauze_2ch_4cam</span><br><span class="line">[Run]</span><br><span class="line">Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#Gauze_2ch_4camExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(Gauze_2ch_4camName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent        ;Components:Gauze_2ch_4cam</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">;产线信号转换器定义</span><br><span class="line">#ifdef btn_InputSignalConverter </span><br><span class="line">#define  ProductionLineSignalConverterName &quot;产线信号转换器&quot;</span><br><span class="line">#define  ProductionLineSignalConverterExeName &quot;&quot;</span><br><span class="line">[Components]</span><br><span class="line"><span class="keyword">Name</span>:ProductionLineSignalConverter;Description:&quot;产线信号转换器&quot;;Types:Full;</span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\产线信号转换器\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\产线信号转换器&quot;; Flags: ignoreversion   ;Components: ProductionLineSignalConverter</span><br><span class="line">;Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\<span class="comment">&#123;#ProductionLineSignalConverterExeName&#125;</span>&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion; Components: ProductionLineSignalConverter</span><br><span class="line">[Icons]</span><br><span class="line">;桌面快捷方式  </span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autoprograms&#125;</span>\<span class="comment">&#123;#X_LineName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#X_LineExeName&#125;</span>&quot;      ;Components:X_Line</span><br><span class="line">;<span class="keyword">Name</span>: &quot;<span class="comment">&#123;autodesktop&#125;</span>\<span class="comment">&#123;#ProductionLineSignalConverterName&#125;</span>&quot;; Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#ProductionLineSignalConverterExeName&#125;</span>&quot;; Tasks: desktopicon      ;Components:ProductionLineSignalConverter</span><br><span class="line">[Run]</span><br><span class="line">;Filename: &quot;<span class="comment">&#123;app&#125;</span>\<span class="comment">&#123;#ProductionLineSignalConverterExeName&#125;</span>&quot;; Description: &quot;<span class="comment">&#123;cm:LaunchProgram,&#123;#StringChange(ProductionLineSignalConverterName, &#x27;&amp;&#x27;, &#x27;&amp;&amp;&#x27;)&#125;</span>&#125;&quot;; Flags: nowait postinstall skipifsilent</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">[Setup]</span><br><span class="line">; NOTE: The value <span class="keyword">of</span> AppId uniquely identifies this application. <span class="keyword">Do</span> <span class="keyword">not</span> use the same AppId value <span class="keyword">in</span> installers <span class="keyword">for</span> other applications.</span><br><span class="line">; (<span class="keyword">To</span> generate a new GUID, click Tools | Generate GUID inside the IDE.)</span><br><span class="line">AppId=<span class="comment">&#123;&#123;433F837C-1CBE-45B1-948F-B33CB8DC0191&#125;</span></span><br><span class="line">AppName=<span class="comment">&#123;#MyAppName&#125;</span></span><br><span class="line">AppVersion=<span class="comment">&#123;#MyAppVersion&#125;</span></span><br><span class="line">;AppVerName=<span class="comment">&#123;#MyAppName&#125;</span> <span class="comment">&#123;#MyAppVersion&#125;</span></span><br><span class="line">AppPublisher=<span class="comment">&#123;#MyAppPublisher&#125;</span></span><br><span class="line">AppPublisherURL=<span class="comment">&#123;#MyAppURL&#125;</span></span><br><span class="line">AppSupportURL=<span class="comment">&#123;#MyAppURL&#125;</span></span><br><span class="line">AppUpdatesURL=<span class="comment">&#123;#MyAppURL&#125;</span></span><br><span class="line">DefaultDirName=C:/恒意得上位机系统</span><br><span class="line">DisableProgramGroupPage=yes</span><br><span class="line">;InfoAfterFile=C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\更新日志.md</span><br><span class="line">; Uncomment the following line <span class="keyword">to</span> run <span class="keyword">in</span> non administrative install mode (install <span class="keyword">for</span> current user only.)</span><br><span class="line">;PrivilegesRequired=lowest</span><br><span class="line">OutputDir=C:\Users\fengj\OneDrive\Programs\Controller\Release_Installation_Package</span><br><span class="line">OutputBaseFilename=<span class="comment">&#123;#MyAppName&#125;</span>_setup_安装包</span><br><span class="line">SetupIconFile=C:\\Users\\fengj\\OneDrive\\Programs\\Controller\\Release\\Software_msvc\\source_material\\icon\\install.ico</span><br><span class="line">UninstallDisplayIcon=C:\\Users\\fengj\\OneDrive\\Programs\\Controller\\Release\\Software_msvc\\source_material\\icon\\install.ico</span><br><span class="line">Compression=lzma</span><br><span class="line">SolidCompression=yes</span><br><span class="line">WizardStyle=modern</span><br><span class="line">ChangesEnvironment=true</span><br><span class="line">UsePreviousAppDir=no</span><br><span class="line">;UsePreviousAppDir该字段设置为no则允许用户使用非覆盖的方式安装应用,若需要还原为覆盖安装则删除该字段即可</span><br><span class="line">ShowLanguageDialog=yes</span><br><span class="line">;上述语句为组件选择安装使用</span><br><span class="line">password=heng</span><br><span class="line">;上述语句用于添加安装密码</span><br><span class="line"></span><br><span class="line">;ChangesEnvironment=yes</span><br><span class="line">;上述语句用于环境变量相关</span><br><span class="line"></span><br><span class="line">;AlwaysRestart =yes</span><br><span class="line">;  上述 用于重启</span><br><span class="line"></span><br><span class="line">;RestartIfNeededByRun=yes</span><br><span class="line">;重启相关</span><br><span class="line"></span><br><span class="line">DefaultGroupName=<span class="comment">&#123;#MyAppName&#125;</span> </span><br><span class="line">;菜单栏创建文件夹</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Languages]</span><br><span class="line"><span class="keyword">Name</span>: &quot;english&quot;; MessagesFile: &quot;compiler:<span class="keyword">Default</span>.isl&quot;</span><br><span class="line"><span class="keyword">Name</span>: &quot;chinesesimplified&quot;; MessagesFile: &quot;compiler:Languages\ChineseSimplified.isl&quot;</span><br><span class="line"></span><br><span class="line">[Tasks]</span><br><span class="line"><span class="keyword">Name</span>: &quot;desktopicon&quot;; Description: &quot;<span class="comment">&#123;cm:CreateDesktopIcon&#125;</span>&quot;; GroupDescription: &quot;<span class="comment">&#123;cm:AdditionalIcons&#125;</span>&quot;; Flags: checkablealone; </span><br><span class="line">;以上若需要默认不勾选安装快捷方式,则可以将flags替换为unchecked ,若默认需要勾选则为checkablealone</span><br><span class="line">; 只是在同级页面添加了选项.....<span class="keyword">Name</span>:&quot;YiTiJi&quot;;Description: &quot;测试&quot;;Flags:unchecked</span><br><span class="line">; 只是在同级页面添加了选项.....<span class="keyword">Name</span>:&quot;X_Line&quot;;Description:&quot;测试<span class="number">2</span>&quot;;Components:X_Line</span><br><span class="line"></span><br><span class="line">;<span class="keyword">Name</span>:&quot;RestartPC&quot;; Description:&quot;Restart the Computer&quot;; GroupDescription:&quot;Post Installation Options&quot;; Flags: unchecked;</span><br><span class="line">;上述代码用于设定安装完重启</span><br><span class="line"></span><br><span class="line">[Files]</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\*.dll&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\iconengines\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\iconengines&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\imageformats\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\imageformats&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\platforms\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\platforms&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\styles\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\styles&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\translations\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\translations&quot;; Flags: ignoreversion                </span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Skin\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Skin&quot;; Flags: ignoreversion</span><br><span class="line">Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\参数管理\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\参数管理&quot;; Flags: ignoreversion onlyifdoesntexist</span><br><span class="line">;Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\dll修复工具\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\dll修复工具&quot;; Flags: ignoreversion   recursesubdirs createallsubdirs</span><br><span class="line"></span><br><span class="line">;Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\标准控制器\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\标准控制器&quot;; Flags: ignoreversion</span><br><span class="line">;Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\Docs\复卷检测\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\Docs\复卷检测&quot;; Flags: ignoreversion   ;Components: Rewinding_System</span><br><span class="line">;Source: &quot;C:\Users\fengj\OneDrive\Programs\Controller\Release\Software_msvc\复卷系统\*&quot;; DestDir: &quot;<span class="comment">&#123;app&#125;</span>\复卷系统&quot;; Flags: ignoreversion recursesubdirs createallsubdirs;Components: Rewinding_System</span><br><span class="line">; NOTE: Don<span class="string">&#x27;t use &quot;Flags: ignoreversion&quot; on any shared system files</span></span><br><span class="line"><span class="string">;后缀加上 recursesubdirs createallsubdirs 可以包含文件夹下所有内容</span></span><br><span class="line"><span class="string">;后缀加上 onlyifdoesntexist 可以判断文件夹是否有该文件,若存在该文件则不替换</span></span><br><span class="line"><span class="string">;[Icons]</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autoprograms&#125;\&#123;#MyAppName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#MyAppExeName&#125;&quot;  </span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autodesktop&#125;\&#123;#MyAppName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#MyAppExeName&#125;&quot;; Tasks: desktopicon </span></span><br><span class="line"><span class="string">;下述代码实现了安装完成后桌面显示多个快捷方式的功能</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autoprograms&#125;\&#123;#YiTiJiName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#YiTiJiExeName&#125;&quot;      ;Components:YiTiJi</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autodesktop&#125;\&#123;#YiTiJiName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#YiTiJiExeName&#125;&quot;; Tasks: desktopicon      ;Components:YiTiJi</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;复卷系统的桌面快捷方式</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autoprograms&#125;\&#123;#Rewinding_SystemName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#Rewinding_SystemExeName&#125;&quot;      ;Components:Rewinding_System</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;autodesktop&#125;\&#123;#Rewinding_SystemName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#Rewinding_SystemExeName&#125;&quot;; Tasks: desktopicon      ;Components:Rewinding_System</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;菜单栏创建文件夹</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;group&#125;\&#123;#MyAppName&#125;&quot;; Filename: &quot;&#123;app&#125;\&#123;#MyAppExeName&#125;&quot;; WorkingDir:&quot;&#123;app&#125;&quot;</span></span><br><span class="line"><span class="string">;Name: &quot;&#123;group&#125;\&#123;cm:UninstallProgram,&#123;#MyAppName&#125;&#125;&quot;; Filename: &quot;&#123;uninstallexe&#125;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Code]</span></span><br><span class="line"><span class="string">// 设置环境变量函数</span></span><br><span class="line"><span class="string">procedure SetEnv(aEnvName, aEnvValue: string; aIsInstall, aIsInsForAllUser: Boolean);</span></span><br><span class="line"><span class="string">var</span></span><br><span class="line"><span class="string">sOrgValue: string;</span></span><br><span class="line"><span class="string">sFileName: string;</span></span><br><span class="line"><span class="string">S1: AnsiString;                                                  //注意类型是AnsiString,不是string</span></span><br><span class="line"><span class="string">bRetValue, bInsForAllUser: Boolean;</span></span><br><span class="line"><span class="string">SL: TStringList;</span></span><br><span class="line"><span class="string">x: integer;</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">bInsForAllUser := aIsInsForAllUser;</span></span><br><span class="line"><span class="string">if UsingWinNT then</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">    if bInsForAllUser then</span></span><br><span class="line"><span class="string">      bRetValue := RegQueryStringValue(HKEY_LOCAL_MACHINE, &#x27;</span>SYSTEM\CurrentControlSet\Control\Session Manager\Environment<span class="string">&#x27;, aEnvName, sOrgValue)</span></span><br><span class="line"><span class="string">    else</span></span><br><span class="line"><span class="string">      bRetValue := RegQueryStringValue(HKEY_CURRENT_USER, &#x27;</span>Environment<span class="string">&#x27;, aEnvName, sOrgValue);</span></span><br><span class="line"><span class="string">    sOrgValue := Trim(sOrgValue);</span></span><br><span class="line"><span class="string">    begin</span></span><br><span class="line"><span class="string">      S1 := aEnvValue;</span></span><br><span class="line"><span class="string">      if pos(Uppercase(s1), Uppercase(sOrgValue)) = 0 then //还没有加入</span></span><br><span class="line"><span class="string">      begin</span></span><br><span class="line"><span class="string">        if aIsInstall then</span></span><br><span class="line"><span class="string">        begin</span></span><br><span class="line"><span class="string">          x := Length(sOrgValue);</span></span><br><span class="line"><span class="string">          if (x &gt; 0) and (StringOfChar(sOrgValue[x], 1) &lt;&gt; &#x27;</span>;<span class="string">&#x27;) then</span></span><br><span class="line"><span class="string">            sOrgValue := sOrgValue + &#x27;</span>;<span class="string">&#x27;;</span></span><br><span class="line"><span class="string">          sOrgValue := sOrgValue + S1;</span></span><br><span class="line"><span class="string">        end;</span></span><br><span class="line"><span class="string">      end else</span></span><br><span class="line"><span class="string">      begin</span></span><br><span class="line"><span class="string">        if not aIsInstall then</span></span><br><span class="line"><span class="string">        begin</span></span><br><span class="line"><span class="string">          StringChangeEx(sOrgValue, S1 + &#x27;</span>;<span class="string">&#x27;, &#x27;&#x27;, True);</span></span><br><span class="line"><span class="string">          StringChangeEx(sOrgValue, S1, &#x27;&#x27;, True);</span></span><br><span class="line"><span class="string">        end;</span></span><br><span class="line"><span class="string">      end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      if bInsForAllUser then</span></span><br><span class="line"><span class="string">        RegWriteStringValue(HKEY_LOCAL_MACHINE, &#x27;</span>SYSTEM\CurrentControlSet\Control\Session Manager\Environment<span class="string">&#x27;, aEnvName, sOrgValue)</span></span><br><span class="line"><span class="string">      else</span></span><br><span class="line"><span class="string">      begin</span></span><br><span class="line"><span class="string">        if (not aIsInstall) and (Trim(sOrgValue) = &#x27;&#x27;) then</span></span><br><span class="line"><span class="string">          RegDeleteValue(HKEY_CURRENT_USER, &#x27;</span>Environment<span class="string">&#x27;, aEnvName)</span></span><br><span class="line"><span class="string">        else</span></span><br><span class="line"><span class="string">          RegWriteStringValue(HKEY_CURRENT_USER, &#x27;</span>Environment<span class="string">&#x27;, aEnvName, sOrgValue);</span></span><br><span class="line"><span class="string">      end;</span></span><br><span class="line"><span class="string">    end;</span></span><br><span class="line"><span class="string">end else //非NT 系统,如Win98</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">    SL := TStringList.Create;</span></span><br><span class="line"><span class="string">    try</span></span><br><span class="line"><span class="string">      sFileName := ExpandConstant(&#x27;</span><span class="comment">&#123;sd&#125;</span>\autoexec.bat<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">      LoadStringFromFile(sFileName, S1);</span></span><br><span class="line"><span class="string">      SL.Text := s1;</span></span><br><span class="line"><span class="string">      s1 :=   &#x27;</span>&quot;<span class="string">&#x27; + aEnvValue + &#x27;</span>&quot;<span class="string">&#x27;;</span></span><br><span class="line"><span class="string">      s1 := &#x27;</span><span class="keyword">set</span> <span class="string">&#x27;+aEnvName +&#x27;</span>=%path%;<span class="string">&#x27; + s1 ;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      bRetValue := False;</span></span><br><span class="line"><span class="string">      x := SL.IndexOf(s1);</span></span><br><span class="line"><span class="string">      if x = -1 then</span></span><br><span class="line"><span class="string">      begin</span></span><br><span class="line"><span class="string">        if aIsInstall then</span></span><br><span class="line"><span class="string">        begin</span></span><br><span class="line"><span class="string">          SL.Add(s1);</span></span><br><span class="line"><span class="string">          bRetValue := True;</span></span><br><span class="line"><span class="string">        end;</span></span><br><span class="line"><span class="string">      end else //还没添加</span></span><br><span class="line"><span class="string">        if not aIsInstall then</span></span><br><span class="line"><span class="string">        begin</span></span><br><span class="line"><span class="string">          SL.Delete(x);</span></span><br><span class="line"><span class="string">          bRetValue := True;</span></span><br><span class="line"><span class="string">        end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      if bRetValue then</span></span><br><span class="line"><span class="string">        SL.SaveToFile(sFileName);</span></span><br><span class="line"><span class="string">    finally</span></span><br><span class="line"><span class="string">      SL.free;</span></span><br><span class="line"><span class="string">    end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">end;</span></span><br><span class="line"><span class="string">end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 安装前添加环境变量</span></span><br><span class="line"><span class="string">procedure CurStepChanged(CurStep: TSetupStep);</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">  if CurStep = ssInstall then                        //对于(ssInstall)这个变量可依据自身需要进行更改，帮助文档中有说明(也可是安装完成之后进行写入对应变量为ssDone)</span></span><br><span class="line"><span class="string">  begin</span></span><br><span class="line"><span class="string">  // 将&#123;app&#125;路径添加到path环境变量中</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>;<span class="string">&#x27;),true,true); //对于添加多个环境变量需要注意要添加分割符号&quot;;&quot;,否则系统会认为是一个</span></span><br><span class="line"><span class="string">     SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\pylon<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">     SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\opencv<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x86<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">     SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x64<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">  end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  //if CurStep = ssDone then                        //对于(ssInstall)这个变量可依据自身需要进行更改，帮助文档中有说明(也可是安装完成之后进行写入对应变量为ssDone)</span></span><br><span class="line"><span class="string">  //begin</span></span><br><span class="line"><span class="string">  // 将&#123;app&#125;路径添加到path环境变量中</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>;<span class="string">&#x27;),true,true); //对于添加多个环境变量需要注意要添加分割符号&quot;;&quot;,否则系统会认为是一个</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\pylon<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\opencv<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">    // SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x86<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">     //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x64<span class="string">&#x27;),true,true); //在这儿调用,一定在这儿调用,安装完无须重启,立即生效</span></span><br><span class="line"><span class="string">  //end;</span></span><br><span class="line"><span class="string">end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 卸载前删除环境变量</span></span><br><span class="line"><span class="string">procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">  // 将&#123;app&#125;路径从path环境变量中删除</span></span><br><span class="line"><span class="string">  //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>;<span class="string">&#x27;),false,true);</span></span><br><span class="line"><span class="string">  SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\pylon<span class="string">&#x27;),false,true); //卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line"><span class="string">  SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\opencv<span class="string">&#x27;),false,true); //卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line"><span class="string">  //SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x86<span class="string">&#x27;),false,true); //卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line"><span class="string">  SetEnv(&#x27;</span>path<span class="string">&#x27;,ExpandConstant(&#x27;</span><span class="comment">&#123;app&#125;</span>\bin\x64<span class="string">&#x27;),false,true); //卸载时所需要删除的环境变量需要与所添加的变量一致，以免误删除</span></span><br><span class="line"><span class="string">end;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

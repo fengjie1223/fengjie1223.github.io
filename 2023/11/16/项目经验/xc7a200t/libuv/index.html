@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>libuv | 冯杰的笔记</title>
+  <meta name="keywords" content=" udp , 测试 , libuv ">
+  <meta name="description" content="libuv | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复卷定长校准方案">
+<meta property="og:url" content="http://example.com/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="description">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-17T09:28:56.000Z">
+<meta property="article:modified_time" content="2023-11-20T06:50:50.770Z">
+<meta property="article:author" content="冯杰">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="复卷瑕疵定位系统">
+<meta property="article:tag" content="复卷">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(23)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="测试">
+            <i class="fold iconfont icon-right"></i>
+            测试
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="测试&lt;---&gt;udp">
+            
+            udp
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="产品">
+            <i class="fold iconfont icon-right"></i>
+            产品
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;差分编码器转接板">
+            
+            差分编码器转接板
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;复卷瑕疵定位系统">
+            
+            复卷瑕疵定位系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;检测停机">
+            
+            检测停机
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="产品&lt;---&gt;一体机控制器">
+            
+            一体机控制器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="技术">
+            <i class="fold iconfont icon-right"></i>
+            技术
+            <small>(7)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;Qt">
+            
+            Qt
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="技术&lt;---&gt;STM32">
+            
+            STM32
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="相机">
+            <i class="fold iconfont icon-right"></i>
+            相机
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;办公">
+            
+            办公
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="23">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="http://cnaf.com/download">download</a></li>
+            
+            <li><a target="_blank" href="http://cnafgit.com">git</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安装包制作</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>倍分频</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>倍频</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>差分编码器转接板</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>差分转接板</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>产品</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>复卷</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>复卷瑕疵定位系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>检测停机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>控制器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>一体机控制器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Dalsa</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libpcap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libudt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>libuv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>npcap</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>udp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 产品 复卷瑕疵定位系统 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/"
+           data-tag="产品,复卷瑕疵定位系统,复卷"
+           data-author="" >
+            <span class="post-title" title="复卷定长校准方案">复卷定长校准方案</span>
+            <span class="post-date" title="2023-11-17 17:28:56">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E7%BB%BC%E5%90%88/vscode/vscode-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"
+           data-tag="vscode,环境搭建"
+           data-author="" >
+            <span class="post-title" title="vscode-随用笔记">vscode-随用笔记</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 办公 "
+           href="/2023/11/17/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Windows/"
+           data-tag="环境搭建,Windows"
+           data-author="" >
+            <span class="post-title" title="Windows-环境搭建">Windows-环境搭建</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 InnoSetup "
+           href="/2023/11/17/Qt/InnoSetup/%E8%84%9A%E6%9C%AC%E5%AE%9A%E5%88%B6/"
+           data-tag="InnoSetup,安装包制作"
+           data-author="" >
+            <span class="post-title" title="InnoSetup-脚本定制">InnoSetup-脚本定制</span>
+            <span class="post-date" title="2023-11-17 16:01:18">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 InnoSetup "
+           href="/2023/11/17/Qt/InnoSetup/%E5%90%91%E5%AF%BC%E5%88%9B%E5%BB%BA/"
+           data-tag="InnoSetup,安装包制作"
+           data-author="" >
+            <span class="post-title" title="InnoSetup-向导创建">InnoSetup-向导创建</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 git "
+           href="/2023/11/17/git/git_note/"
+           data-tag="git,版本管理"
+           data-author="" >
+            <span class="post-title" title="git-随用笔记">git-随用笔记</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/UDP_socket/"
+           data-tag="Qt,技术,udp"
+           data-author="" >
+            <span class="post-title" title="UDP_socket">UDP_socket</span>
+            <span class="post-date" title="2023-11-17 15:51:54">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/Qt%E9%AB%98%E7%BA%A7/"
+           data-tag="Qt,技术"
+           data-author="" >
+            <span class="post-title" title="Qt高级">Qt高级</span>
+            <span class="post-date" title="2023-11-17 15:51:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 Qt "
+           href="/2023/11/17/Qt/Qt%E5%9F%BA%E7%A1%80/"
+           data-tag="Qt,技术"
+           data-author="" >
+            <span class="post-title" title="Qt基础">Qt基础</span>
+            <span class="post-date" title="2023-11-17 15:50:54">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 一体机控制器 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E4%B8%80%E4%BD%93%E6%9C%BA/%E4%B8%80%E4%BD%93%E6%9C%BA%E6%97%B6%E9%97%B4%E5%85%AC%E5%BC%8F%E8%AE%A1%E7%AE%97/"
+           data-tag="产品,一体机控制器"
+           data-author="" >
+            <span class="post-title" title="一体机-图像处理时间计算">一体机-图像处理时间计算</span>
+            <span class="post-date" title="2023-11-17 15:28:23">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 技术 STM32 "
+           href="/2023/11/17/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/STM32-HAL%E5%BA%93/"
+           data-tag="STM32,HAL"
+           data-author="" >
+            <span class="post-title" title="STM32-HAL库">STM32-HAL库</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 差分编码器转接板 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%8E%A5%E6%9D%BF/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/"
+           data-tag="产品,差分编码器转接板,倍分频"
+           data-author="" >
+            <span class="post-title" title="差分编码器转接板说明书">差分编码器转接板说明书</span>
+            <span class="post-date" title="2023-11-17 15:24:58">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 复卷瑕疵定位系统 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E7%91%95%E7%96%B5%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F/"
+           data-tag="产品,复卷瑕疵定位系统,复卷"
+           data-author="" >
+            <span class="post-title" title="复卷瑕疵定位系统">复卷瑕疵定位系统</span>
+            <span class="post-date" title="2023-11-17 15:10:20">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 产品 检测停机 "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E6%A3%80%E6%B5%8B%E5%81%9C%E6%9C%BA%E7%B3%BB%E7%BB%9F/"
+           data-tag="产品,检测停机,Dalsa,倍频,差分转接板,控制器"
+           data-author="" >
+            <span class="post-title" title="检测停机-Dalsa倍分频-差分转接板-控制器">检测停机-Dalsa倍分频-差分转接板-控制器</span>
+            <span class="post-date" title="2023-11-17 15:03:45">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/qudpsocket/"
+           data-tag="udp,测试,qt"
+           data-author="" >
+            <span class="post-title" title="qudpsocket">qudpsocket</span>
+            <span class="post-date" title="2023-11-17 14:49:13">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/npcap/"
+           data-tag="udp,测试,npcap"
+           data-author="" >
+            <span class="post-title" title="npcap">npcap</span>
+            <span class="post-date" title="2023-11-16 17:54:59">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libuv/"
+           data-tag="udp,测试,libuv"
+           data-author="" >
+            <span class="post-title" title="libuv">libuv</span>
+            <span class="post-date" title="2023-11-16 17:32:08">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libudt/"
+           data-tag="udp,测试,libudt"
+           data-author="" >
+            <span class="post-title" title="libudt">libudt</span>
+            <span class="post-date" title="2023-11-16 17:28:50">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 测试 udp "
+           href="/2023/11/16/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/xc7a200t/libpcap/"
+           data-tag="udp,测试,libpcap"
+           data-author="" >
+            <span class="post-title" title="libpcap">libpcap</span>
+            <span class="post-date" title="2023-11-16 17:28:05">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 HIK "
+           href="/2023/11/16/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/"
+           data-tag="博客,hexo,github,minio"
+           data-author="" >
+            <span class="post-title" title="部署博客">部署博客</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 Dalsa "
+           href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2023-11-14 14:48:44">2023/11/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 相机 Basler "
+           href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2023-11-14 14:48:44">2023/11/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-项目经验/xc7a200t/libuv" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">libuv</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="测试">测试</a> > 
+            
+            <a  data-rel="测试&lt;---&gt;udp">udp</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">udp</a>
+            
+            <a class="color3">测试</a>
+            
+            <a class="color1">libuv</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-11-16 17:32:30'>2023-11-16 17:32</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#libuv"><span class="toc-text">libuv</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">客户端&#x2F;服务器代码</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="libuv"><a href="#libuv" class="headerlink" title="libuv"></a>libuv</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>libuv 是一个多平台 C 库，它支持基于事件循环的异步 I&#x2F;O。它支持 epoll（4）、kqueue（2）、Windows IOCP、Solaris 事件移植和 Linux io_uring。它主要设计用于 Node.js，但它也被其他软件项目使用。[3] 它最初是围绕 libev 或 Microsoft IOCP 的抽象，因为 libev 在 Windows 上不支持 IOCP。在 node-v0.9.0 的 libuv 版本中，删除了对 libev 的依赖。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>vcpkg 安装    vcpkg install libuv</li>
+<li>github上的<a target="_blank" rel="noopener" href="https://github.com/libuv/libuv">libuv</a></li>
+</ul>
+<h2 id="客户端-服务器代码"><a href="#客户端-服务器代码" class="headerlink" title="客户端&#x2F;服务器代码"></a>客户端&#x2F;服务器代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QFuture&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> *read_image_data;</span><br><span class="line"></span><br><span class="line">    <span class="type">uv_loop_t</span> *loop;        <span class="comment">//</span></span><br><span class="line">    <span class="type">uv_udp_t</span> send_socket;   <span class="comment">//“客户端”句柄，发送消息</span></span><br><span class="line">    <span class="type">uv_udp_t</span> recv_socket;   <span class="comment">//“服务器”句柄，接收消息</span></span><br><span class="line"></span><br><span class="line">    <span class="type">uv_udp_send_t</span> send_req;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">send_addr</span>;</span></span><br><span class="line">    <span class="type">uv_buf_t</span> discover_msg;</span><br><span class="line"></span><br><span class="line">    <span class="type">uv_buf_t</span> <span class="title function_">make_discover_msg</span><span class="params">()</span>;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">set_uv_receive</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    read_image_data = new <span class="type">char</span>[<span class="number">9</span>*<span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回初始化的默认循环。在以下情况下，它可能会返回 NULL。 分配失败。</span></span><br><span class="line">    <span class="comment">//此函数只是在整个过程中进行全局循环的便捷方式 一个应用程序，默认循环与默认循环没有任何不同 用 初始化。</span></span><br><span class="line">    <span class="comment">//因此，默认循环可以（和 应该）关闭，以便关联的资源 有了它就被释放了。</span></span><br><span class="line">    loop = uv_default_loop();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化新的 UDP 句柄。实际的套接字是延迟创建的。 成功时返回 0。</span></span><br><span class="line">    uv_udp_init(loop, &amp;recv_socket);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//结构体，成员有IP地址，端口号</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">recv_addr</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将包含 IPv4 地址的字符串转换为二进制结构。</span></span><br><span class="line">    uv_ip4_addr(<span class="string">&quot;0.0.0.0&quot;</span>, <span class="number">6800</span>, &amp;recv_addr);   <span class="comment">//监听地址和端口</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//    将IP地址和端口绑定到UDP 句柄。</span></span><br><span class="line">    <span class="comment">//    句柄 – UDP 句柄。。</span></span><br><span class="line">    <span class="comment">//    addr – 具有要绑定到的地址和端口的结构sockaddr_in或结构sockaddr_in6。</span></span><br><span class="line">    <span class="comment">//    flags – 指示套接字的绑定方式、、 以及受支持方式。UV_UDP_IPV6ONLYUV_UDP_REUSEADDRUV_UDP_RECVERR</span></span><br><span class="line">    <span class="comment">//    返回值:</span></span><br><span class="line">    <span class="comment">//    成功时为 0，失败时错误代码&lt; 0。</span></span><br><span class="line">    uv_udp_bind(&amp;recv_socket, (<span class="type">const</span> <span class="keyword">struct</span> sockaddr *)&amp;recv_addr, UV_UDP_REUSEADDR);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    准备接收数据。如果套接字以前未绑定 与它绑定到 0.0.0.0（“所有接口” IPv4 地址）和随机端口号。</span></span><br><span class="line">    <span class="comment">//    参数：</span></span><br><span class="line">    <span class="comment">//    句柄 – UDP 句柄。应该使用 初始化。</span></span><br><span class="line">    <span class="comment">//    alloc_cb – 需要临时存储时调用的回调。  //无法设置缓存区大小，默认使用系统参数（一般为4K~64K，即65535字节）</span></span><br><span class="line">    <span class="comment">//    recv_cb – 使用接收到的数据进行调用的回调。</span></span><br><span class="line">    <span class="comment">//    返回值:</span></span><br><span class="line">    <span class="comment">//    成功时为 0，失败时错误代码&lt; 0。</span></span><br><span class="line">    uv_udp_recv_start(&amp;recv_socket, alloc_buffer, on_read);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//发送消息，已验证成功</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化新的 UDP 句柄。实际的套接字是延迟创建的。 成功时返回 0。</span></span><br><span class="line">    uv_udp_init(loop, &amp;send_socket);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定发送端的IP以及端口号</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">broadcast_addr</span>;</span></span><br><span class="line">    uv_ip4_addr(<span class="string">&quot;0.0.0.0&quot;</span>, <span class="number">6800</span>, &amp;broadcast_addr);</span><br><span class="line">    uv_udp_bind(&amp;send_socket, (<span class="type">const</span> <span class="keyword">struct</span> sockaddr *)&amp;broadcast_addr, <span class="number">0</span>);</span><br><span class="line">    uv_udp_set_broadcast(&amp;send_socket, <span class="number">1</span>);  <span class="comment">//打开或关闭广播功能，1为开启，0为关闭</span></span><br><span class="line"></span><br><span class="line">    discover_msg = make_discover_msg();</span><br><span class="line"></span><br><span class="line">    uv_ip4_addr(<span class="string">&quot;192.168.1.198&quot;</span>, <span class="number">6700</span>, &amp;send_addr);<span class="comment">//要发送到哪里</span></span><br><span class="line">    uv_udp_send(&amp;send_req, &amp;send_socket, &amp;discover_msg, <span class="number">1</span>, (<span class="type">const</span> <span class="keyword">struct</span> sockaddr *)&amp;send_addr, on_send);</span><br><span class="line"></span><br><span class="line">    uv_run(loop, UV_RUN_DEFAULT);</span><br><span class="line"></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;end&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//void thread_uv_receive::on_send(uv_udp_send_t *req, int status) &#123;&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">alloc_buffer</span><span class="params">(<span class="type">uv_handle_t</span> *handle, <span class="type">size_t</span> suggested_size, <span class="type">uv_buf_t</span> *buf)</span> &#123;</span><br><span class="line">    buf-&gt;base =static_cast&lt;<span class="type">char</span> *&gt;( <span class="built_in">malloc</span>(suggested_size));</span><br><span class="line">    buf-&gt;len = suggested_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">on_read</span><span class="params">(<span class="type">uv_udp_t</span> *req, <span class="type">ssize_t</span> nread, <span class="type">const</span> <span class="type">uv_buf_t</span> *buf, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *addr, <span class="type">unsigned</span> flags)</span> &#123;</span><br><span class="line">    <span class="comment">//    qDebug()&lt;&lt;&quot;接收消息&quot;;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//    qDebug()&lt;&lt;&quot;buf_base_size&quot;&lt;&lt;nread ;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    QByteArray j;</span></span><br><span class="line"><span class="comment">//    j.clear();</span></span><br><span class="line"><span class="comment">//    for(int i=0;i&lt;2;i++)&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        j.append(buf-&gt;base[i]);</span></span><br><span class="line"><span class="comment">//        //        QString str=j.toHex();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    qDebug()&lt;&lt;&quot;buf_base:&quot;&lt;&lt;j.toHex();</span></span><br><span class="line">    <span class="comment">//    if(j.at(0)==0x60)</span></span><br><span class="line">    <span class="comment">//    uv_udp_send(&amp;send_req, &amp;send_socket, &amp;discover_msg, 1, (const struct sockaddr *)&amp;send_addr, on_send);</span></span><br><span class="line"><span class="comment">//    QFuture&lt;void&gt; future = QtConcurrent::run([=]()&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">uint16_t</span> offset_data=<span class="number">6</span>;</span><br><span class="line">    <span class="type">uint16_t</span> index;</span><br><span class="line">    <span class="type">uint16_t</span> height_index= (((<span class="type">uint16_t</span>)buf-&gt;base[<span class="number">0</span>])&lt;&lt;<span class="number">8</span>)&amp;<span class="number">0xff00</span>;</span><br><span class="line">    index=height_index|(((<span class="type">uint16_t</span>)buf-&gt;base[<span class="number">1</span>])&amp;<span class="number">0x00ff</span>);</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;index:&quot;</span>&lt;&lt;index;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    memcpy(read_image_data + index * (buf-&gt;len - offset_data),</span></span><br><span class="line"><span class="comment">//           buf-&gt;base + offset_data, buf-&gt;len - offset_data);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    if (nread &lt; 0) &#123;</span></span><br><span class="line"><span class="comment">//        fprintf(stderr, &quot;Read error %s\n&quot;, uv_err_name(nread));</span></span><br><span class="line"><span class="comment">//        uv_close((uv_handle_t*) req, NULL);</span></span><br><span class="line"><span class="comment">//        free(buf-&gt;base);</span></span><br><span class="line"><span class="comment">//        return;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    char sender[17] = &#123; 0 &#125;;</span></span><br><span class="line"><span class="comment">//    uv_ip4_name((const struct sockaddr_in*) addr, sender, 16);</span></span><br><span class="line"><span class="comment">//    //    fprintf(stderr, &quot;Recv from %s\n&quot;, sender);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    // ... DHCP specific code</span></span><br><span class="line"><span class="comment">//    unsigned int *as_integer = (unsigned int*)buf-&gt;base;</span></span><br><span class="line"><span class="comment">//    unsigned int ipbin = ntohl(as_integer[4]);</span></span><br><span class="line"><span class="comment">//    unsigned char ip[4] = &#123;0&#125;;</span></span><br><span class="line"><span class="comment">//    int i;</span></span><br><span class="line"><span class="comment">//    for (i = 0; i &lt; 4; i++)</span></span><br><span class="line"><span class="comment">//        ip[i] = (ipbin &gt;&gt; i*8) &amp; 0xff;</span></span><br><span class="line"><span class="comment">//    //    fprintf(stderr, &quot;Offered IP %d.%d.%d.%d\n&quot;, ip[3], ip[2], ip[1], ip[0]);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    //    free(buf-&gt;base);</span></span><br><span class="line"><span class="comment">//    //    uv_udp_recv_stop(req);</span></span><br><span class="line"><span class="comment">//    &#125;);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uv_buf_t</span> <span class="title function_">thread_uv_receive::make_discover_msg</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">uv_buf_t</span> buffer;</span><br><span class="line"></span><br><span class="line">    alloc_buffer(<span class="literal">NULL</span>, <span class="number">9</span>*<span class="number">1024</span>*<span class="number">7</span>, &amp;buffer);   <span class="comment">//设置发送缓存区（最大设置为64K，超过则会发送失败）</span></span><br><span class="line">    <span class="built_in">memset</span>(buffer.base, <span class="number">0</span>, buffer.len); <span class="comment">//初始化缓存区，全部设置为0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// BOOTREQUEST</span></span><br><span class="line">    buffer.base[<span class="number">0</span>] = <span class="number">0x1</span>;</span><br><span class="line">    <span class="comment">// HTYPE ethernet</span></span><br><span class="line">    buffer.base[<span class="number">1</span>] = <span class="number">0x1</span>;</span><br><span class="line">    <span class="comment">// HLEN</span></span><br><span class="line">    buffer.base[<span class="number">2</span>] = <span class="number">0x6</span>;</span><br><span class="line">    <span class="comment">// HOPS</span></span><br><span class="line">    buffer.base[<span class="number">3</span>] = <span class="number">0x0</span>;</span><br><span class="line">    <span class="comment">// XID 4 bytes</span></span><br><span class="line">    <span class="keyword">if</span> (uv_random(<span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;buffer.base[<span class="number">4</span>], <span class="number">4</span>, <span class="number">0</span>, <span class="literal">NULL</span>))</span><br><span class="line">        <span class="built_in">abort</span>();</span><br><span class="line">    <span class="comment">// SECS</span></span><br><span class="line">    buffer.base[<span class="number">8</span>] = <span class="number">0x0</span>;</span><br><span class="line">    <span class="comment">// FLAGS</span></span><br><span class="line">    buffer.base[<span class="number">10</span>] = <span class="number">0x80</span>;</span><br><span class="line">    <span class="comment">// CIADDR 12-15 is all zeros</span></span><br><span class="line">    <span class="comment">// YIADDR 16-19 is all zeros</span></span><br><span class="line">    <span class="comment">// SIADDR 20-23 is all zeros</span></span><br><span class="line">    <span class="comment">// GIADDR 24-27 is all zeros</span></span><br><span class="line">    <span class="comment">// CHADDR 28-43 is the MAC address, use your own</span></span><br><span class="line">    buffer.base[<span class="number">28</span>] = <span class="number">0xe4</span>;</span><br><span class="line">    buffer.base[<span class="number">29</span>] = <span class="number">0xce</span>;</span><br><span class="line">    buffer.base[<span class="number">30</span>] = <span class="number">0x8f</span>;</span><br><span class="line">    buffer.base[<span class="number">31</span>] = <span class="number">0x13</span>;</span><br><span class="line">    buffer.base[<span class="number">32</span>] = <span class="number">0xf6</span>;</span><br><span class="line">    buffer.base[<span class="number">33</span>] = <span class="number">0xd4</span>;</span><br><span class="line">    <span class="comment">// SNAME 64 bytes zero</span></span><br><span class="line">    <span class="comment">// FILE 128 bytes zero</span></span><br><span class="line">    <span class="comment">// OPTIONS</span></span><br><span class="line">    <span class="comment">// - magic cookie</span></span><br><span class="line">    buffer.base[<span class="number">236</span>] = <span class="number">99</span>;</span><br><span class="line">    buffer.base[<span class="number">237</span>] = <span class="number">130</span>;</span><br><span class="line">    buffer.base[<span class="number">238</span>] = <span class="number">83</span>;</span><br><span class="line">    buffer.base[<span class="number">239</span>] = <span class="number">99</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// DHCP Message type</span></span><br><span class="line">    buffer.base[<span class="number">240</span>] = <span class="number">53</span>;</span><br><span class="line">    buffer.base[<span class="number">241</span>] = <span class="number">1</span>;</span><br><span class="line">    buffer.base[<span class="number">242</span>] = <span class="number">1</span>; <span class="comment">// DHCPDISCOVER</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// DHCP Parameter request list</span></span><br><span class="line">    buffer.base[<span class="number">243</span>] = <span class="number">55</span>;</span><br><span class="line">    buffer.base[<span class="number">244</span>] = <span class="number">4</span>;</span><br><span class="line">    buffer.base[<span class="number">245</span>] = <span class="number">1</span>;</span><br><span class="line">    buffer.base[<span class="number">246</span>] = <span class="number">3</span>;</span><br><span class="line">    buffer.base[<span class="number">247</span>] = <span class="number">15</span>;</span><br><span class="line">    buffer.base[<span class="number">248</span>] = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> buffer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">on_send</span><span class="params">(<span class="type">uv_udp_send_t</span> *req, <span class="type">int</span> status)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (status) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Send error %s\n&quot;</span>, uv_strerror(status));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">thread_uv_receive::set_uv_receive</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
