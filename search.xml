@@ -4,11 +4,311 @@
   
     
     <entry>
-      <title>复卷定长校准方案</title>
-      <link href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/"/>
-      <url>/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/</url>
+      <title>STM32芯片唯一ID</title>
+      <link href="/2024/01/25/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/STM32%E8%8A%AF%E7%89%87%E5%94%AF%E4%B8%80ID/"/>
+      <url>/2024/01/25/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/STM32%E8%8A%AF%E7%89%87%E5%94%AF%E4%B8%80ID/</url>
       
-        <content type="html"><![CDATA[<h1 id="复卷定长校准方案"><a href="#复卷定长校准方案" class="headerlink" title="复卷定长校准方案"></a>复卷定长校准方案</h1><h2 id="1-方案描述"><a href="#1-方案描述" class="headerlink" title="1. 方案描述"></a>1. 方案描述</h2><p>复卷定长校准方案，是针对复卷生产与复卷由于张力或其它因素造成缺陷位置变化的定长校准缺陷位置的方案。</p><h2 id="2-方案原理"><a href="#2-方案原理" class="headerlink" title="2. 方案原理"></a>2. 方案原理</h2><p>主线生产定长打标，复卷机复卷，检测标签，根据检测到的标签位置校准放卷米数。</p><h2 id="3-方案流程"><a href="#3-方案流程" class="headerlink" title="3. 方案流程"></a>3. 方案流程</h2><h3 id="3-1-方案流程图"><a href="#3-1-方案流程图" class="headerlink" title="3.1 方案流程图"></a>3.1 方案流程图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">大线</span><br><span class="line">--&gt;每100米贴标</span><br><span class="line">--&gt;复卷</span><br><span class="line">--&gt;检测标签--有标签</span><br><span class="line">--&gt;校准计米</span><br></pre></td></tr></table></figure><h3 id="3-2-方案流程描述"><a href="#3-2-方案流程描述" class="headerlink" title="3.2 方案流程描述"></a>3.2 方案流程描述</h3><p>复卷定长校准方案，主线每隔100米贴标，然后复卷，检测标签，根据检测到的标签位置校准放卷米数。</p><h3 id="软件重启"><a href="#软件重启" class="headerlink" title="软件重启"></a>软件重启</h3><p>重启软件读取控制器的计米。</p><h3 id="自动计算系数"><a href="#自动计算系数" class="headerlink" title="自动计算系数"></a>自动计算系数</h3><p>探测到标签自动计算系数。</p><h3 id="按钮纠偏"><a href="#按钮纠偏" class="headerlink" title="按钮纠偏"></a>按钮纠偏</h3><ul><li>验光板上下2排按钮，每按一下上下纠偏固定长度。</li><li>18个通道，每个通道两个按钮。</li><li>每次停机只能纠偏一次，纠偏与复位按钮为独立的按钮。</li></ul><h3 id="软件贴标"><a href="#软件贴标" class="headerlink" title="软件贴标"></a>软件贴标</h3><ul><li>软件贴标，每100米贴一次，不要记录到报表中。</li><li>PLC根据实际米长以及检测到的标签位置，计算校准系数。并完成校准。</li><li>定长贴标的记录，校准</li><li>卷尾贴标必须使用。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="STM32-芯片唯一ID"><a href="#STM32-芯片唯一ID" class="headerlink" title="STM32 芯片唯一ID"></a>STM32 芯片唯一ID</h1><p>实验目的<br>STM32的每一个芯片都有一个电子签名，唯一的身份识别ID。本章我们学习获取STM32的电子签名信息，数据手册请参看第28章。</p><p>实验简介<br>电子签名存放字闪存存储器模块的系统存储区域，可以通过JTAG&#x2F;SWD或者CPU读取。它所包含的芯片识别信息在出厂时编写，用户固件或者外部设备可以读取电子签名，用以自动匹配不同配置的SRM32F10xxx微控制器。</p><p>本实验，我们获取STM32的FLASH容量信息和唯一身份识别ID（96位）。</p><p>代码<br>main.c</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;MyIncludes.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> buff[<span class="number">100</span>];</span><br><span class="line"><span class="comment">//用来存储身份信息</span></span><br><span class="line">CHIP_ID_TypeDef stm32_id;</span><br><span class="line"><span class="comment">//id结构体变量声明</span></span><br><span class="line"><span class="type">uint32_t</span> flash_size = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//flash大小变量</span></span><br><span class="line"></span><br><span class="line">u16 sys_cnt = <span class="number">0</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">systick_isr</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span>(sys_cnt &lt;<span class="number">1000</span>)</span><br><span class="line"> sys_cnt++;</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> &#123;</span><br><span class="line">   sys_cnt = <span class="number">0</span>;</span><br><span class="line">   HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_4|GPIO_PIN_5);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  System_Init();</span><br><span class="line">  SysTick_Init(systick_isr);</span><br><span class="line">  LED_Init();</span><br><span class="line">  USART1_Init(<span class="number">115200</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>);</span><br><span class="line">  <span class="comment">//获取芯片ID</span></span><br><span class="line">  ChipID_Get(&amp;stm32_id);      </span><br><span class="line"><span class="comment">//获取芯片大小</span></span><br><span class="line">  flash_size = ChipFlashSize_Get();</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">sprintf</span>(buff,<span class="string">&quot;CHIP ID: %d%d%d\r\n&quot;</span>,stm32_id.ID_H,stm32_id.ID_M,stm32_id.ID_L);</span><br><span class="line">  <span class="comment">//将信息存储在buff数组中</span></span><br><span class="line">  <span class="built_in">printf</span>(buff);</span><br><span class="line">  <span class="comment">//打印buff数组数据</span></span><br><span class="line">  <span class="built_in">sprintf</span>(buff,<span class="string">&quot;CHIP FLASH: %dKB\r\n&quot;</span>,flash_size);</span><br><span class="line">  <span class="built_in">printf</span>(buff);</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>chip_id.h</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __CHIP_ID_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __CHIP_ID_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32_types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">uint32_t</span> ID_H;<span class="comment">//高32位字</span></span><br><span class="line">  <span class="type">uint32_t</span> ID_M;<span class="comment">//中32位字</span></span><br><span class="line">  <span class="type">uint32_t</span> ID_L;<span class="comment">//低32位字</span></span><br><span class="line">&#125;CHIP_ID_TypeDef;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHIP_ID_ADDR ((CHIP_ID_TypeDef *)((uint32_t)0x1FFFF7E8)) </span></span><br><span class="line"><span class="comment">//芯片ID基地址</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHIP_FLASH_SIZE_ADDR  *((uint32_t*)0x1FFFF7E0)</span></span><br><span class="line"><span class="comment">//芯片FLASH大小基地址</span></span><br><span class="line"><span class="comment">//将0x1ffff7e0中的数据作为一个32位无符号指针使用</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">ChipID_Get</span><span class="params">(CHIP_ID_TypeDef* chip_id)</span>;</span><br><span class="line"><span class="comment">//获取芯片ID</span></span><br><span class="line"><span class="type">uint32_t</span> <span class="title function_">ChipFlashSize_Get</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">//获取芯片FLASH大小 单位为KB</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure><p>chip_id.c</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;chip_id.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ChipID_Get</span><span class="params">(CHIP_ID_TypeDef* chip_id)</span></span><br><span class="line"><span class="comment">//获取芯片ID</span></span><br><span class="line">&#123;</span><br><span class="line">  chip_id-&gt;ID_H = CHIP_ID_ADDR-&gt;ID_H;</span><br><span class="line">  <span class="comment">//高32位</span></span><br><span class="line">  chip_id-&gt;ID_M = CHIP_ID_ADDR-&gt;ID_M;</span><br><span class="line">  <span class="comment">//中32位</span></span><br><span class="line">  chip_id-&gt;ID_L = CHIP_ID_ADDR-&gt;ID_L;</span><br><span class="line">  <span class="comment">//低32位</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">uint32_t</span> <span class="title function_">ChipFlashSize_Get</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line"><span class="comment">//获取芯片FLASH大小</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> (CHIP_FLASH_SIZE_ADDR &amp; <span class="number">0xFFFF</span>);</span><br><span class="line">  <span class="comment">//低16位为FLASH大小</span></span><br><span class="line">  <span class="comment">//一共32位于0xffff进行与运算，就是16位</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> STM32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> STM32 </tag>
+            
+            <tag> 序列号 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C_回调函数带参数</title>
+      <link href="/2024/01/25/Qt/C_%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E5%B8%A6%E5%8F%82%E6%95%B0/"/>
+      <url>/2024/01/25/Qt/C_%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E5%B8%A6%E5%8F%82%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-回调函数带参数"><a href="#C-回调函数带参数" class="headerlink" title="C_回调函数带参数"></a>C_回调函数带参数</h1><h2 id="回调函数带参数示例"><a href="#回调函数带参数示例" class="headerlink" title="回调函数带参数示例"></a>回调函数带参数示例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> <span class="title function_">Callback_1</span><span class="params">(<span class="type">int</span> x)</span> <span class="comment">// Callback Function 1</span></span><br><span class="line"> </span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_1: x = %d &quot;</span>, x);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Handle</span><span class="params">(<span class="type">int</span> y, <span class="type">int</span> (*Callback)(<span class="type">int</span>))</span></span><br><span class="line"> </span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Entering Handle Function. &quot;</span>);</span><br><span class="line"> </span><br><span class="line">Callback(y);</span><br><span class="line"> </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Leaving Handle Function. &quot;</span>);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    Handle(<span class="number">10</span>, Callback_1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果:</span></span><br><span class="line"><span class="comment">//Entering Handle Function. Hello, this is Callback_1: x = 10 Leaving Handle Function.</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> C </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> C </tag>
+            
+            <tag> 回调函数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Qt_qDebug_重定向到日志</title>
+      <link href="/2024/01/25/Qt/Qt_qDebug_%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0%E6%97%A5%E5%BF%97/"/>
+      <url>/2024/01/25/Qt/Qt_qDebug_%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0%E6%97%A5%E5%BF%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Qt-qDebug-重定向到日志"><a href="#Qt-qDebug-重定向到日志" class="headerlink" title="Qt_qDebug_重定向到日志"></a>Qt_qDebug_重定向到日志</h1><h2 id="实现思路及API含义"><a href="#实现思路及API含义" class="headerlink" title="实现思路及API含义"></a>实现思路及API含义</h2><ul><li>自定义一个函数作为消息处理器(customMessageHandler)，用于输出调试信息到文件中</li><li>使用qInstallMessageHandler函数注册自定义的消息处理器</li><li>qInstallMessageHandle注册回调函数后,会截断qt的默认输出，所有qDebug()、qInfo()、qWarning()、qCritical()等函数的输出都会通过自定义的消息处理器(customMessageHandler)处理,需要注意的一点是，自定义的消息处理器(customMessageHandler)的输出不会显示到控制台，需要显示到控制台，需要在自定义的消息处理器里使用qDebug()输出。</li></ul><h2 id="取消信息处理-一般不取消"><a href="#取消信息处理-一般不取消" class="headerlink" title="取消信息处理 (一般不取消)"></a>取消信息处理 (一般不取消)</h2><p>只要执行qInstallMessageHandler(0) 就行，但是这会把所有的信息输出都屏蔽掉！</p><p>如果只是想屏蔽debug或者warning信息的输出，这时候就需要预定义宏：<br>在工程文件.pro里面添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEFINES += QT_NO_WARNING_OUTPUT\</span><br><span class="line">QT_NO_DEBUG_OUTPUT</span><br></pre></td></tr></table></figure><p>然后重新构建，这样就能去掉qDebug的打印信息了。<br>也可以设置</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Release:DEFINES += QT_NO_WARNING_OUTPUT\</span><br><span class="line">QT_NO_DEBUG_OUTPUT</span><br></pre></td></tr></table></figure><p>这样只是在Release版本的时候不打印对应调试和警告消息。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QFile&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QTextStream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDateTime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMutex&gt;</span></span></span><br><span class="line"><span class="type">static</span> QMutex mutex;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">customMessageHandler</span><span class="params">(QtMsgType type,</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="type">const</span> QMessageLogContext &amp;context,</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="type">const</span> QString &amp;msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//QMutexLocker locker(&amp;mutex);  //自动释放锁</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//Q_UNUSED(context)</span></span><br><span class="line">    QDateTime _datetime = QDateTime::<span class="built_in">currentDateTime</span>();</span><br><span class="line">    QString szDate = _datetime.<span class="built_in">toString</span>(<span class="string">&quot;hh:mm:ss.zzz&quot;</span>);<span class="comment">//&quot;yyyy-MM-dd hh:mm:ss ddd&quot;</span></span><br><span class="line">    <span class="function">QString <span class="title">txt</span><span class="params">(szDate)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (type)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> QtDebugMsg:<span class="comment">//调试信息提示</span></span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Debug] &quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QtInfoMsg:<span class="comment">//信息输出</span></span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Info] &quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QtWarningMsg:<span class="comment">//一般的warning提示</span></span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Warning] &quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QtCriticalMsg:<span class="comment">//严重错误提示</span></span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Critical] &quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QtFatalMsg:<span class="comment">//致命错误提示</span></span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Fatal] &quot;</span>);</span><br><span class="line">        <span class="comment">//abort();</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">    &#123;</span><br><span class="line">        txt += <span class="built_in">QString</span>(<span class="string">&quot; [Trace] &quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    txt.<span class="built_in">append</span>( <span class="built_in">QString</span>(<span class="string">&quot; %1&quot;</span>).<span class="built_in">arg</span>(context.file) );</span><br><span class="line">    txt.<span class="built_in">append</span>( <span class="built_in">QString</span>(<span class="string">&quot;&lt;%1&gt;: &quot;</span>).<span class="built_in">arg</span>(context.line) );</span><br><span class="line">    txt.<span class="built_in">append</span>(msg);</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;txt;</span><br><span class="line"></span><br><span class="line">    mutex.<span class="built_in">lock</span>();</span><br><span class="line">    <span class="comment">//一天一个日志</span></span><br><span class="line">    <span class="function">QString <span class="title">fileName</span><span class="params">( <span class="string">&quot;./日志//&quot;</span> + _datetime.toString(<span class="string">&quot;yyyy-MM-dd&quot;</span>) + <span class="string">&quot;.log&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;</span><br><span class="line">    file.<span class="built_in">open</span>(QIODevice::WriteOnly | QIODevice::Append);</span><br><span class="line">    <span class="function">QTextStream <span class="title">text_stream</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line">    text_stream &lt;&lt; txt &lt;&lt; <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line">    file.<span class="built_in">flush</span>();</span><br><span class="line">    file.<span class="built_in">close</span>();</span><br><span class="line">    mutex.<span class="built_in">unlock</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册MessageHandler</span></span><br><span class="line">    <span class="built_in">qInstallMessageHandler</span>(customMessageHandler);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; <span class="string">&quot;this is QtDebugMsg&quot;</span>;</span><br><span class="line">    <span class="built_in">qInfo</span>() &lt;&lt; <span class="string">&quot;this is QtInfoMsg&quot;</span>;</span><br><span class="line">    <span class="built_in">qWarning</span>() &lt;&lt; <span class="string">&quot;this is QtWarningMsg&quot;</span>;</span><br><span class="line">    <span class="built_in">qCritical</span>() &lt;&lt; <span class="string">&quot;this is QtCriticalMsg&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//GBK修饰的输出带双引号,GBK_LOG修饰的不会带双引号</span></span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; (<span class="string">&quot;测试qDebug&quot;</span>);</span><br><span class="line">    <span class="built_in">qInfo</span>() &lt;&lt; (<span class="string">&quot;测试qInfo&quot;</span>);</span><br><span class="line">    <span class="built_in">qWarning</span>() &lt;&lt; (<span class="string">&quot;测试qWarning&quot;</span>);</span><br><span class="line">    <span class="built_in">qCritical</span>() &lt;&lt; (<span class="string">&quot;测试qCritical&quot;</span>);</span><br><span class="line">    <span class="comment">//qFatal() &lt;&lt; &quot;QtFatalMsg&quot;;</span></span><br><span class="line">    <span class="comment">//qFatal(&quot;This is a fatal message&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> Qt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ini读写</title>
+      <link href="/2024/01/23/Qt/ini%E8%AF%BB%E5%86%99-%E5%90%AB%E6%B3%A8%E9%87%8A/"/>
+      <url>/2024/01/23/Qt/ini%E8%AF%BB%E5%86%99-%E5%90%AB%E6%B3%A8%E9%87%8A/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ini读写"><a href="#ini读写" class="headerlink" title="ini读写"></a>ini读写</h1><h2 id="ini读写库"><a href="#ini读写库" class="headerlink" title="ini读写库"></a>ini读写库</h2><ul><li>[inih]    可读参数且支持注释，不可写参数（需要使用c语言结构体，数据结构管理的方式）</li><li>[inicpp]  可读参数且支持注释，可写参数且支持注释，注释必须为单独的行，不可与参数在同一行  <!-- 若包含hpp文件后编译报错，则在该文件中添加头文件#include <array> --></li><li>[QSettings]   可读参数且支持注释，写参数会消除注释</li><li>[SimpleIni]   可读参数且支持注释，写参数会消除注释</li><li>[IniParser]  可读参数且支持注释，写参数会消除注释(可能对linux支持更好)</li></ul><h2 id="inicpp示例程序"><a href="#inicpp示例程序" class="headerlink" title="inicpp示例程序"></a>inicpp示例程序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;inicpp.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* compile: g++ -I../ -std=c++11 main.cpp -o iniExample */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Load the INI file.</span></span><br><span class="line">inicpp::IniManager _ini(<span class="string">&quot;config.ini&quot;</span>);      <span class="comment">//可以用指针，实例化的时候传入路径，后面读取参数用QString::fromstdstring((*ini)[&quot;rtsp&quot;][&quot;port&quot;]))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Check if the key exists.</span></span><br><span class="line"><span class="keyword">if</span> (!_ini[<span class="string">&quot;rtsp&quot;</span>].<span class="built_in">isKeyExist</span>(<span class="string">&quot;port&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;rtsp.port is not exist!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Modify or add key-value pairs.</span></span><br><span class="line">_ini.<span class="built_in">modify</span>(<span class="string">&quot;rtsp&quot;</span>, <span class="string">&quot;port&quot;</span>, <span class="string">&quot;554&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use key-value pairs directly.</span></span><br><span class="line">std::string rtsp_port = _ini[<span class="string">&quot;rtsp&quot;</span>][<span class="string">&quot;port&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can write section-key-value.</span></span><br><span class="line">_ini.<span class="built_in">modify</span>(<span class="string">&quot;rtsp&quot;</span>, <span class="string">&quot;port&quot;</span>, <span class="string">&quot;554&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add a comment.</span></span><br><span class="line">_ini.<span class="built_in">modify</span>(<span class="string">&quot;rtsp&quot;</span>, <span class="string">&quot;port&quot;</span>, <span class="string">&quot;554&quot;</span>, <span class="string">&quot;this is the listen port for http server&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Modify the comment.</span></span><br><span class="line">_ini.<span class="built_in">modifyComment</span>(<span class="string">&quot;rtsp&quot;</span>, <span class="string">&quot;port&quot;</span>, <span class="string">&quot;this is the listen port for rtsp server ***&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Try to modify or add more.</span></span><br><span class="line">_ini.<span class="built_in">modify</span>(<span class="string">&quot;math&quot;</span>, <span class="string">&quot;PI&quot;</span>, <span class="string">&quot;3.1415926&quot;</span>, <span class="string">&quot;This is pi in mathematics.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// You have obtained the key-value pair and saved it to your config file.</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;to string:\trtsp.port = &quot;</span> &lt;&lt; _ini[<span class="string">&quot;rtsp&quot;</span>][<span class="string">&quot;port&quot;</span>] &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Convert to string, default is string</span></span><br><span class="line">std::string http_port_s = _ini[<span class="string">&quot;math&quot;</span>].<span class="built_in">toString</span>(<span class="string">&quot;PI&quot;</span>);</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;to string:\tmath.PI   = &quot;</span> &lt;&lt; http_port_s &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Convert to double</span></span><br><span class="line"><span class="type">double</span> http_port_d = _ini[<span class="string">&quot;math&quot;</span>].<span class="built_in">toDouble</span>(<span class="string">&quot;PI&quot;</span>);</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;to double:\tmath.PI   = &quot;</span> &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">10</span>) &lt;&lt; http_port_d &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Convert to int</span></span><br><span class="line"><span class="type">int</span> http_port_i = _ini[<span class="string">&quot;math&quot;</span>].<span class="built_in">toInt</span>(<span class="string">&quot;PI&quot;</span>);</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;to int:\t\tmath.PI   = &quot;</span> &lt;&lt; http_port_i &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><h3 id="写参数值"><a href="#写参数值" class="headerlink" title="写参数值"></a>写参数值</h3><p>modify()        &#x2F;&#x2F;修改参数值，如果参数不存在，会自动创建<br>modifyComment() &#x2F;&#x2F;修改注释，如果注释不存在，会自动创建</p><h3 id="读参数值"><a href="#读参数值" class="headerlink" title="读参数值"></a>读参数值</h3><p>string std &#x3D; _ini[“section”][“key”]<br>QString::fromstdstring(_ini[“section”][“key”])</p><h2 id="重要说明"><a href="#重要说明" class="headerlink" title="重要说明"></a>重要说明</h2><ul><li>该库支持中文，包括字段，键，值都可以使用中文</li><li>注释必须为单独的行，不可与参数在同一行，若为同一行，写参数会消除参数同一行后面的注释</li><li>读写参数值时，必须使用string类型，不能使用QString类型，否则会出错</li><li>读写参数前，必须先确保有相应的段，否则会出错（首次创建段之后，重启程序，则不会异常）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> Qt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> Qt </tag>
+            
+            <tag> ini读写 </tag>
+            
+            <tag> ini </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>项目-金佰利-包袋-叠袋</title>
+      <link href="/2023/12/19/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E9%A1%B9%E7%9B%AE-%E9%87%91%E4%BD%B0%E5%88%A9-%E5%8C%85%E8%A2%8B-%E5%8F%A0%E8%A2%8B/"/>
+      <url>/2023/12/19/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E9%A1%B9%E7%9B%AE-%E9%87%91%E4%BD%B0%E5%88%A9-%E5%8C%85%E8%A2%8B-%E5%8F%A0%E8%A2%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="金佰利-包装叠袋"><a href="#金佰利-包装叠袋" class="headerlink" title="金佰利-包装叠袋"></a>金佰利-包装叠袋</h1><h2 id="拍照方案"><a href="#拍照方案" class="headerlink" title="拍照方案"></a>拍照方案</h2><blockquote><p>需求简述<br>拍两张照片，一张曝光时间长（要拍的亮），另一张曝光时间短（相对暗一点）</p></blockquote><h3 id="1-光源频闪"><a href="#1-光源频闪" class="headerlink" title="1. 光源频闪"></a>1. 光源频闪</h3><pre><code>    - 控制光源亮灭时间，实现曝光长短    - 客户不接受光源闪烁，坏眼睛</code></pre><h3 id="2-软件修改曝光时间"><a href="#2-软件修改曝光时间" class="headerlink" title="2. 软件修改曝光时间"></a>2. 软件修改曝光时间</h3><pre><code>    - 产品到达停顿位置后，下位机给上位机拍照信号    - 上位机接收到信号后，先设置相机曝光时间，开始拍第一张照片。完成后，再设置曝光时间，再次拍第二张照片。    - 此方法，产线停顿时间仅100ms，不足以完成软件拍两次照片</code></pre><h3 id="3-光源分时"><a href="#3-光源分时" class="headerlink" title="3. 光源分时"></a>3. 光源分时</h3><pre><code>    - 光源使用PWM控制    - 拍第一张照片，占空比低，光源比较亮    - 拍第二张照片，占空比高，光源比较暗    - 此方法，效果不确定，且光源会有亮暗变化</code></pre><h3 id="4-相机分时"><a href="#4-相机分时" class="headerlink" title="4. 相机分时"></a>4. 相机分时</h3><pre><code>    - 相机触发使用高/低电平触发    - 下位机触发信号长，则拍照曝光时间长（图亮）    - 下位机触发信号短，则拍照曝光时间短（图暗）    - 此方法理论效果最好</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目经验 </category>
+          
+          <category> 金佰利 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+            <tag> 金佰利 </tag>
+            
+            <tag> 包装 </tag>
+            
+            <tag> 叠袋 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PyQt5</title>
+      <link href="/2023/12/18/PyQt5/"/>
+      <url>/2023/12/18/PyQt5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PyQt5"><a href="#PyQt5" class="headerlink" title="PyQt5"></a>PyQt5</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>PyQt5 是 Python 语言的 Qt 绑定库，它提供了 Python 语言中使用 Qt 的完整功能。</p><h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install PyQt5 -i https://pypi.douban.com/simple</span><br><span class="line">pip install PyQt5-tools -i https://pypi.douban.com/simple</span><br></pre></td></tr></table></figure><h2 id="3-制作安装包"><a href="#3-制作安装包" class="headerlink" title="3. 制作安装包"></a>3. 制作安装包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyinstaller</span><br><span class="line">pyinstaller -w -F test.py Ui_mainwindow.py</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="4-pycharm-配置外部工具"><a href="#4-pycharm-配置外部工具" class="headerlink" title="4. pycharm 配置外部工具"></a>4. pycharm 配置外部工具</h2><p>designer路径<br>pyuic路径</p><ul><li>ui文件上右键，选择外部工具，选择转化即可</li></ul><h2 id="5-vscode-安装插件PYQT-Integration"><a href="#5-vscode-安装插件PYQT-Integration" class="headerlink" title="5. vscode 安装插件PYQT Integration"></a>5. vscode 安装插件PYQT Integration</h2><p>配置designer路径</p><ul><li>ui文件上右键，选择Compile Form 即编译UI文件为py文件</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nvidia随手笔记</title>
+      <link href="/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/Nvidia%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/Nvidia%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Nvidia"><a href="#Nvidia" class="headerlink" title="Nvidia"></a>Nvidia</h1><h2 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol><li>安装驱动stuido版本，不安装game</li><li>安装visual studio 2022</li><li>安装cuda11.6</li><li>安装cudnn</li></ol><h2 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h2><p><a href="https://blog.csdn.net/chen565884393/article/details/127905428">CUDA,cudnn,版本对应，参考文档</a></p><h2 id="cudnn"><a href="#cudnn" class="headerlink" title="cudnn"></a>cudnn</h2><h2 id="安装完重启电脑"><a href="#安装完重启电脑" class="headerlink" title="安装完重启电脑"></a>安装完重启电脑</h2><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ol><li>visual studio 创建cuda runtime项目，直接运行</li><li>终端窗口弹出数组计算结果</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 英伟达 </tag>
+            
+            <tag> Nvidia </tag>
+            
+            <tag> GPU </tag>
+            
+            <tag> CUDA </tag>
+            
+            <tag> cudnn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vcpkg随手笔记</title>
+      <link href="/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/vcpkg%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/vcpkg%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vcpkg随手笔记"><a href="#vcpkg随手笔记" class="headerlink" title="vcpkg随手笔记"></a>vcpkg随手笔记</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Microsoft/vcpkg.git</span><br><span class="line"><span class="built_in">cd</span> vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh</span><br><span class="line">./vcpkg integrate install</span><br></pre></td></tr></table></figure><h2 id="2-添加库"><a href="#2-添加库" class="headerlink" title="2. 添加库"></a>2. 添加库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vcpkg install &lt;package&gt;:&lt;triplet&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> Qt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 环境 </tag>
+            
+            <tag> C++ </tag>
+            
+            <tag> vcpkg </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nssm随手笔记</title>
+      <link href="/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/nssm%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/12/14/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/nssm%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="nssm随手笔记"><a href="#nssm随手笔记" class="headerlink" title="nssm随手笔记"></a>nssm随手笔记</h1><h2 id="nssm查看已经安装的服务"><a href="#nssm查看已经安装的服务" class="headerlink" title="nssm查看已经安装的服务"></a>nssm查看已经安装的服务</h2><ul><li>打开powershell,输入</li><li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-WmiObject win32_service | ?&#123;$_.PathName -like &#x27;*nssm*&#x27;&#125; | select Name, DisplayName, State, PathName</span><br></pre></td></tr></table></figure></li></ul><h2 id="nssm安装服务"><a href="#nssm安装服务" class="headerlink" title="nssm安装服务"></a>nssm安装服务</h2><ul><li>打开powershell,输入</li><li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm install &lt;服务名&gt; &lt;路径&gt;</span><br></pre></td></tr></table></figure></li><li>例如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm install myservice &quot;C:\Program Files\myservice\myservice.exe&quot;</span><br></pre></td></tr></table></figure></li><li>注意: 路径中不能有空格</li></ul><h2 id="nssm卸载服务"><a href="#nssm卸载服务" class="headerlink" title="nssm卸载服务"></a>nssm卸载服务</h2><ul><li>打开powershell,输入</li><li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm remove &lt;服务名&gt;</span><br></pre></td></tr></table></figure></li><li>例如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm remove myservice</span><br></pre></td></tr></table></figure></li></ul><h2 id="编辑已安装的服务"><a href="#编辑已安装的服务" class="headerlink" title="编辑已安装的服务"></a>编辑已安装的服务</h2><ul><li>打开powershell,输入</li><li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm edit &lt;服务名&gt;</span><br></pre></td></tr></table></figure></li><li>例如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nssm edit myservice</span><br></pre></td></tr></table></figure></li><li>编辑后,按下ctrl+s保存</li></ul><h2 id="启动已安装的服务"><a href="#启动已安装的服务" class="headerlink" title="启动已安装的服务"></a>启动已安装的服务</h2><ul><li>打开powershell,输入</li><li></li></ul><pre><code>nssm start &lt;服务名&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+            <tag> 环境 </tag>
+            
+            <tag> 启动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MDK编码</title>
+      <link href="/2023/12/12/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/MDK%E7%BC%96%E7%A0%81/"/>
+      <url>/2023/12/12/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/MDK%E7%BC%96%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MDK编码"><a href="#MDK编码" class="headerlink" title="MDK编码"></a>MDK编码</h1><h2 id="MDK使用utf-8"><a href="#MDK使用utf-8" class="headerlink" title="MDK使用utf-8"></a>MDK使用utf-8</h2><h3 id="设置项目编码为utf-8"><a href="#设置项目编码为utf-8" class="headerlink" title="设置项目编码为utf-8"></a>设置项目编码为utf-8</h3><blockquote><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121210214441-20231212102143.png" alt="image"></p></blockquote><h3 id="设置编译格式为utf-8"><a href="#设置编译格式为utf-8" class="headerlink" title="设置编译格式为utf-8"></a>设置编译格式为utf-8</h3><blockquote><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121210230871-20231212102308.png" alt="image"></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> STM32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MDK </tag>
+            
+            <tag> VScode </tag>
+            
+            <tag> 编码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>复卷定长校准使用说明</title>
+      <link href="/2023/12/07/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
+      <url>/2023/12/07/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
+      
+        <content type="html"><![CDATA[<h1 id="复卷定长校准使用说明"><a href="#复卷定长校准使用说明" class="headerlink" title="复卷定长校准使用说明"></a>复卷定长校准使用说明</h1><h2 id="定长贴标"><a href="#定长贴标" class="headerlink" title="定长贴标"></a>定长贴标</h2><ol><li>主线每隔一定距离贴一个标签</li><li>复卷机检测标签进行米数校准</li><li>若丢失标签则待检测到下一个标签校准</li><li>校准规则：以贴标间隔米数的一半为分界线，大于则向上取整，小于则向下取整。</li></ol><h2 id="卷尾贴标"><a href="#卷尾贴标" class="headerlink" title="卷尾贴标"></a>卷尾贴标</h2><ol><li>主线必须使用卷尾贴标</li><li>首个校准缺陷必须是卷尾贴的标</li><li>复卷探测卷尾标签，必须小于，定长贴标的间隔&#x2F;2的米数</li><li>手动停机到卷尾标签位置，同步校准即可</li><li>异常恢复：<ol><li>手动停机到定长标签位置</li><li>报表中找到该标签</li><li>右键发送给PLC</li><li>再校准即可。</li></ol></li></ol><h2 id="定长设置页面"><a href="#定长设置页面" class="headerlink" title="定长设置页面"></a>定长设置页面</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120718213606-20231207182134.png" alt="image"></p><h2 id="通道加补偿值"><a href="#通道加补偿值" class="headerlink" title="通道加补偿值"></a>通道加补偿值</h2><p>设置减补偿值</p><p>配置工具-&gt;定长页面-&gt;点击通道加补偿</p><h2 id="通道减补偿值"><a href="#通道减补偿值" class="headerlink" title="通道减补偿值"></a>通道减补偿值</h2><p>设置通道减补偿值</p><p>配置工具-&gt;定长页面-&gt;点击通道减补偿</p><h2 id="贴标间隔米数"><a href="#贴标间隔米数" class="headerlink" title="贴标间隔米数"></a>贴标间隔米数</h2><p>设置贴标间隔米数</p><p>配置工具-&gt;定长页面-&gt;点击贴标间隔米数</p><h2 id="探标补偿米数"><a href="#探标补偿米数" class="headerlink" title="探标补偿米数"></a>探标补偿米数</h2><p>设置</p><p>配置工具-&gt;定长页面-&gt;显示探标补偿米数</p><p>可手动修改</p><h2 id="18个通道单独补偿停机距离"><a href="#18个通道单独补偿停机距离" class="headerlink" title="18个通道单独补偿停机距离"></a>18个通道单独补偿停机距离</h2><ol><li>每个通道都有两个按钮，分别为停机位置加按钮，和停机位置减按钮</li><li>输入点从X14开始</li><li>X14<del>X35为通道1</del>通道18的加补偿</li><li>X36<del>X57为通道19</del>通道36的减补偿</li></ol>]]></content>
       
       
       <categories>
@@ -28,6 +328,310 @@
             
             <tag> 复卷 </tag>
             
+            <tag> 方案 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>光源控制器</title>
+      <link href="/2023/12/05/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/"/>
+      <url>/2023/12/05/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="光源控制器"><a href="#光源控制器" class="headerlink" title="光源控制器"></a>光源控制器</h1><h2 id="产品介绍"><a href="#产品介绍" class="headerlink" title="产品介绍"></a>产品介绍</h2><blockquote><ul><li>光源控制器，用于控制光源的亮度。</li><li>两个输出通道。</li></ul></blockquote><h2 id="接线图"><a href="#接线图" class="headerlink" title="接线图"></a>接线图</h2><h2 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 产品 </category>
+          
+          <category> 光源控制器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 产品 </tag>
+            
+            <tag> 光源控制器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>yolov8随手记</title>
+      <link href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8%E9%9A%8F%E6%89%8B%E8%AE%B0/"/>
+      <url>/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8%E9%9A%8F%E6%89%8B%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="yolov8随手记"><a href="#yolov8随手记" class="headerlink" title="yolov8随手记"></a>yolov8随手记</h1><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1. 环境配置"></a>1. 环境配置</h2><h2 id="安装conda"><a href="#安装conda" class="headerlink" title="安装conda"></a>安装conda</h2><p><a href="https://www.anaconda.com/download/">conda官网下载</a></p><ul><li>下载windows版</li><li>安装要点：</li><li><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120616150619-20231206161503.png" alt="image"></li><li>安装位置：随意</li><li><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120616181450-20231206161814.png" alt="image"></li></ul><h2 id="安装pycharm社区版"><a href="#安装pycharm社区版" class="headerlink" title="安装pycharm社区版"></a>安装pycharm社区版</h2><p><a href="https://www.jetbrains.com/pycharm/download/?section=windows">pycharm官网下载</a></p><ul><li>下载社区版</li></ul><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120616194553-20231206161945.png" alt="image"></p><ul><li>若有需要勾选的，全部勾选</li></ul><h3 id="创建conda的yolov8虚拟环境"><a href="#创建conda的yolov8虚拟环境" class="headerlink" title="创建conda的yolov8虚拟环境"></a>创建conda的yolov8虚拟环境</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n yolov8 python=3.10</span><br><span class="line">conda activate yolov8</span><br></pre></td></tr></table></figure><h3 id="1-3-安装pytorch"><a href="#1-3-安装pytorch" class="headerlink" title="1.3 安装pytorch"></a>1.3 安装pytorch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch</span><br></pre></td></tr></table></figure><h3 id="1-4-安装yolov8"><a href="#1-4-安装yolov8" class="headerlink" title="1.4 安装yolov8"></a>1.4 安装yolov8</h3><p>先安装pytorch，后安装yolov8，否则会被先安装一个pytorch-cpu</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ultralytics</span><br></pre></td></tr></table></figure><h2 id="2-使用yolov8"><a href="#2-使用yolov8" class="headerlink" title="2. 使用yolov8"></a>2. 使用yolov8</h2><h3 id="2-1-训练模型"><a href="#2-1-训练模型" class="headerlink" title="2.1 训练模型"></a>2.1 训练模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"></span><br><span class="line">model = YOLO(<span class="string">&quot;yolov8n.yaml&quot;</span>)</span><br><span class="line">model = YOLO(<span class="string">&quot;yolov8n.pt&quot;</span>)</span><br><span class="line">model = YOLO(<span class="string">&quot;yolov8n.yaml&quot;</span>).load(<span class="string">&quot;yolov8n.pt&quot;</span>)</span><br><span class="line"></span><br><span class="line">model.train(data=<span class="string">&quot;C:/Users/fengj/Desktop/demo2/data.yaml&quot;</span>,epochs=<span class="number">100</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="2-2-模型预测"><a href="#2-2-模型预测" class="headerlink" title="2.2 模型预测"></a>2.2 模型预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line"><span class="comment"># model = YOLO(&#x27;yolov8n.pt&#x27;)  # 加载官方模型</span></span><br><span class="line">model = YOLO(<span class="string">&#x27;best.pt&#x27;</span>, task=<span class="string">&quot;detect&quot;</span>)  <span class="comment"># 加载自定义模型</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用模型进行预测</span></span><br><span class="line">results = model(<span class="string">&quot;C:/Users/fengj/Desktop/demo2/val/images/&quot;</span>, save = <span class="literal">True</span> , conf = <span class="number">0.25</span>)  <span class="comment"># 对图像进行预测</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="3-重要参数"><a href="#3-重要参数" class="headerlink" title="3. 重要参数"></a>3. 重要参数</h2><p>batch</p><ul><li>训练时，batch_size的大小，越大越快，但是占用内存也会变大</li><li>预测时，batch_size的大小，越大越快，但是占用内存也会变大</li><li>一般情况下，batch_size&#x3D;64</li></ul><p>epochs</p><ul><li>训练时，迭代次数，越大越快，但是精度也会变低</li><li>预测时，迭代次数，越大越快，但是占用内存也会变大</li><li>一般情况下，epochs&#x3D;100</li></ul><p>conf</p><ul><li>预测时，置信度阈值，越大越精准，但是占用内存也会变大</li><li>一般情况下，conf&#x3D;0.25</li></ul><h2 id="4-训练数据准备"><a href="#4-训练数据准备" class="headerlink" title="4. 训练数据准备"></a>4. 训练数据准备</h2><h3 id="4-1-训练数据格式"><a href="#4-1-训练数据格式" class="headerlink" title="4.1 训练数据格式"></a>4.1 训练数据格式</h3><ul><li>使用labelme，无需转换格式</li><li>使用labelimg，需要转换格式</li></ul><h3 id="4-2-训练数据标注"><a href="#4-2-训练数据标注" class="headerlink" title="4.2 训练数据标注"></a>4.2 训练数据标注</h3><ul><li>标注工具：labelme</li><li>标注步骤：<ul><li>打开labelme，点击文件-&gt;打开数据集</li><li>选择数据集，点击打开</li><li>标注数据，点击标注</li><li>标注完成，点击保存</li><li>导出数据，点击导出数据集</li><li>选择数据集，点击保存</li><li>选择保存路径，点击保存</li><li>选择格式，选择yolo</li><li>选择保存路径，点击保存</li></ul></li><li></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> yolov8 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
+            
+            <tag> python </tag>
+            
+            <tag> yolov8 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>conda随手记</title>
+      <link href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/conda%E9%9A%8F%E6%89%8B%E8%AE%B0/"/>
+      <url>/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/conda%E9%9A%8F%E6%89%8B%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="conda随手记"><a href="#conda随手记" class="headerlink" title="conda随手记"></a>conda随手记</h1><h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n env_name python=3.8</span><br></pre></td></tr></table></figure><h2 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate env_name</span><br></pre></td></tr></table></figure><h2 id="退出虚拟环境"><a href="#退出虚拟环境" class="headerlink" title="退出虚拟环境"></a>退出虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure><h2 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n env_name --all</span><br></pre></td></tr></table></figure><h2 id="查看已创建的虚拟环境"><a href="#查看已创建的虚拟环境" class="headerlink" title="查看已创建的虚拟环境"></a>查看已创建的虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure><h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install package_name</span><br></pre></td></tr></table></figure><h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update package_name</span><br></pre></td></tr></table></figure><h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove package_name</span><br></pre></td></tr></table></figure><h2 id="安装pip包"><a href="#安装pip包" class="headerlink" title="安装pip包"></a>安装pip包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install package_name</span><br></pre></td></tr></table></figure><h2 id="更新pip包"><a href="#更新pip包" class="headerlink" title="更新pip包"></a>更新pip包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -U package_name</span><br></pre></td></tr></table></figure><h2 id="删除pip包"><a href="#删除pip包" class="headerlink" title="删除pip包"></a>删除pip包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall package_name</span><br></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install jupyter</span><br></pre></td></tr></table></figure><h2 id="安装jupyterlab"><a href="#安装jupyterlab" class="headerlink" title="安装jupyterlab"></a>安装jupyterlab</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install jupyterlab</span><br></pre></td></tr></table></figure><h2 id="安装jupyterlab-git"><a href="#安装jupyterlab-git" class="headerlink" title="安装jupyterlab-git"></a>安装jupyterlab-git</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge jupyterlab-git</span><br></pre></td></tr></table></figure><h2 id="pycharm加载conda虚拟环境"><a href="#pycharm加载conda虚拟环境" class="headerlink" title="pycharm加载conda虚拟环境"></a>pycharm加载conda虚拟环境</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> conda </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> conda </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>扩散模型</title>
+      <link href="/2023/12/01/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/"/>
+      <url>/2023/12/01/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="培训-扩散模型"><a href="#培训-扩散模型" class="headerlink" title="培训-扩散模型"></a>培训-扩散模型</h1><h2 id="大模型-视觉类模型-多模态的方向-语言和成像-做缺陷图-AI生成图"><a href="#大模型-视觉类模型-多模态的方向-语言和成像-做缺陷图-AI生成图" class="headerlink" title="大模型&#x2F;视觉类模型&#x2F;多模态的方向&#x2F;语言和成像&#x2F;做缺陷图&#x2F;AI生成图"></a>大模型&#x2F;视觉类模型&#x2F;多模态的方向&#x2F;语言和成像&#x2F;做缺陷图&#x2F;AI生成图</h2><p>主讲人：张星</p><p><a href="zhangxingai.github.io">讲述人博客</a></p><p>1.扩散模型，Stable Diffusion原理与实践，主要再这个文档</p><p>VAE模型，文本模型子训练</p><p>CLIP 图片和文本混合编码</p><p>U_net网络学习框架</p><p>Refiner模型，构建，在最后一步 图生图，分辨率增强</p><p>主要看VAE模型</p><p>VAE的原理主要是，把输入图片像素，编码混合高斯分布，增强学习效率，解码分布采样，加噪声，训练噪声分布</p><p>常用的stable diffusion模型，</p><p>checkpoint 模型（大模型），他用很大成本训练yumoxing，我们可以用微调模型</p><p>Textual Inversion</p><p>LoRA模型</p><p>训练的与大模型相似，把大模型亲量化</p><p>训练好的插入，</p><p>U-net采样器，Sampler，，条件苛刻，若成功效果应该较好</p><p>文生图，</p><p>图生图，输入的图片学习噪声的分布，根据超参数的调整，生成一个高清分辨率的图片</p><p>最近出来的额还有一些应用像inpainting，圈定一个范围，猫或狗，，，，</p><p>实践</p><p>主流的运行扩散模型的，</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114361241-20231201143610.png" alt="image"></p><p>建议用第一种，可以研究第二种</p><p>安装，不讲了</p><p>训练，</p><p>准备训练的数据集，</p><p>准备图片，比如说，我这里有很多的图片，有褶皱，污点，胶带，</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114374877-20231201143747.png" alt="image"></p><p>所处分类的文件夹的子文件</p><p>用图片剪裁工具，剪裁为1024*1024，官方建议的图片大小，16的整数倍，</p><p>会生成同名的tic文件</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114390561-20231201143905.png" alt="image"></p><p>标签，<br>输入可以用脚本批量生成</p><p>名字，，，</p><p>准备好数据集后，，</p><p>打开页面</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114401229-20231201144011.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114403069-20231201144030.png" alt="image"></p><p>在</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114411772-20231201144117.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114413899-20231201144138.png" alt="image"></p><p>需要注意图片文件夹一定要，，，先建一个子文件夹，，固定设定的，，</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114424068-20231201144240.png" alt="image"></p><p>npz后面产生的</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114443329-20231201144432.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114451058-20231201144510.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114452657-20231201144526.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114455796-20231201144557.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114461514-20231201144613.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114464205-20231201144641.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114490803-20231201144907.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114493578-20231201144935.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114500435-20231201145003.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114503565-20231201145034.png" alt="image"></p><p>高级参数默认，，，use xformers勾选，</p><p>clip skip 写实的用1，动画的用2</p><p>点start training</p><p>训练好的模型放到model文件夹里，</p><p>权重设为1，打入标签，qianzhiya，zhezhou，加入花纹</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114555082-20231201145550.png" alt="image"></p><p>点生成，会读条，</p><p>采样步数低于30，要大于30</p><p>采样器可以一个一个试</p><p>refiner不太适合卫品，</p><p>种子数-1可以不用调</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114573035-20231201145728.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120114580258-20231201145802.png" alt="image"></p><p>改为1，是不进行精细化处理</p><p>0.8，后面25~30会出现很假，绘画，不真的情况</p><p>改一个采样器，，效果明显不行</p><p>污点花纹，，等，，图片很假，就调采样器</p><p>可以迁移其它产品的花纹</p><p>不断试参数，采样器就可以<br><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120115013902-20231201150138.png" alt="image"></p><p>可以优化的方法，数据集可以再优化一下。（我这里比较原始）</p><hr><p>缺陷类型是什么，</p><p>训练的时候打了什么标签，生成的时候就可以</p><p>优点是，有的产品有这个缺陷，另外的产品没有这个缺陷，可以让另外产品产生这个缺陷</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120115040357-20231201150403.png" alt="image"></p><p>缺陷位置生成的随机</p><p>标签越多的话生成的越真实，</p><p>类比输入熊猫，</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023120115055008-20231201150549.png" alt="image"></p><p>加个胶带，很真实</p><p>根据训练集来，</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 培训 </category>
+          
+          <category> 张星 </category>
+          
+          <category> 扩散模型 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 扩散模型 </tag>
+            
+            <tag> AI </tag>
+            
+            <tag> 生成式AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>控制器V10</title>
+      <link href="/2023/11/28/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E6%8E%A7%E5%88%B6%E5%99%A8/%E6%8E%A7%E5%88%B6%E5%99%A8V10/"/>
+      <url>/2023/11/28/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E6%8E%A7%E5%88%B6%E5%99%A8/%E6%8E%A7%E5%88%B6%E5%99%A8V10/</url>
+      
+        <content type="html"><![CDATA[<h1 id="控制器V10"><a href="#控制器V10" class="headerlink" title="控制器V10"></a>控制器V10</h1><h2 id="核心板"><a href="#核心板" class="headerlink" title="核心板"></a>核心板</h2><ol><li>主芯片</li><li>晶振</li><li>5V转3.3V</li><li>电源指示灯</li><li>2<em>2</em>25排针IO</li><li>2<em>2</em>4排针电源</li></ol><h2 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h2><ol><li>串口</li><li>网口</li><li>IO输入*6</li><li>电源芯片MP2403</li><li>NMOS输出*8</li><li>DIFF输出*8</li><li>2<em>2</em>25排母IO</li><li>2<em>2</em>4排母电源</li><li>2<em>2</em>20IO弯针扩展</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 产品 </category>
+          
+          <category> 控制器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 控制器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小型复卷机设计方案</title>
+      <link href="/2023/11/27/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%B0%8F%E5%9E%8B%E5%A4%8D%E5%8D%B7%E6%9C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"/>
+      <url>/2023/11/27/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%B0%8F%E5%9E%8B%E5%A4%8D%E5%8D%B7%E6%9C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="小型复卷机设计方案"><a href="#小型复卷机设计方案" class="headerlink" title="小型复卷机设计方案"></a>小型复卷机设计方案</h1><h2 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a>设计要求</h2><ul><li>设计一个小型复卷机，该复卷机可以对无纺布，水刺布等卷材进行复卷。</li><li>速度60米&#x2F;分钟</li><li>卷机尺寸：长2.6米，宽1.5米，高1.1米</li></ul><h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><ol><li><p>复卷机结构：</p><ol><li>放卷机组<ol><li>气胀轴（手拧式，充气式）</li><li>牵引轴（输送承压轴）</li><li>展平棍</li><li>传送棍</li><li>放卷电机</li><li>行星减速器</li></ol></li><li>收卷机组<ol><li>滑动平台（纠偏）</li><li>纠偏器</li><li>牵引轴</li><li>展平棍</li><li>收卷电机</li><li>行星减速器</li></ol></li><li>张力控制结构<ol><li>滑动位移传感器</li><li>浮动棍</li></ol></li><li>相机拍照空间<ol><li>小型龙门架</li></ol></li><li>疵点停机空间<ol><li>小型验布台*2</li></ol></li></ol></li><li><p>控制方式：</p><ol><li>手动控制<ol><li>单独收放卷每个电机的正反转</li><li>按钮操控</li></ol></li><li>自动控制<ol><li>自动张力控制</li><li>自动放卷</li><li>自动倒卷</li></ol></li></ol></li><li><p>相机拍照</p><ol><li>帧触发拍照</li><li>线扫相机拍照</li></ol></li><li><p>上下卷材料</p><ol><li>手动上卷，手拧胀轴</li><li>手动下卷，手拧缩轴</li></ol></li></ol><h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><h3 id="复卷机结构"><a href="#复卷机结构" class="headerlink" title="复卷机结构"></a>复卷机结构</h3><ul><li><p>复卷机结构参考：<br><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718482332-703eea5b5faf9222af8b62fde7368e55.jpg" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718482996-0a67c30064528bdd6cdd41bcbbf9fac9.jpg" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718484026-807860229c9cbd31b592571b02099d43.jpg" alt="image"></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目经验 </category>
+          
+          <category> 复卷机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 复卷机 </tag>
+            
+            <tag> 实验台 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>黄冈稳健</title>
+      <link href="/2023/11/27/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E9%BB%84%E5%86%88%E7%A8%B3%E5%81%A5/"/>
+      <url>/2023/11/27/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E9%BB%84%E5%86%88%E7%A8%B3%E5%81%A5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="黄冈稳健异纤检测后剔除方案"><a href="#黄冈稳健异纤检测后剔除方案" class="headerlink" title="黄冈稳健异纤检测后剔除方案"></a>黄冈稳健异纤检测后剔除方案</h1><h2 id="相机拍照方案一"><a href="#相机拍照方案一" class="headerlink" title="相机拍照方案一"></a>相机拍照方案一</h2><ul><li>帧触发</li><li>帧信号校准图像原点位置</li></ul><h2 id="相机拍照方案二"><a href="#相机拍照方案二" class="headerlink" title="相机拍照方案二"></a>相机拍照方案二</h2><ul><li>行触发</li><li>相机图像完成信号校准图像原点位置</li></ul><h2 id="缺陷处理方案一"><a href="#缺陷处理方案一" class="headerlink" title="缺陷处理方案一"></a>缺陷处理方案一</h2><ul><li>小工位模式+串口组网联机</li><li>1工控机+8控制器</li></ul><h2 id="小工位方案简述"><a href="#小工位方案简述" class="headerlink" title="小工位方案简述"></a>小工位方案简述</h2><ul><li>以图像为基准作为一个基准工位</li><li>图像分割为255份作为小工位</li><li>可以单点踢废，踢废长度为设定值</li><li>可以连续踢废，会回溯一定范围的距离（可设定），从有缺陷的位置开始，到接收到连续踢废的位置结束</li></ul><h3 id="小工位方案通信协议简述"><a href="#小工位方案通信协议简述" class="headerlink" title="小工位方案通信协议简述"></a>小工位方案通信协议简述</h3><ul><li>单点踢废：31 01 00 01  相机1，第1个小工位，踢废IO为1</li><li>连续踢废：10 03 e9 00 01 55   通道1的连续踢废指令</li><li>设定连续范围： 10 03 e8 01 01 55 判定是否为连续缺陷的回溯范围</li></ul><h2 id="需改动的点"><a href="#需改动的点" class="headerlink" title="需改动的点"></a>需改动的点</h2><ul><li>完成组网协议</li><li>组网踢废</li><li>优化执行效率</li><li>增加指定范围的连续缺陷协议</li></ul><h3 id="组网协议"><a href="#组网协议" class="headerlink" title="组网协议"></a>组网协议</h3><ul><li>沿用小工位模式的通信协议，从机站号以通信首地址区分。</li></ul><h3 id="组网踢废"><a href="#组网踢废" class="headerlink" title="组网踢废"></a>组网踢废</h3><ul><li>单点&#x2F;大面积协议指令：10 01 03 ea 01 01 ff  站号1，相机1的第一个通道踢废255个长度</li></ul><table><thead><tr><th>功能</th><th>字节</th><th>取值</th><th>备注</th></tr></thead><tbody><tr><td>起始位</td><td>0x10</td><td>0x10</td><td>固定格式</td></tr><tr><td>站号</td><td>0x01</td><td>0x00~0xff</td><td>站号</td></tr><tr><td>地址高位</td><td>0x03</td><td>0x00~0xff</td><td>和地址低位共同组成地址位，判断其功能</td></tr><tr><td>地址地位</td><td>0xea</td><td>0x00~0xff</td><td>和地址高位共同组成地址位，判断其功能</td></tr><tr><td>kickid号</td><td>0x01</td><td>0x00~0x02</td><td>对应kickid号</td></tr><tr><td>踢废通道</td><td>0x01</td><td>0x00~0x08</td><td>对应8个通道</td></tr><tr><td>踢废长度</td><td>0xff</td><td>0x01~0xff</td><td>对应踢废1~255个小工位</td></tr></tbody></table><h3 id="黄冈稳健-硬件配置"><a href="#黄冈稳健-硬件配置" class="headerlink" title="黄冈稳健-硬件配置"></a>黄冈稳健-硬件配置</h3><ul><li>一排相机，两个8K</li><li>60路踢废通道</li><li>帧触发拍照</li><li>一台工控机，八个控制器</li><li>编码器型号1000</li><li>串口通信-232转485</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">231129记录</span><br><span class="line"></span><br><span class="line">黄冈稳健：</span><br><span class="line">1. 2个8K相机，每个相机约24个通道，分成3个控制器</span><br><span class="line">2. 速度100米，编码器可能是1000，换算成1000图像高度，是5.5帧，每个相机一张图保留10个缺陷</span><br><span class="line">3. 波特率115200，每秒可发11.52K个字节</span><br><span class="line">4. 两个相机都往一个串口发，可能会存在互锁的情况</span><br><span class="line">5. 增加控制器编号，每个控制器接收到的数据，可能是自己需要处理的6倍</span><br><span class="line"></span><br><span class="line">如果每个相机连一个串口485控制3个控制器，通讯数据可以降低一半，也不存在互锁的问题</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112911281933-f1a69d22a4d908bd2391d3f191b1623.png" alt="image"></p><h2 id="通用多字节协议设计-可讨论是否采用"><a href="#通用多字节协议设计-可讨论是否采用" class="headerlink" title="通用多字节协议设计(可讨论是否采用)"></a>通用多字节协议设计(可讨论是否采用)</h2><ul><li>增加字节长度消息</li><li>例如：</li></ul><table><thead><tr><th>功能位</th><th>字节</th><th>取值范围</th><th>备注</th></tr></thead><tbody><tr><td>起始位</td><td>0x10</td><td>0x10</td><td>固定格式</td></tr><tr><td>从站地址</td><td>0x01</td><td>0x01~0xff</td><td>从站站号</td></tr><tr><td>功能码</td><td>0x10</td><td>0x03读&#x2F;0x10写</td><td>功能码，可选位</td></tr><tr><td>数据地址高位</td><td>0x03</td><td>0x00~0xff</td><td>数据地址高位</td></tr><tr><td>数据地址低位</td><td>0xe9</td><td>0x00~0xff</td><td>数据地址低位</td></tr><tr><td>数据长度高位</td><td>0x00</td><td>0x00~0xff</td><td>数据长度高位</td></tr><tr><td>数据长度低位</td><td>0x01</td><td>0x00~0xff</td><td>数据长度低位</td></tr><tr><td>数据内容高位</td><td>0x01</td><td>0x00~0xff</td><td>数据内容高位</td></tr><tr><td>数据内容低位</td><td>0x01</td><td>0x00~0xff</td><td>数据内容低位</td></tr><tr><td>结束位</td><td>0x55</td><td>0x55</td><td>固定格式</td></tr></tbody></table><ul><li>超时设计：上位机发送一个数据，下位机返回一个数据，若超时则再发送一次（不必对同一个数据始终判断超时）。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目经验 </category>
+          
+          <category> 黄冈稳健 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目经验 </tag>
+            
+            <tag> 黄冈稳健 </tag>
+            
+            <tag> 控制器 </tag>
+            
+            <tag> 串口组网 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>编码器正反转</title>
+      <link href="/2023/11/26/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E6%8E%A7%E5%88%B6%E5%99%A8/%E7%BC%96%E7%A0%81%E5%99%A8%E6%AD%A3%E5%8F%8D%E8%BD%AC/"/>
+      <url>/2023/11/26/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E6%8E%A7%E5%88%B6%E5%99%A8/%E7%BC%96%E7%A0%81%E5%99%A8%E6%AD%A3%E5%8F%8D%E8%BD%AC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="编码器正反转"><a href="#编码器正反转" class="headerlink" title="编码器正反转"></a>编码器正反转</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>编码器转动，每个边沿信号对应另一线的电平状态都是不同的。A，B两个信号线共有4个边沿信号，每个信号根据当前正反转的状态，电平状态不同。</p><h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112610071175-20231126100710.png" alt="image"></p><h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> encoder_input_A PAin(15)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> encoder_input_B PBin(3)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// @brief B接收信号</span></span><br><span class="line"><span class="comment">/// @param  无</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">EXTI3_IRQHandler</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (sZDebounce &gt; <span class="number">0</span>) <span class="built_in">delay_us</span>(sZDebounce);  <span class="comment">// Z信号输入去抖</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// B-</span></span><br><span class="line">  <span class="keyword">if</span> (encoder_input_B == <span class="literal">false</span>) &#123;     <span class="comment">//调试信号用</span></span><br><span class="line">    <span class="keyword">if</span> (encoder_input_A == <span class="literal">false</span>) &#123;  <span class="comment">// A上</span></span><br><span class="line">      iACount--;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_A == <span class="literal">true</span>) &#123;  <span class="comment">// A下</span></span><br><span class="line">      iACount++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_B == <span class="literal">true</span>) &#123;  <span class="comment">// B+  //调试信号用</span></span><br><span class="line">    <span class="keyword">if</span> (encoder_input_A == <span class="literal">false</span>) &#123;      <span class="comment">// A上</span></span><br><span class="line">      iACount++;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_A == <span class="literal">true</span>) &#123;  <span class="comment">// A下</span></span><br><span class="line">      iACount--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">EXTI_ClearITPendingBit</span>(EXTI_Line3);  <span class="comment">// 清除中断标志位</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* I/O线中断，A信号，中断线为: PA.15 */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">EXTI15_10_IRQHandler</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (sADebounce &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">delay_us</span>(sADebounce);  <span class="comment">// A信号输入去抖</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// A-</span></span><br><span class="line">  <span class="keyword">if</span> (encoder_input_A == <span class="literal">false</span>) &#123;       <span class="comment">//调试信号用</span></span><br><span class="line">    <span class="keyword">if</span> (encoder_input_B == <span class="literal">false</span>) &#123;  <span class="comment">// B上</span></span><br><span class="line">      iACount++;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_B == <span class="literal">true</span>) &#123;  <span class="comment">// B下</span></span><br><span class="line">      iACount--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_A == <span class="literal">true</span>) &#123;  <span class="comment">// A+    //调试信号用</span></span><br><span class="line">    <span class="keyword">if</span> (encoder_input_B == <span class="literal">false</span>) &#123;      <span class="comment">// B上</span></span><br><span class="line">      iACount--;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (encoder_input_B == <span class="literal">true</span>) &#123;  <span class="comment">// B下</span></span><br><span class="line">      iACount++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="增量编码器直连"><a href="#增量编码器直连" class="headerlink" title="增量编码器直连"></a>增量编码器直连</h3><ul><li>编码器A连控制器A，编码器B连控制器Z1，使用高速光耦，正转3000，反转-3000，仅脉冲加，数量为5000，A信号数量2000正常，B信号数量3000</li><li>去除核心板C31的电容，无改善</li><li>编码器A连Z3，B连Z4（即使用PC817），可以达到预期控制效果，但帧率较低，1秒3圈1K的编码器，开启正反转就是4倍频，即12K行频就是极限（按10K即可）。</li></ul><h3 id="差分编码器转接（PC817）"><a href="#差分编码器转接（PC817）" class="headerlink" title="差分编码器转接（PC817）"></a>差分编码器转接（PC817）</h3><ul><li>编码器A连控制器A，编码器B连控制器Z1，使用高速光耦，正转4000，反转-4000。</li><li>差分转接后，正转4000，反转-4000，达到预期。</li><li>实现脉冲级正反转判断。任意正反转，都不会多拍或少拍。</li><li>约12K行频，效果稳定（按10K即可）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 产品 </category>
+          
+          <category> 控制器 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 控制器 </tag>
+            
+            <tag> 编码器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Qt多线程</title>
+      <link href="/2023/11/25/Qt/Qt%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <url>/2023/11/25/Qt/Qt%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Qt多线程"><a href="#Qt多线程" class="headerlink" title="Qt多线程"></a>Qt多线程</h2><h2 id="QtConcurrent"><a href="#QtConcurrent" class="headerlink" title="QtConcurrent"></a>QtConcurrent</h2><p>keyword: QtConcurrent, Qt多线程, Qt多线程编程</p><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul><li>QtConcurrent模块提供了在Qt应用程序中使用多线程的类和函数。</li><li>可以在任意位置，使用该方法将需要执行的函数传入，并返回一个future对象，该对象可以用来判断函数是否执行完成，以及获取函数的返回值。</li></ul><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>QtConcurrent::run()</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QFuture&lt;<span class="type">void</span>&gt; future = QtConcurrent::<span class="built_in">run</span>([=]()&#123;</span><br><span class="line">      QMutexLocker <span class="built_in">locker</span>(&amp;serial_qmutex);  <span class="comment">//加锁并自动释放</span></span><br><span class="line">        <span class="built_in">serialPort_readyRead</span>();</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><h2 id="线程锁"><a href="#线程锁" class="headerlink" title="线程锁"></a>线程锁</h2><h3 id="QMutexLocker"><a href="#QMutexLocker" class="headerlink" title="QMutexLocker"></a>QMutexLocker</h3><p>keyword: QMutexLocker, Qt多线程, Qt多线程编程</p><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul><li>QMutexLocker类是QMutex的包装类，用于自动加锁和解锁。</li><li>该类在构造函数中传入QMutex对象，并在析构函数中自动解锁。</li></ul><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QFuture&lt;<span class="type">void</span>&gt; future = QtConcurrent::<span class="built_in">run</span>([=]()&#123;</span><br><span class="line">      QMutexLocker <span class="built_in">locker</span>(&amp;serial_qmutex);  <span class="comment">//加锁并自动释放</span></span><br><span class="line">        <span class="built_in">serialPort_readyRead</span>();</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> Qt </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>复卷定长校准方案</title>
+      <link href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/"/>
+      <url>/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%8D%E5%8D%B7%E6%9C%BA/%E5%A4%8D%E5%8D%B7%E5%AE%9A%E9%95%BF%E6%A0%A1%E5%87%86%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="复卷定长校准方案"><a href="#复卷定长校准方案" class="headerlink" title="复卷定长校准方案"></a>复卷定长校准方案</h1><h2 id="1-方案描述"><a href="#1-方案描述" class="headerlink" title="1. 方案描述"></a>1. 方案描述</h2><p>复卷定长校准方案，是针对复卷生产与复卷由于张力或其它因素造成缺陷位置变化的定长校准缺陷位置的方案。</p><h2 id="2-方案原理"><a href="#2-方案原理" class="headerlink" title="2. 方案原理"></a>2. 方案原理</h2><p>主线生产定长打标，复卷机复卷，检测标签，根据检测到的标签位置校准放卷米数。</p><h2 id="3-方案流程"><a href="#3-方案流程" class="headerlink" title="3. 方案流程"></a>3. 方案流程</h2><h3 id="3-1-方案流程图"><a href="#3-1-方案流程图" class="headerlink" title="3.1 方案流程图"></a>3.1 方案流程图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"></span><br><span class="line">大线</span><br><span class="line">--&gt;每100米贴标</span><br><span class="line">--&gt;复卷</span><br><span class="line">--&gt;检测标签--有标签</span><br><span class="line">--&gt;校准计米</span><br></pre></td></tr></table></figure><h3 id="3-2-方案流程描述"><a href="#3-2-方案流程描述" class="headerlink" title="3.2 方案流程描述"></a>3.2 方案流程描述</h3><p>复卷定长校准方案，主线每隔100米贴标，然后复卷，检测标签，根据检测到的标签位置校准放卷米数。</p><h3 id="软件重启"><a href="#软件重启" class="headerlink" title="软件重启"></a>软件重启</h3><p>重启软件读取控制器的计米。</p><h3 id="自动计算系数"><a href="#自动计算系数" class="headerlink" title="自动计算系数"></a>自动计算系数</h3><p>探测到标签自动计算系数。</p><h3 id="按钮纠偏"><a href="#按钮纠偏" class="headerlink" title="按钮纠偏"></a>按钮纠偏</h3><ul><li>验光板上下2排按钮，每按一下上下纠偏固定长度。</li><li>18个通道，每个通道两个按钮。</li><li>每次停机只能纠偏一次，纠偏与复位按钮为独立的按钮。</li></ul><h3 id="软件贴标"><a href="#软件贴标" class="headerlink" title="软件贴标"></a>软件贴标</h3><ul><li>软件贴标，每100米贴一次，使用0x31踢废指令即可，记录到报表中，但默认不勾选</li><li>PLC根据实际米长以及检测到的标签位置，计算校准系数。并完成校准。</li><li>定长贴标的记录，校准</li><li>卷尾贴标必须使用。</li></ul><h3 id="任务拆解"><a href="#任务拆解" class="headerlink" title="任务拆解"></a>任务拆解</h3><ol><li>探标自动校准,获得补偿值 （完成）</li><li>按钮分段补偿（即36个按钮对应16个通道的位置补偿） （初步完成）</li><li>根据横坐标判断补偿值 （完成）</li><li>合并探标补偿 （完成）</li><li>合并按钮通道补偿 （完成）</li><li>停机位置修正，合入按钮分段补偿 （待开始）</li><li>自动校准系数？（暂不做）</li><li>调试，验证</li></ol><h3 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h3><p>$$实时米数&#x3D;原始米数+同步补偿+探标补偿$$<br>$$同步补偿&#x3D;缺陷坐标-实时米数$$<br>$$探标补偿&#x3D;((int)(实时米数&#x2F;贴标间隔))*(贴标间隔)+（（实时米数&#x2F;贴标间隔）-（int）（实时米数&#x2F;贴标间隔）&gt;&#x3D;0.5?贴标间隔:0）$$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 产品 </category>
+          
+          <category> 复卷瑕疵定位系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 产品 </tag>
+            
+            <tag> 复卷瑕疵定位系统 </tag>
+            
+            <tag> 复卷 </tag>
+            
+            <tag> 方案 </tag>
+            
         </tags>
       
     </entry>
@@ -39,7 +643,7 @@
       <link href="/2023/11/17/%E7%BB%BC%E5%90%88/vscode/vscode-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/11/17/%E7%BB%BC%E5%90%88/vscode/vscode-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[<h1 id="VScode"><a href="#VScode" class="headerlink" title="VScode"></a>VScode</h1><h2 id="配置VScode语言"><a href="#配置VScode语言" class="headerlink" title="配置VScode语言"></a>配置VScode语言</h2><ol><li>调出命令框（Ctrl+Shift+P）</li><li>输入language</li><li>选择configure display language</li><li>选择en（英文），zH-cn（中文简体）</li></ol><h2 id="格式化文本"><a href="#格式化文本" class="headerlink" title="格式化文本"></a>格式化文本</h2><ol><li>安装插件Clang-Format（写文档的时候，不确定是否一定要安装这个插件）</li><li>clang-Format 下载LLVM，并安装。（还需要在vs中设置google格式化规则）<ol><li>Ctrl + ,， 打开设置</li><li>输入 clang-format</li><li>将C_Cpp.clang_format_fallbackStyle值从Visual Studio改为 Google</li><li>如图<img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111717270318-1691114628952.png" alt="image"></li></ol></li><li>默认格式化配置<ol><li>右键-&gt;使用…格式化-&gt;选择clang-Format（google格式），也可以选择系统默认格式化。</li></ol></li></ol><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ol><li>C&#x2F;C++</li><li>ChatGPT-中文版 （注册账号可以免费使用gpt-3.5）</li><li>Chinese（简体中文）</li><li>Clang-Format   （代码google格式化规则）</li><li>Code Runner    （运行多种语言代码）</li><li>Keil Assistant    （MDK开发支持）</li><li>Markdown PDF</li><li>Markdown All in One</li><li>Markdown Preview Enhanced （预览可以有目录）</li><li>markdownlint  （检查md语法格式，格式化）</li><li>Typora</li><li>python</li><li>Var Conversion （变量名称转换）</li><li>verilog-HDL&#x2F;System Verilog&#x2F;Bluespec SystemVerilog（verilog语法高亮，格式化）</li><li>vscode-icons （图标）</li><li>vscode-mindmap   (思维导图，文件名*.km可以使用)</li><li>Qt tools   （备选，扫描套件用，不建议工程使用）</li><li>Qt Configure （备选，可以用vscode新建并开发qt程序，需要注意，尽量不要用qt creator 大量改动文件结构，不建议工程使用）</li><li>GitHub Copilot （很好用的代码AI提示，需要付费，会严重拖慢VScode的启动速度</li><li>Tabnine AI ***** （免费的代码AI提示，相对不那么智能，会严重拖慢VScode的启动速度</li><li>markmap (好用的markdown转思维导图工具)</li><li>var-translate-en (好用的中文翻译工具)</li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="VScode"><a href="#VScode" class="headerlink" title="VScode"></a>VScode</h1><h2 id="配置VScode语言"><a href="#配置VScode语言" class="headerlink" title="配置VScode语言"></a>配置VScode语言</h2><ol><li>调出命令框（Ctrl+Shift+P）</li><li>输入language</li><li>选择configure display language</li><li>选择en（英文），zH-cn（中文简体）</li></ol><h2 id="格式化文本"><a href="#格式化文本" class="headerlink" title="格式化文本"></a>格式化文本</h2><ol><li>安装插件Clang-Format（写文档的时候，不确定是否一定要安装这个插件）</li><li>clang-Format 下载LLVM，并安装。（还需要在vs中设置google格式化规则）<ol><li>Ctrl + ,， 打开设置</li><li>输入 clang-format</li><li>将C_Cpp.clang_format_fallbackStyle值从Visual Studio改为 Google</li><li>如图<img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111717270318-1691114628952.png" alt="image"></li></ol></li><li>默认格式化配置<ol><li>右键-&gt;使用…格式化-&gt;选择clang-Format（google格式），也可以选择系统默认格式化。</li></ol></li></ol><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ol><li>C&#x2F;C++</li><li>ChatGPT-中文版 （注册账号可以免费使用gpt-3.5）</li><li>Chinese（简体中文）</li><li>Clang-Format   （代码google格式化规则）</li><li>Code Runner    （运行多种语言代码）</li><li>Keil Assistant    （MDK开发支持）</li><li>Markdown PDF</li><li>Markdown All in One</li><li>Markdown Preview Enhanced （预览可以有目录）</li><li>markdownlint  （检查md语法格式，格式化）</li><li>Typora</li><li>python</li><li>Var Conversion （变量名称转换）</li><li>verilog-HDL&#x2F;System Verilog&#x2F;Bluespec SystemVerilog（verilog语法高亮，格式化）</li><li>vscode-icons （图标）</li><li>vscode-mindmap   (思维导图，文件名*.km可以使用)</li><li>Qt tools   （备选，扫描套件用，不建议工程使用）</li><li>Qt Configure （备选，可以用vscode新建并开发qt程序，需要注意，尽量不要用qt creator 大量改动文件结构，不建议工程使用）</li><li>GitHub Copilot （很好用的代码AI提示，需要付费，会严重拖慢VScode的启动速度</li><li>Tabnine AI ***** （免费的代码AI提示，相对不那么智能，会严重拖慢VScode的启动速度</li><li>markmap (好用的markdown转思维导图工具)</li><li>var-translate-en (好用的中文翻译工具)</li></ol><h2 id="C-C"><a href="#C-C" class="headerlink" title="C++&#x2F;C"></a>C++&#x2F;C</h2><h3 id="C-C-Themes"><a href="#C-C-Themes" class="headerlink" title="C&#x2F;C++ Themes"></a>C&#x2F;C++ Themes</h3><ul><li>编写C项目代码，可以使用该插件设置主题颜色。针对C代码的高亮更完善。</li><li>设置-&gt;代码格式设置-&gt;找到format相关字样的，设置为Google即可使用google格式化，设置为visual studio则使用vs格式化。无需再下载clang format插件</li></ul><h3 id="1-keil记录"><a href="#1-keil记录" class="headerlink" title="1. keil记录"></a>1. keil记录</h3><ul><li>启用C++&#x2F;C插件，写keil程序，会头文件报错</li><li>报错内容为：typedef redefinition with different types (‘unsigned int’ vs ‘unsigned long long’)，大意为vacode判断会出现编译异常。</li><li>此时，只需要直接右键该报错内容，禁用此类报错,禁用代码分析即可。不影响编译。</li><li>C++插件中找到代码分析，找到Run Automatlcally 设置为false<br><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121918032449-20231219180323.png" alt="image"></li><li>若需要启用代码分析，则按下快捷键Ctrl+Shift+P，输入C++：run Code Analysis，即可启用代码分析。</li><li><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121918115342-20231219181153.png" alt="image"></li></ul>]]></content>
       
       
       <categories>
@@ -143,6 +747,35 @@
             <tag> 环境搭建 </tag>
             
             <tag> Windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>视频播放-Potplayer</title>
+      <link href="/2023/11/17/%E7%BB%BC%E5%90%88/%E5%8A%9E%E5%85%AC%E5%B7%A5%E5%85%B7/Potplayer/"/>
+      <url>/2023/11/17/%E7%BB%BC%E5%90%88/%E5%8A%9E%E5%85%AC%E5%B7%A5%E5%85%B7/Potplayer/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Potplayer"><a href="#Potplayer" class="headerlink" title="Potplayer"></a>Potplayer</h1><h2 id="界面卡顿-更换解码方式"><a href="#界面卡顿-更换解码方式" class="headerlink" title="界面卡顿(更换解码方式)"></a>界面卡顿(更换解码方式)</h2><ul><li>左上角菜单（播放页面内右键）-&gt;滤镜-&gt;使用内置DXVA视频解码器</li><li>左上角菜单（播放页面内右键）-&gt;选项-&gt;声音-&gt;语言&#x2F;同步&#x2F;其他-&gt;同步调整单位（毫秒）：50-&gt;默认同步(毫秒)：50-&gt;次设备输出同步(毫秒):50</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 视频播放 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 视频播放 </tag>
+            
+            <tag> potplayer </tag>
             
         </tags>
       
@@ -273,7 +906,7 @@
       <link href="/2023/11/17/Qt/UDP_socket/"/>
       <url>/2023/11/17/Qt/UDP_socket/</url>
       
-        <content type="html"><![CDATA[<h1 id="QUdpSocket"><a href="#QUdpSocket" class="headerlink" title="QUdpSocket"></a>QUdpSocket</h1><p>详见Qt高级，Qt_UDP.pdf</p><h1 id="libuv"><a href="#libuv" class="headerlink" title="libuv"></a>libuv</h1><p>两种模式，事件循环调用（回调）</p><p>1.The I&#x2F;O loop</p><p>2.File I&#x2F;O</p><h1 id="系统知识"><a href="#系统知识" class="headerlink" title="系统知识"></a>系统知识</h1><p>系统缓存约64KB字节，（超过这么多字节的数据，则会丢包。直到程序读取走一包数据。）</p><h1 id="测试过程试和验结果"><a href="#测试过程试和验结果" class="headerlink" title="测试过程试和验结果"></a>测试过程试和验结果</h1><p>总结：是否丢包主要取决于系统性能（以及是否繁忙等），低性能设备给高性能设备发数据丢包率小于高性能设备给低性能设备发数据。</p><p>libuv，与QUdpSocket性能相差不大，均为一定概率丢包。系统缓存64KB，不能单独设置缓存。</p><h1 id="测试工具-NetAssist"><a href="#测试工具-NetAssist" class="headerlink" title="测试工具 NetAssist"></a>测试工具 NetAssist</h1><ol><li>必须连接上网络，并且网络设置中已经显示正在识别或未识别的网络（否则可能会无法发现，不能被枚举出来）</li><li>与是否开启高性能模式无关，与是否插电源无关，是否开启无线网络无关，是否安装开启网卡属性中basler等其它gige无关，与是否开启虚拟网络无关</li></ol><p><img src="/image/UDP_socket/1697421119249.png" alt="1697421119249"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="QUdpSocket"><a href="#QUdpSocket" class="headerlink" title="QUdpSocket"></a>QUdpSocket</h1><p>详见Qt高级，Qt_UDP.pdf</p><h1 id="libuv"><a href="#libuv" class="headerlink" title="libuv"></a>libuv</h1><p>两种模式，事件循环调用（回调）</p><p>1.The I&#x2F;O loop</p><p>2.File I&#x2F;O</p><h1 id="系统知识"><a href="#系统知识" class="headerlink" title="系统知识"></a>系统知识</h1><p>系统缓存约64KB字节，（超过这么多字节的数据，则会丢包。直到程序读取走一包数据。）</p><h1 id="测试过程试和验结果"><a href="#测试过程试和验结果" class="headerlink" title="测试过程试和验结果"></a>测试过程试和验结果</h1><p>总结：是否丢包主要取决于系统性能（以及是否繁忙等），低性能设备给高性能设备发数据丢包率小于高性能设备给低性能设备发数据。</p><p>libuv，与QUdpSocket性能相差不大，均为一定概率丢包。系统缓存64KB，不能单独设置缓存。</p><h1 id="测试工具-NetAssist"><a href="#测试工具-NetAssist" class="headerlink" title="测试工具 NetAssist"></a>测试工具 NetAssist</h1><ol><li>必须连接上网络，并且网络设置中已经显示正在识别或未识别的网络（否则可能会无法发现，不能被枚举出来）</li><li>与是否开启高性能模式无关，与是否插电源无关，是否开启无线网络无关，是否安装开启网卡属性中basler等其它gige无关，与是否开启虚拟网络无关</li></ol><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111390608-1697421119249.png" alt="image"></p>]]></content>
       
       
       <categories>
@@ -287,9 +920,9 @@
       
         <tags>
             
-            <tag> Qt </tag>
-            
             <tag> 技术 </tag>
+            
+            <tag> Qt </tag>
             
             <tag> udp </tag>
             
@@ -318,9 +951,9 @@
       
         <tags>
             
-            <tag> Qt </tag>
-            
             <tag> 技术 </tag>
+            
+            <tag> Qt </tag>
             
         </tags>
       
@@ -330,8 +963,8 @@
     
     <entry>
       <title>Qt基础</title>
-      <link href="/2023/11/17/Qt/Qt%E5%9F%BA%E7%A1%80/"/>
-      <url>/2023/11/17/Qt/Qt%E5%9F%BA%E7%A1%80/</url>
+      <link href="/2023/11/17/Qt/Qt_ini_%E7%BC%96%E7%A0%81/"/>
+      <url>/2023/11/17/Qt/Qt_ini_%E7%BC%96%E7%A0%81/</url>
       
         <content type="html"><![CDATA[<h1 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">QByteArray data;</span><br><span class="line">    data.<span class="built_in">clear</span>();</span><br><span class="line">    data.<span class="built_in">append</span>(<span class="number">0xac</span>);</span><br><span class="line">    data.<span class="built_in">append</span>(<span class="number">0x02</span>);</span><br><span class="line">    data.<span class="built_in">append</span>(<span class="number">0x55</span>);</span><br><span class="line">    serial-&gt;<span class="built_in">write</span>(data);</span><br></pre></td></tr></table></figure><h2 id="ini文件中文"><a href="#ini文件中文" class="headerlink" title="ini文件中文"></a>ini文件中文</h2><p>Qt的ini配置文件默认不支持直接读写中文，需要手动设置下编码格式才行，强烈建议统一用utf-8<br>编码，包括代码文件。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置了编码以后配置文件内容为 Company=上海物联网技术研究中心</span></span><br><span class="line"><span class="comment">//没有设置编码则配置文件内容为</span></span><br><span class="line">Company=\xe4\xb8\x8a\xe6\xb5\xb7\xe7\x89\xa9\xe8\x81\x94\xe7\xbd\x91\xe6\x8a</span><br><span class="line">\x80\xe6\x9c\xaf\xe7\xa0\x94\xe7\xa9\xb6\xe4\xb8\xad\xe5\xbf\x83</span><br><span class="line"><span class="type">void</span> App::<span class="built_in">readConfig</span>()</span><br><span class="line">&#123;</span><br><span class="line">QSettings <span class="built_in">set</span>(App::ConfigFile, QSettings::IniFormat);</span><br><span class="line">set.<span class="built_in">setIniCodec</span>(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">set.<span class="built_in">beginGroup</span>(<span class="string">&quot;AppConfig1&quot;</span>);</span><br><span class="line">App::Company = set.<span class="built_in">value</span>(<span class="string">&quot;Company&quot;</span>, App::Company).<span class="built_in">toString</span>();</span><br><span class="line">set.<span class="built_in">endGroup</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">App::writeConfig</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="function">QSettings <span class="title">set</span><span class="params">(App::ConfigFile, QSettings::IniFormat)</span></span>;</span><br><span class="line">set.<span class="built_in">setIniCodec</span>(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">set.<span class="built_in">beginGroup</span>(<span class="string">&quot;AppConfig1&quot;</span>);</span><br><span class="line">set.<span class="built_in">setValue</span>(<span class="string">&quot;Company&quot;</span>, App::Company);</span><br><span class="line">set.<span class="built_in">endGroup</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
@@ -347,9 +980,11 @@
       
         <tags>
             
+            <tag> 技术 </tag>
+            
             <tag> Qt </tag>
             
-            <tag> 技术 </tag>
+            <tag> 乱码 </tag>
             
         </tags>
       
@@ -391,7 +1026,7 @@
       <link href="/2023/11/17/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/STM32-HAL%E5%BA%93/"/>
       <url>/2023/11/17/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1/%E7%BC%96%E7%A8%8B/STM32-HAL%E5%BA%93/</url>
       
-        <content type="html"><![CDATA[<h1 id="STM32-HAL库"><a href="#STM32-HAL库" class="headerlink" title="STM32-HAL库"></a>STM32-HAL库</h1><h2 id="cubemx创建工程"><a href="#cubemx创建工程" class="headerlink" title="cubemx创建工程"></a>cubemx创建工程</h2><h3 id="下载cubemx"><a href="#下载cubemx" class="headerlink" title="下载cubemx"></a>下载cubemx</h3><p><a href="https://www.st.com/zh/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html#tools-software">下载链接:STM32CubeMX</a></p><h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>安装路径中不得出现中文,一路下一步即可</p><h3 id="安装基础包"><a href="#安装基础包" class="headerlink" title="安装基础包"></a>安装基础包</h3><p>找到需要的芯片,展开,勾选需要安装的版本,点击install安装即可,该方式为网络安装,时间较长.</p><p><img src="/image/STM32-HAL%E5%BA%93/1678324388669.png" alt="1678324388669"></p><p><img src="/image/STM32-HAL%E5%BA%93/1678324508331.png" alt="1678324508331"></p><h3 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678324629993.png" alt="1678324629993"></p><h3 id="选择芯片"><a href="#选择芯片" class="headerlink" title="选择芯片"></a>选择芯片</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678324701939.png" alt="1678324701939"></p><h3 id="配置引脚"><a href="#配置引脚" class="headerlink" title="配置引脚"></a>配置引脚</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757272425.png" alt="1678757272425"></p><h3 id="配置时钟-外部时钟源"><a href="#配置时钟-外部时钟源" class="headerlink" title="配置时钟(外部时钟源)"></a>配置时钟(外部时钟源)</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757334195.png" alt="1678757334195"></p><p><img src="/image/STM32-HAL%E5%BA%93/1678757389703.png" alt="1678757389703"></p><h3 id="配置swd"><a href="#配置swd" class="headerlink" title="配置swd"></a>配置swd</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757519490.png" alt="1678757519490"></p><h3 id="配置定时器-需完善"><a href="#配置定时器-需完善" class="headerlink" title="配置定时器(需完善)"></a>配置定时器(需完善)</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757656276.png" alt="1678757656276"></p><h3 id="配置SPI"><a href="#配置SPI" class="headerlink" title="配置SPI"></a>配置SPI</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757844213.png" alt="1678757844213"></p><h3 id="配置IIC"><a href="#配置IIC" class="headerlink" title="配置IIC"></a>配置IIC</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757779450.png" alt="1678757779450"></p><h3 id="配置USART"><a href="#配置USART" class="headerlink" title="配置USART"></a>配置USART</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678757939219.png" alt="1678757939219"></p><h3 id="配置ADC"><a href="#配置ADC" class="headerlink" title="配置ADC"></a>配置ADC</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678758098659.png" alt="1678758098659"></p><h3 id="配置DAC"><a href="#配置DAC" class="headerlink" title="配置DAC"></a>配置DAC</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678758181318.png" alt="1678758181318"></p><h3 id="设置工程"><a href="#设置工程" class="headerlink" title="设置工程"></a>设置工程</h3><p><img src="/image/STM32-HAL%E5%BA%93/1678758391540.png" alt="1678758391540"><br><img src="/image/STM32-HAL%E5%BA%93/1678758449042.png" alt="1678758449042"></p><h3 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h3><p>确保工程路径后点击,GENERATE CODE</p><p><img src="/image/STM32-HAL%E5%BA%93/1678758518181.png" alt="1678758518181"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="STM32-HAL库"><a href="#STM32-HAL库" class="headerlink" title="STM32-HAL库"></a>STM32-HAL库</h1><h2 id="cubemx创建工程"><a href="#cubemx创建工程" class="headerlink" title="cubemx创建工程"></a>cubemx创建工程</h2><h3 id="下载cubemx"><a href="#下载cubemx" class="headerlink" title="下载cubemx"></a>下载cubemx</h3><p><a href="https://www.st.com/zh/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html#tools-software">下载链接:STM32CubeMX</a></p><h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>安装路径中不得出现中文,一路下一步即可</p><h3 id="安装基础包"><a href="#安装基础包" class="headerlink" title="安装基础包"></a>安装基础包</h3><p>找到需要的芯片,展开,勾选需要安装的版本,点击install安装即可,该方式为网络安装,时间较长.</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111330220-1678324388669.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111331622-1678324508331.png" alt="image"></p><h3 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111335953-1678324629993.png" alt="image"></p><h3 id="选择芯片"><a href="#选择芯片" class="headerlink" title="选择芯片"></a>选择芯片</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111341156-1678324701939.png" alt="image"></p><h3 id="配置引脚"><a href="#配置引脚" class="headerlink" title="配置引脚"></a>配置引脚</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111342396-1678757272425.png" alt="image"></p><h3 id="配置时钟-外部时钟源"><a href="#配置时钟-外部时钟源" class="headerlink" title="配置时钟(外部时钟源)"></a>配置时钟(外部时钟源)</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111343642-1678757334195.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111345013-1678757389703.png" alt="image"></p><h3 id="配置swd"><a href="#配置swd" class="headerlink" title="配置swd"></a>配置swd</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111350180-1678757519490.png" alt="image"></p><h3 id="配置定时器-需完善"><a href="#配置定时器-需完善" class="headerlink" title="配置定时器(需完善)"></a>配置定时器(需完善)</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111351379-1678757656276.png" alt="image"></p><h3 id="配置SPI"><a href="#配置SPI" class="headerlink" title="配置SPI"></a>配置SPI</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111352567-1678757844213.png" alt="image"></p><h3 id="配置IIC"><a href="#配置IIC" class="headerlink" title="配置IIC"></a>配置IIC</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111353750-1678757779450.png" alt="image"></p><h3 id="配置USART"><a href="#配置USART" class="headerlink" title="配置USART"></a>配置USART</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111355030-1678757939219.png" alt="image"></p><h3 id="配置ADC"><a href="#配置ADC" class="headerlink" title="配置ADC"></a>配置ADC</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111360346-1678758098659.png" alt="image"></p><h3 id="配置DAC"><a href="#配置DAC" class="headerlink" title="配置DAC"></a>配置DAC</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111361646-1678758181318.png" alt="image"></p><h3 id="设置工程"><a href="#设置工程" class="headerlink" title="设置工程"></a>设置工程</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111362770-1678758391540.png" alt="image"><br><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111364195-1678758449042.png" alt="image"></p><h3 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h3><p>确保工程路径后点击,GENERATE CODE</p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111365301-1678758518181.png" alt="image"></p>]]></content>
       
       
       <categories>
@@ -420,7 +1055,7 @@
       <link href="/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%8E%A5%E6%9D%BF/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/"/>
       <url>/2023/11/17/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%8E%A5%E6%9D%BF/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/</url>
       
-        <content type="html"><![CDATA[<h1 id="差分编码器转接板"><a href="#差分编码器转接板" class="headerlink" title="差分编码器转接板"></a>差分编码器转接板</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li>差分编码器转接板，由差分编码器输入差分信号，输出差分信号给线扫相机，输出IO信号给控制器，实现差分信号到差分信号的转换。</li><li>差分编码器转接板还集成了一个24V（9V~26V）-5V的电源，用于给差分编码器供电。</li><li>控制器可以输出IO信号给差分编码器转接板，用于控制差分编码器转接板的差分信号输出开关。</li></ol><!-- ## 原理图 --><!-- ![原理图](image/SCH_STM32F103C8T6_1-P1_2023-09-11.png) --><h2 id="管脚定义"><a href="#管脚定义" class="headerlink" title="管脚定义"></a>管脚定义</h2><p><img src="/image/3D_STM32F103C8T6_2023-09-11.png" alt="管脚定义"></p><h2 id="功能定义"><a href="#功能定义" class="headerlink" title="功能定义"></a>功能定义</h2><table><thead><tr><th>引脚</th><th>功能描述</th><th>备注</th></tr></thead><tbody><tr><td>GND</td><td>电源负极引脚</td><td>接开关电源</td></tr><tr><td>24V</td><td>电源正极引脚</td><td>接开关电源</td></tr><tr><td>TRA-</td><td>差分输出A-</td><td>接相机input-</td></tr><tr><td>TRA+</td><td>差分输出A+</td><td>接相机input+</td></tr><tr><td>TRB-</td><td>差分输出B-</td><td>接相机input-</td></tr><tr><td>TRB+</td><td>差分输出B+</td><td>接相机input+</td></tr><tr><td>GND</td><td>电源负极引脚</td><td>接差分编码器</td></tr><tr><td>5V</td><td>5V供电输出</td><td>接差分编码器</td></tr><tr><td>EN_A-</td><td>差分信号输入</td><td>接差分编码器A-</td></tr><tr><td>EN_A+</td><td>差分信号输入</td><td>接差分编码器A+</td></tr><tr><td>EN_B-</td><td>差分信号输入</td><td>接差分编码器B-</td></tr><tr><td>EN_B+</td><td>差分信号输入</td><td>接差分编码器B+</td></tr><tr><td>EN_Z-</td><td>差分信号输入</td><td>接差分编码器Z-</td></tr><tr><td>EN_Z+</td><td>差分信号输入</td><td>接差分编码器Z+</td></tr><tr><td>IO_A</td><td>使能差分输出</td><td>默认开启，输入信号关闭。接控制器，IO引脚，控制差分输出A</td></tr><tr><td>IO_B</td><td>使能差分呼出</td><td>默认开启，输入信号关闭。接控制器，IO引脚，控制差分输出B</td></tr><tr><td>OUTA</td><td>差分转电极</td><td>接控制器编码器输入引脚A</td></tr><tr><td>OUTB</td><td>差分转电极</td><td>预留</td></tr><tr><td>OUTZ</td><td>差分转电极</td><td>接控制器编码器输入引脚Z</td></tr></tbody></table><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>差分编码器转接板统一使用500P&#x2F;R的差分编码器输入信号</li></ol><h2 id="控制器设置"><a href="#控制器设置" class="headerlink" title="控制器设置"></a>控制器设置</h2><ol><li>参数设置<ul><li>编码器型号：倍频后的一圈脉冲数量<br> <img src="/image/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/1695195457272.png" alt="1695195457272"></li><li>高级-&gt;差分编码器倍频系数：与相机设置的倍频系数一致<br> <img src="/image/%E5%B7%AE%E5%88%86%E7%BC%96%E7%A0%81%E5%99%A8%E8%BD%AC%E6%8E%A5%E6%9D%BF%E8%AF%B4%E6%98%8E%E4%B9%A6/1695195433602.png" alt="1695195433602"></li></ul></li></ol><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol><li>卫品（帧触发）</li><li>卫材</li></ol><h2 id="参考资料（相机驱动设置编码器模式以及倍频）"><a href="#参考资料（相机驱动设置编码器模式以及倍频）" class="headerlink" title="参考资料（相机驱动设置编码器模式以及倍频）"></a>参考资料（相机驱动设置编码器模式以及倍频）</h2><ol><li><a href="Basler.html">Basler相机差分编码器设置及倍频设置</a></li><li><a href="HIK.html">海康相机差分编码器设置及倍频设置</a></li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="差分编码器转接板"><a href="#差分编码器转接板" class="headerlink" title="差分编码器转接板"></a>差分编码器转接板</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li>差分编码器转接板，由差分编码器输入差分信号，输出差分信号给线扫相机，输出IO信号给控制器，实现差分信号到差分信号的转换。</li><li>差分编码器转接板还集成了一个24V（9V~26V）-5V的电源，用于给差分编码器供电。</li><li>控制器可以输出IO信号给差分编码器转接板，用于控制差分编码器转接板的差分信号输出开关。</li></ol><!-- ## 原理图 --><!-- ![原理图](image/SCH_STM32F103C8T6_1-P1_2023-09-11.png) --><h2 id="管脚定义"><a href="#管脚定义" class="headerlink" title="管脚定义"></a>管脚定义</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111423194-3D_STM32F103C8T6_2023-09-11.png" alt="image"></p><h2 id="功能定义"><a href="#功能定义" class="headerlink" title="功能定义"></a>功能定义</h2><table><thead><tr><th>引脚</th><th>功能描述</th><th>备注</th></tr></thead><tbody><tr><td>GND</td><td>电源负极引脚</td><td>接开关电源</td></tr><tr><td>24V</td><td>电源正极引脚</td><td>接开关电源</td></tr><tr><td>TRA-</td><td>差分输出A-</td><td>接相机input-</td></tr><tr><td>TRA+</td><td>差分输出A+</td><td>接相机input+</td></tr><tr><td>TRB-</td><td>差分输出B-</td><td>接相机input-</td></tr><tr><td>TRB+</td><td>差分输出B+</td><td>接相机input+</td></tr><tr><td>GND</td><td>电源负极引脚</td><td>接差分编码器</td></tr><tr><td>5V</td><td>5V供电输出</td><td>接差分编码器</td></tr><tr><td>EN_A-</td><td>差分信号输入</td><td>接差分编码器A-</td></tr><tr><td>EN_A+</td><td>差分信号输入</td><td>接差分编码器A+</td></tr><tr><td>EN_B-</td><td>差分信号输入</td><td>接差分编码器B-</td></tr><tr><td>EN_B+</td><td>差分信号输入</td><td>接差分编码器B+</td></tr><tr><td>EN_Z-</td><td>差分信号输入</td><td>接差分编码器Z-</td></tr><tr><td>EN_Z+</td><td>差分信号输入</td><td>接差分编码器Z+</td></tr><tr><td>IO_A</td><td>使能差分输出</td><td>默认开启，输入信号关闭。接控制器，IO引脚，控制差分输出A</td></tr><tr><td>IO_B</td><td>使能差分呼出</td><td>默认开启，输入信号关闭。接控制器，IO引脚，控制差分输出B</td></tr><tr><td>OUTA</td><td>差分转电极</td><td>接控制器编码器输入引脚A</td></tr><tr><td>OUTB</td><td>差分转电极</td><td>预留</td></tr><tr><td>OUTZ</td><td>差分转电极</td><td>接控制器编码器输入引脚Z</td></tr></tbody></table><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>差分编码器转接板统一使用500P&#x2F;R的差分编码器输入信号</li></ol><h2 id="控制器设置"><a href="#控制器设置" class="headerlink" title="控制器设置"></a>控制器设置</h2><ol><li>参数设置<ul><li>编码器型号：倍频后的一圈脉冲数量<br> <img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111430111-1695195457272.png" alt="image"></li><li>高级-&gt;差分编码器倍频系数：与相机设置的倍频系数一致<br> <img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111431475-1695195433602.png" alt="image"></li></ul></li></ol><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol><li>卫品（帧触发）</li><li>卫材</li></ol><h2 id="参考资料（相机驱动设置编码器模式以及倍频）"><a href="#参考资料（相机驱动设置编码器模式以及倍频）" class="headerlink" title="参考资料（相机驱动设置编码器模式以及倍频）"></a>参考资料（相机驱动设置编码器模式以及倍频）</h2><ol><li><a href="Basler.html">Basler相机差分编码器设置及倍频设置</a></li><li><a href="HIK.html">海康相机差分编码器设置及倍频设置</a></li></ol>]]></content>
       
       
       <categories>
@@ -496,9 +1131,9 @@
       
         <tags>
             
-            <tag> 产品 </tag>
-            
             <tag> 控制器 </tag>
+            
+            <tag> 产品 </tag>
             
             <tag> 检测停机 </tag>
             
@@ -734,7 +1369,7 @@
       <link href="/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/"/>
       <url>/2023/11/15/%E7%BB%BC%E5%90%88/%E5%8D%9A%E5%AE%A2/hexo_github_vscode_minio/</url>
       
-        <content type="html"><![CDATA[<h1 id="本地部署博客"><a href="#本地部署博客" class="headerlink" title="本地部署博客"></a>本地部署博客</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下方法实现了，同一台主机，部署多个服务，不同域名访问不同服务，同一域名访问不同服务。局域网访问图床图片。的良好体验。</p><h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><ol><li>安装node.js <a href="https://nodejs.org/en/download/">下载安装包</a></li><li>安装Git</li><li>安装hexo <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li><li>初始化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li>安装hexo-deployer-git<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li><li>在_config.yml中配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/fengjie1223/fengjie1223.github.io</span><br><span class="line">  branch: main</span><br><span class="line">  token:    //从github设置中获取</span><br></pre></td></tr></table></figure></li><li>生产网页并上传<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d  //三个指令分别为清除，构建，上传</span><br></pre></td></tr></table></figure></li></ol><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><ol><li>建立名为 &lt;你的 GitHub 用户名&gt;.github.io 的储存库，设置为public</li><li>仓库设置General-&gt;Default branch为main</li><li>仓库设置Pages Build and deployment -&gt; Source-&gt;Github Actions</li><li>Token ：</li></ol><h2 id="minio"><a href="#minio" class="headerlink" title="minio"></a>minio</h2><ol><li>安装minio    <a href="https://min.io/">下载安装包</a></li><li>部署minio    将下载好的exe文件放到准备作为图床文件夹下</li><li>启动minio     用cmd启动，或配置bat文件启动，下述代码为bat文件源码，cmd仅执行最后三行即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> @echo off</span><br><span class="line">if &quot;%1&quot; == &quot;h&quot; goto begin</span><br><span class="line">mshta vbscript:createobject(&quot;wscript.shell&quot;).run(&quot;&quot;&quot;%~nx0&quot;&quot; h&quot;,0)(window.close)&amp;&amp;exit</span><br><span class="line">:begin</span><br><span class="line">REM</span><br><span class="line">c:</span><br><span class="line">cd C:\MyServer\markdown_images</span><br><span class="line">setx MINIO_ROOT_USER admin                                  //设置用户名</span><br><span class="line">setx MINIO_ROOT_PASSWORD password                           //设置密码</span><br><span class="line">.\minio.exe server C:\MyServer\markdown_images --address :9000  //启动minio，并将端口号设置为9000（默认为9000）</span><br></pre></td></tr></table></figure></li><li>配置minio    打开127.0.0.1:9000，点击Create Bucket，创建名为mdimage的bucket</li><li>配置权限     点击mdimage仓库，设置Access Policy：为 public</li></ol><h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><ol><li>安装扩展 vscode-minio-picman （设置地址路径不要带端口号，否则自动返回的地址不带端口号）</li><li>配置vscode-minio-picman  <ol><li>配置地址 <a href="http://cnbed.com:9000/">http://cnbed.com:9000</a> （这里用了域名映射，原地址为127.0.0.1）</li><li>Access Key   uG7bf1JZBf1eCqpjEZ0S</li><li>Secret Key   HAgtVMhGuFgQkGVbIgVSuo9rOKrGODH29H7PkXCy</li><li>Bucket Name  mdimage （这里填写minio创建的仓库的名字）</li><li>Directory    images&#x2F;vscode-minio-picman<br><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111515030310-20231115150301.png" alt="image"></li></ol></li></ol><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><ol><li>配置多主机模式，将minio的IP地址及端口映射到cnbed.com</li><li>vscode 配置 minio 地址时填写cnbed.com:9000</li><li>返回的图片链接为cnbed.com&#x2F;***即可直接访问（无端口号）</li><li>路由器配置域名映射cnbed.com到服务器地址，内网即可访问图片</li><li>配置域名解析：C:\Windows\System32\drivers\etc下的hosts文件内最后一行填写&lt;IP地址 域名&gt;，端口号则由nginx解析</li><li>配置同一域名多个服务配置：server块中写多个location块即可，例：   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    # root   html;</span><br><span class="line">    # index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /blog&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000/;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /download&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:8000/;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>有些服务器不支持同域名多端口，则需要设置独立的域名，即写多个server块，路由器中也将独立的域名映射到服务器地址，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnbed.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnafgit.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最后将nginx 使用nssm工具，或使用bat脚本文件，添加到服务中</li></ol><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol><li>互联网图床 github smms qiniu等</li><li>图床工具 picgo</li><li>配合quick 脚本可以一键上传并返回链接</li><li>配合obsidian可以一键插入图片</li></ol><p>经验：<br>nginx</p><ul><li>反向代理hexo，若使用alias 指向public index.heml可以使用子域名访问，但会导致不能加载主题，解决办法为hexo使用独立的域名，alias指向改为root即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">//主页</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line"></span><br><span class="line">            # root C:/Users/fengj/OneDrive/Programs/hexo_my_note/public;</span><br><span class="line">            # index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//文件服务器</span><br><span class="line">                location /HID&#123;</span><br><span class="line"></span><br><span class="line">            autoindex on;             #开启索引功能</span><br><span class="line">            autoindex_exact_size off; # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）</span><br><span class="line">            autoindex_localtime on;   # 显示本机时间而非 GMT 时间</span><br><span class="line">#           charset utf-8; # 避免中文乱码</span><br><span class="line">            alias C:/MyServer/download/HID;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //图床</span><br><span class="line">            server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnbed.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:9000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //论坛</span><br><span class="line">    server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafbb.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:4567;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //同步盘</span><br><span class="line">            server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafsyncthing.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:8384;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//博客</span><br><span class="line">    server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafblog.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            root C:/Users/fengj/OneDrive/Programs/hexo_my_note/public;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ul><p>syncthing</p><ul><li>下载syncthing</li><li>nssm安装服务</li><li>打开网页127.0.0.1:8384</li><li>若同一网络已经有syncthing则会发现设备ID</li><li>打开syncthing-gtk，点击“添加设备”</li><li>输入设备ID，点击“添加”</li><li>同步即可</li><li>评价：简单好用的文件同步软件（同步盘）</li></ul><p>hexo </p><ul><li>不要开启服务器运行（会导致一些问题，例如部分文件不能删除等），使用hexo d -g 生成静态文件，然后使用nginx反向代理即可</li></ul><p>nodebb</p><ul><li>参考<a href="https://docs.nodebb.org/installing/os/windows/">文档</a> </li><li>下载nodebb <a href="https://github.com/NodeBB/NodeBB">地址</a></li><li>检查环境 node -v  npm -v  ,若没有，则下载nodejs并安装</li><li>安装Mongodb 注意事项，只安装服务，不要安装gui（安装太慢），再根据参考文档设置，需要注意：use admin之后的指令，需要设置密码，拷贝指令的时候自己修改 <strong>pwd:</strong> 的密码</li><li>创建nodebb，密码也使用nodebb</li><li>在nodebb文件夹下执行 <code>nodebb setup</code></li><li>等待安装，时间会比较长（似乎不需要外网）</li><li>完成后会提示一些内容，按回车确认，注意：提示输入monogdb用户以及密码的时候 ， 输入之前自己设定的用户名nodebb，密码nodebb，另外提示输入管理用户名的时候，输入admin（或自定义），密码admin（或自定义），记住即可。</li><li>启动nodebb <code>nodebb start</code></li><li>访问127.0.0.1:4567</li><li>使用管理用户登录</li><li>管理设置-&gt;全局常规-&gt;修改标头-&gt;修改语言为中文</li><li>界面主题不要改，若改了之后，出现主题样式丢失，改回默认重新构建重启即可</li><li>nodebb所有信息存储在mongodb中，自己设定的nodebb表中，可以重置mongodb，然后删除nodebb文件夹，重新创建。重置mongodb指令如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use your_database_name</span><br><span class="line">db.dropDatabase() </span><br></pre></td></tr></table></figure></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="本地部署博客"><a href="#本地部署博客" class="headerlink" title="本地部署博客"></a>本地部署博客</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下方法实现了，同一台主机，部署多个服务，不同域名访问不同服务，同一域名访问不同服务。局域网访问图床图片。的良好体验。</p><h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><ol><li>安装node.js <a href="https://nodejs.org/en/download/">下载安装包</a></li><li>安装Git</li><li>安装hexo <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li><li>初始化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li>安装hexo-deployer-git<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li><li>在_config.yml中配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/fengjie1223/fengjie1223.github.io</span><br><span class="line">  branch: main</span><br><span class="line">  token:    //从github设置中获取</span><br></pre></td></tr></table></figure></li><li>生产网页并上传<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d  //三个指令分别为清除，构建，上传</span><br></pre></td></tr></table></figure></li></ol><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><ol><li>建立名为 &lt;你的 GitHub 用户名&gt;.github.io 的储存库，设置为public</li><li>仓库设置General-&gt;Default branch为main</li><li>仓库设置Pages Build and deployment -&gt; Source-&gt;Github Actions</li><li>Token ：</li></ol><h2 id="minio"><a href="#minio" class="headerlink" title="minio"></a>minio</h2><ol><li>安装minio    <a href="https://min.io/">下载安装包</a></li><li>部署minio    将下载好的exe文件放到准备作为图床文件夹下</li><li>启动minio     用cmd启动，或配置bat文件启动，下述代码为bat文件源码，cmd仅执行最后三行即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> @echo off</span><br><span class="line">if &quot;%1&quot; == &quot;h&quot; goto begin</span><br><span class="line">mshta vbscript:createobject(&quot;wscript.shell&quot;).run(&quot;&quot;&quot;%~nx0&quot;&quot; h&quot;,0)(window.close)&amp;&amp;exit</span><br><span class="line">:begin</span><br><span class="line">REM</span><br><span class="line">c:</span><br><span class="line">cd C:\MyServer\markdown_images</span><br><span class="line">setx MINIO_ROOT_USER admin                                  //设置用户名</span><br><span class="line">setx MINIO_ROOT_PASSWORD password                           //设置密码</span><br><span class="line">.\minio.exe server C:\MyServer\markdown_images --address :9000  //启动minio，并将端口号设置为9000（默认为9000）</span><br></pre></td></tr></table></figure></li><li>配置minio    打开127.0.0.1:9000，点击Create Bucket，创建名为mdimage的bucket</li><li>配置权限     点击mdimage仓库，设置Access Policy：为 public</li></ol><h3 id="minio迁移"><a href="#minio迁移" class="headerlink" title="minio迁移"></a>minio迁移</h3><ul><li>推测（未验证）-windows 下迁移，应该是将整个桶文件夹全部复制即可。引用路径似乎是文件夹path+图片名（保存在桶文件里会变成一个以png为后缀的文件夹）</li><li>推测（未验证）下述这三个一起复制即可</li></ul><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023122014344924-20231220143448.png" alt="image"></p><h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><ol><li>安装扩展 vscode-minio-picman （设置地址路径不要带端口号，否则自动返回的地址不带端口号）</li><li>配置vscode-minio-picman  <ol><li>配置地址 <a href="http://cnbed.com:9000/">http://cnbed.com:9000</a> （这里用了域名映射，原地址为127.0.0.1）</li><li>Access Key   uG7bf1JZBf1eCqpjEZ0S</li><li>Secret Key   HAgtVMhGuFgQkGVbIgVSuo9rOKrGODH29H7PkXCy</li><li>Bucket Name  mdimage （这里填写minio创建的仓库的名字）</li><li>Directory    images&#x2F;vscode-minio-picman<br><img src="http://cnbed.com/mdimage/images/vscode-minio-picman/2023111515030310-20231115150301.png" alt="image"></li></ol></li></ol><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><ol><li>配置多主机模式，将minio的IP地址及端口映射到cnbed.com</li><li>vscode 配置 minio 地址时填写cnbed.com:9000</li><li>返回的图片链接为cnbed.com&#x2F;***即可直接访问（无端口号）</li><li>路由器配置域名映射cnbed.com到服务器地址，内网即可访问图片</li><li>配置域名解析：C:\Windows\System32\drivers\etc下的hosts文件内最后一行填写&lt;IP地址 域名&gt;，端口号则由nginx解析</li><li>配置同一域名多个服务配置：server块中写多个location块即可，例：   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    # root   html;</span><br><span class="line">    # index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /blog&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:4000/;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /download&#123;</span><br><span class="line">    proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:8000/;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>有些服务器不支持同域名多端口，则需要设置独立的域名，即写多个server块，路由器中也将独立的域名映射到服务器地址，例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnbed.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name cnafgit.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>最后将nginx 使用nssm工具，或使用bat脚本文件，添加到服务中</li></ol><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol><li>互联网图床 github smms qiniu等</li><li>图床工具 picgo</li><li>配合quick 脚本可以一键上传并返回链接</li><li>配合obsidian可以一键插入图片</li></ol><p>经验：<br>nginx</p><ul><li>反向代理hexo，若使用alias 指向public index.heml可以使用子域名访问，但会导致不能加载主题，解决办法为hexo使用独立的域名，alias指向改为root即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">//主页</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line"></span><br><span class="line">            # root C:/Users/fengj/OneDrive/Programs/hexo_my_note/public;</span><br><span class="line">            # index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//文件服务器</span><br><span class="line">                location /HID&#123;</span><br><span class="line"></span><br><span class="line">            autoindex on;             #开启索引功能</span><br><span class="line">            autoindex_exact_size off; # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）</span><br><span class="line">            autoindex_localtime on;   # 显示本机时间而非 GMT 时间</span><br><span class="line">#           charset utf-8; # 避免中文乱码</span><br><span class="line">            alias C:/MyServer/download/HID;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //图床</span><br><span class="line">            server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnbed.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:9000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //论坛</span><br><span class="line">    server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafbb.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:4567;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //同步盘</span><br><span class="line">            server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafsyncthing.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:8384;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//博客</span><br><span class="line">    server&#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name cnafblog.com;</span><br><span class="line">        location /&#123;</span><br><span class="line">            root C:/Users/fengj/OneDrive/Programs/hexo_my_note/public;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ul><p>syncthing</p><ul><li>下载syncthing</li><li>nssm安装服务</li><li>打开网页127.0.0.1:8384</li><li>若同一网络已经有syncthing则会发现设备ID</li><li>打开syncthing-gtk，点击“添加设备”</li><li>输入设备ID，点击“添加”</li><li>同步即可</li><li>评价：简单好用的文件同步软件（同步盘）</li></ul><p>hexo </p><ul><li>不要开启服务器运行（会导致一些问题，例如部分文件不能删除等），使用hexo d -g 生成静态文件，然后使用nginx反向代理即可</li></ul><p>nodebb</p><ul><li>参考<a href="https://docs.nodebb.org/installing/os/windows/">文档</a> </li><li>下载nodebb <a href="https://github.com/NodeBB/NodeBB">地址</a></li><li>检查环境 node -v  npm -v  ,若没有，则下载nodejs并安装</li><li>安装Mongodb 注意事项，只安装服务，不要安装gui（安装太慢），再根据参考文档设置，需要注意：use admin之后的指令，需要设置密码，拷贝指令的时候自己修改 <strong>pwd:</strong> 的密码</li><li>创建nodebb，密码也使用nodebb</li><li>在nodebb文件夹下执行 <code>nodebb setup</code></li><li>等待安装，时间会比较长（似乎不需要外网）</li><li>完成后会提示一些内容，按回车确认，注意：提示输入monogdb用户以及密码的时候 ， 输入之前自己设定的用户名nodebb，密码nodebb，另外提示输入管理用户名的时候，输入admin（或自定义），密码admin（或自定义），记住即可。</li><li>启动nodebb <code>nodebb start</code></li><li>访问127.0.0.1:4567</li><li>使用管理用户登录</li><li>管理设置-&gt;全局常规-&gt;修改标头-&gt;修改语言为中文</li><li>界面主题不要改，若改了之后，出现主题样式丢失，改回默认重新构建重启即可</li><li>nodebb所有信息存储在mongodb中，自己设定的nodebb表中，可以重置mongodb，然后删除nodebb文件夹，重新创建。重置mongodb指令如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use your_database_name</span><br><span class="line">db.dropDatabase() </span><br></pre></td></tr></table></figure></li></ul>]]></content>
       
       
       <categories>
@@ -767,7 +1402,7 @@
       <link href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/"/>
       <url>/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Dalsa/</url>
       
-        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDKWOW64&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK (WoW64)</a></p><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDK&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK For Developers</a></p><h2 id="8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1"><a href="#8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1" class="headerlink" title="8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)"></a>8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)</h2><h3 id="接口-引脚定义"><a href="#接口-引脚定义" class="headerlink" title="接口&#x2F;引脚定义"></a>接口&#x2F;引脚定义</h3><p><img src="/image/Dalsa/1699844368847.png" alt="1699844368847"></p><h3 id="倍频设置（编码器型号500，设置2000）"><a href="#倍频设置（编码器型号500，设置2000）" class="headerlink" title="倍频设置（编码器型号500，设置2000）"></a>倍频设置（编码器型号500，设置2000）</h3><ol><li>点击show more<img src="/image/Dalsa/1699845828795.png" alt="1699845828795"></li><li>Trigger Selector 选择 Single Line Trigger（Start）</li><li>Trigger Mode 选择 On</li><li>Trigger Source 选择 Rotary Encoder   （触发源选择编码器模式）</li><li>Trigger Overlap 选择 Readout</li><li>Rotary Encoder Output Mode 选择 Motion   （编码器方向：忽略方向）</li><li>Rotary Encoder Input A Source 选择 Line1 （编码器A）</li><li>Rotary Encoder Input B Source 选择 Line2 （编码器B）</li><li>Rotary Encoder Source Activation 选择 Any Edge   （边沿触发）</li><li>Rotary Encoder Multiplier 选择 1    （倍频）</li><li>Rotary Encoder Divider 选择 1   （分频）</li><li>Line Selector 选择 Line1    （设置Line1滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li><li>Line Selector 选择 Line2    （设置Line2滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li></ol><p><img src="/image/Dalsa/1699846663334.png" alt="1699846663334"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDKWOW64&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK (WoW64)</a></p><p><a href="http://teledynedalsa.com/sapera-lt-dl/?dl=1&pkg=SDK&key=BezZNB87ZcwFO7mZ1Neb1g==">Sapera LT 8.73 SDK For Developers</a></p><h2 id="8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1"><a href="#8K线扫-LA-GM-08K08A-00-R-Linea-M8192-7um-1" class="headerlink" title="8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)"></a>8K线扫(LA-GM-08K08A-00-R&#x2F;Linea_M8192-7um_1)</h2><h3 id="接口-引脚定义"><a href="#接口-引脚定义" class="headerlink" title="接口&#x2F;引脚定义"></a>接口&#x2F;引脚定义</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111312185-1699844368847.png" alt="image"></p><h3 id="倍频设置（编码器型号500，设置2000）"><a href="#倍频设置（编码器型号500，设置2000）" class="headerlink" title="倍频设置（编码器型号500，设置2000）"></a>倍频设置（编码器型号500，设置2000）</h3><ol><li>点击show more<br><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111314443-1699845828795.png" alt="image"></li><li>Trigger Selector 选择 Single Line Trigger（Start）</li><li>Trigger Mode 选择 On</li><li>Trigger Source 选择 Rotary Encoder   （触发源选择编码器模式）</li><li>Trigger Overlap 选择 Readout</li><li>Rotary Encoder Output Mode 选择 Motion   （编码器方向：忽略方向）</li><li>Rotary Encoder Input A Source 选择 Line1 （编码器A）</li><li>Rotary Encoder Input B Source 选择 Line2 （编码器B）</li><li>Rotary Encoder Source Activation 选择 Any Edge   （边沿触发）</li><li>Rotary Encoder Multiplier 选择 1    （倍频）</li><li>Rotary Encoder Divider 选择 1   （分频）</li><li>Line Selector 选择 Line1    （设置Line1滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li><li>Line Selector 选择 Line2    （设置Line2滤波）</li><li>Input Line Debouncing Period（in us）设置5  （滤波设置5us）</li></ol><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111320212-1699846663334.png" alt="image"></p>]]></content>
       
       
       <categories>
@@ -788,7 +1423,7 @@
       <link href="/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/"/>
       <url>/2023/11/14/%E7%9B%B8%E6%9C%BA%E7%9B%B8%E5%85%B3/Basler/</url>
       
-        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="https://www.baslerweb.com/cn/downloads/software-downloads/#type=pylonsoftware;os=windows;version=all">Basler Pylon 下载链接</a></p><h2 id="2K线扫（ral2048-48gm）"><a href="#2K线扫（ral2048-48gm）" class="headerlink" title="2K线扫（ral2048_48gm）"></a>2K线扫（ral2048_48gm）</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="/image/Basler/1691373077846.png" alt="1691373077846"></p><h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="/image/Basler/1691373104156.png" alt="1691373104156"></p><p><img src="/image/Basler/1691373121526.png" alt="1691373121526"></p><h3 id="倍频设置-已验证成功"><a href="#倍频设置-已验证成功" class="headerlink" title="倍频设置    (已验证成功)"></a>倍频设置    (已验证成功)</h3><p><strong>简述</strong>：倍频模式只需要编码器一相输入即可，不需要AB两相。</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Frequency Converter</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Frequency Converter下Input Source选择Line 1（用哪个选哪个）</li><li>Signal Alignment选择Rising Edge</li><li>Multiplier输入需要倍频的系数</li><li>Prevent Overtrigger 打上对勾</li></ol><p><img src="/image/Basler/1691651655789.png" alt="1691651655789"></p><p><img src="/image/Basler/1691651686013.png" alt="1691651686013"></p><p><img src="/image/Basler/1691651821475.png" alt="1691651821475"></p><h4 id="调试过程中遇到的问题"><a href="#调试过程中遇到的问题" class="headerlink" title="调试过程中遇到的问题"></a>调试过程中遇到的问题</h4><ul><li>连接相机后立即且一直出图。<br>  解决办法：Line Debouncer Time Abs设置滤波解决</li></ul><h3 id="编码器模式-已验证成功"><a href="#编码器模式-已验证成功" class="headerlink" title="编码器模式  (已验证成功)"></a>编码器模式  (已验证成功)</h3><p><strong>简述</strong>：编码器模式正向拍照，反向不拍照且计数，恢复正向后到开始反向的位置则继续拍照。(相当于直接4倍频)</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Shaft Encoder Module Out</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase A</li><li>Shaft Encoder Module Line选择Line1(接线哪个选哪个)</li><li>Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase B</li><li>Shaft Encoder Module Line选择Line3(接线哪个选哪个)</li><li>Shaft Encoder Module Trigger Mode Any Direction 开启任意方向滴答计数</li><li>Shaft Encoder Module Counter Mode 选择Follow Direction 开启反转负计数</li><li>Shaft Encoder Module Max Reverse Counter 负计数最大值，设置为32767</li><li><strong>注意</strong>：两个计数，最大值是32767，最小值是0，若向上超过最大值则变成0开始计数，向下超过0，则变成32767</li></ol><p><img src="/image/Basler/1691655242058.png" alt="1691655242058"></p><p>思考：若使用到检测停机中，配合采集触发就绪功能，则可以解决干扰以及正反转的问题</p><h3 id="输出IO-采集就绪输出信号，未验证"><a href="#输出IO-采集就绪输出信号，未验证" class="headerlink" title="输出IO (采集就绪输出信号，未验证)"></a>输出IO (采集就绪输出信号，未验证)</h3><p><strong>简述</strong>：可以作为图像结束信号，对齐图像工位，避免受到干扰造成的影响（手册中，在线文档中都没有该功能的描述，因为要代码设置参数，且需要写下位机程序验证，需要花费较长的时间，故此没有验证，此处仅简单记录）</p><p>部分功能验证，输出IO有效</p><ol><li>类别Diagital I&#x2F;O Controls 下 Line Selector 选择 Output Line 1</li><li>Line Source 选择 Acquisition Trigger Ready</li><li>Line Output Pulse Min.Width[us] 设置为100us（似乎是最大值）</li></ol><p><img src="/image/Basler/1691720510840.png" alt="1691720510840"></p><p>备注：Line Source 只能通过代码设置选择 Acquisition Trigger Ready，相机驱动中没有提供该功能的选项</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a href="https://www.baslerweb.com/cn/downloads/software-downloads/#type=pylonsoftware;os=windows;version=all">Basler Pylon 下载链接</a></p><h2 id="2K线扫（ral2048-48gm）"><a href="#2K线扫（ral2048-48gm）" class="headerlink" title="2K线扫（ral2048_48gm）"></a>2K线扫（ral2048_48gm）</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111275204-1691373077846.png" alt="image"></p><h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111280875-1691373104156.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111282334-1691373121526.png" alt="image"></p><h3 id="倍频设置-已验证成功"><a href="#倍频设置-已验证成功" class="headerlink" title="倍频设置    (已验证成功)"></a>倍频设置    (已验证成功)</h3><p><strong>简述</strong>：倍频模式只需要编码器一相输入即可，不需要AB两相。</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Frequency Converter</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Frequency Converter下Input Source选择Line 1（用哪个选哪个）</li><li>Signal Alignment选择Rising Edge</li><li>Multiplier输入需要倍频的系数</li><li>Prevent Overtrigger 打上对勾</li></ol><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111283865-1691651655789.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111285140-1691651686013.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111290296-1691651821475.png" alt="image"></p><h4 id="调试过程中遇到的问题"><a href="#调试过程中遇到的问题" class="headerlink" title="调试过程中遇到的问题"></a>调试过程中遇到的问题</h4><ul><li>连接相机后立即且一直出图。<br>  解决办法：Line Debouncer Time Abs设置滤波解决</li></ul><h3 id="编码器模式-已验证成功"><a href="#编码器模式-已验证成功" class="headerlink" title="编码器模式  (已验证成功)"></a>编码器模式  (已验证成功)</h3><p><strong>简述</strong>：编码器模式正向拍照，反向不拍照且计数，恢复正向后到开始反向的位置则继续拍照。(相当于直接4倍频)</p><ol><li>Trigger Selector选择Line Start</li><li>Trigger Mode 选择On</li><li>Trigger Source选择Shaft Encoder Module Out</li><li>类别Digital I&#x2F;O Controls下Line Selector选择Line1（用哪个选哪个）</li><li>Line Debouncer Time Abs[us] 输入10，滤波10us</li><li>类别-&gt;Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase A</li><li>Shaft Encoder Module Line选择Line1(接线哪个选哪个)</li><li>Shaft Encoder Module Out下Shaft Encoder Module Line Selector选择Phase B</li><li>Shaft Encoder Module Line选择Line3(接线哪个选哪个)</li><li>Shaft Encoder Module Trigger Mode Any Direction 开启任意方向滴答计数</li><li>Shaft Encoder Module Counter Mode 选择Follow Direction 开启反转负计数</li><li>Shaft Encoder Module Max Reverse Counter 负计数最大值，设置为32767</li><li><strong>注意</strong>：两个计数，最大值是32767，最小值是0，若向上超过最大值则变成0开始计数，向下超过0，则变成32767</li></ol><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111291979-1691655242058.png" alt="image"></p><p>思考：若使用到检测停机中，配合采集触发就绪功能，则可以解决干扰以及正反转的问题</p><h3 id="输出IO-采集就绪输出信号，未验证"><a href="#输出IO-采集就绪输出信号，未验证" class="headerlink" title="输出IO (采集就绪输出信号，未验证)"></a>输出IO (采集就绪输出信号，未验证)</h3><p><strong>简述</strong>：可以作为图像结束信号，对齐图像工位，避免受到干扰造成的影响（手册中，在线文档中都没有该功能的描述，因为要代码设置参数，且需要写下位机程序验证，需要花费较长的时间，故此没有验证，此处仅简单记录）</p><p>部分功能验证，输出IO有效</p><ol><li>类别Diagital I&#x2F;O Controls 下 Line Selector 选择 Output Line 1</li><li>Line Source 选择 Acquisition Trigger Ready</li><li>Line Output Pulse Min.Width[us] 设置为100us（似乎是最大值）</li></ol><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023121111293252-1691720510840.png" alt="image"></p><p>备注：Line Source 只能通过代码设置选择 Acquisition Trigger Ready，相机驱动中没有提供该功能的选项</p>]]></content>
       
       
       <categories>
@@ -799,6 +1434,120 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Artix7</title>
+      <link href="/2023/11/14/FPGA/Artix7/"/>
+      <url>/2023/11/14/FPGA/Artix7/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Artix7"><a href="#Artix7" class="headerlink" title="Artix7"></a>Artix7</h1><h2 id="XC7A100T"><a href="#XC7A100T" class="headerlink" title="XC7A100T"></a>XC7A100T</h2><h3 id="vivado-代码固化"><a href="#vivado-代码固化" class="headerlink" title="vivado&#x2F;代码固化"></a>vivado&#x2F;代码固化</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>vivado2019.2</code></pre><ol><li>双击xsetup.exe（安装包不可以放在中文路径下）</li><li>基本无脑下一步，遇到agree就勾选，遇到路径自己选</li><li>选择版次，Vivado HL System Editiom</li><li>安装时间较长耐心等待，安装完成后弹出license manger 2019.2,点击左侧load license，选择license文件。</li></ol><h3 id="verilog"><a href="#verilog" class="headerlink" title="verilog"></a>verilog</h3><h4 id="进制格式"><a href="#进制格式" class="headerlink" title="进制格式"></a>进制格式</h4><p>二进制表示：4’b0000<br>十进制表示：4’d0<br>十六进制表示：4’h0</p><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>寄存器类型<br>    reg [31:0] a;<br>线网类型<br>    wire [31:0] a;<br>参数类型<br>    parameter [31:0] a &#x3D; 32’d100;</p><h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>加减乘除取余+ - * &#x2F; %<br>位与或异或取反&amp; | ^ ~<br>小于 小于等于 大于 大于等于&lt; &lt;&#x3D; &gt; &gt;&#x3D;<br>等于 不等 &#x3D;&#x3D; !&#x3D;<br>与或非&amp;&amp; || !</p><h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><h5 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h5><p>if (a &#x3D;&#x3D; 100)<br>    b &#x3D; 1;  </p><p>if(a&#x3D;&#x3D;100)begin<br>    b &#x3D; 1;<br>    b&#x3D;2;<br>end</p><h3 id="IO-INPUT-OUTPUT"><a href="#IO-INPUT-OUTPUT" class="headerlink" title="IO&#x2F;INPUT&#x2F;OUTPUT"></a>IO&#x2F;INPUT&#x2F;OUTPUT</h3><h3 id="时钟"><a href="#时钟" class="headerlink" title="时钟"></a>时钟</h3><p>bufg 全局时钟 可以控制FPGA任何的资源</p><p>Clock Region 局域时钟 IO 逻辑资源</p><p>bufr 区域时钟 控制一个区域的时钟</p><h4 id="代码编辑相关"><a href="#代码编辑相关" class="headerlink" title="代码编辑相关"></a>代码编辑相关</h4><ol><li>verilog-format   格式化配置简单，效果一般</li><li>iStyle           格式化需要下载源码，编译出二进制文件，效果较好（推荐使用该方式）</li><li>verible-verilog-format 格式化配置简单，效果较好    （但同一文件内出现多个always语句块时则无法格式化，故此推荐使用iStyle）</li></ol><p>三者都有相应的格式化功能，只是相应的格式化规则略有不同。</p><p>vscode编辑器 插件 Verilog-HDL&#x2F;System Verilog&#x2F;*****（支持代码关键字高亮，支持多种代码格式化）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> FPGA </category>
+          
+          <category> Artix7 </category>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows局域网共享文件以及远程控制</title>
+      <link href="/2023/02/16/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/windows%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6/"/>
+      <url>/2023/02/16/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/windows%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="windows局域网共享文件以及远程控制"><a href="#windows局域网共享文件以及远程控制" class="headerlink" title="windows局域网共享文件以及远程控制"></a>windows局域网共享文件以及远程控制</h1><blockquote><p>简介:局域网操作,静态IP,支持设置网关,只要ping通即可</p></blockquote><h2 id="一-开启网络共享和网络发现"><a href="#一-开启网络共享和网络发现" class="headerlink" title="一. 开启网络共享和网络发现"></a>一. 开启网络共享和网络发现</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717590522-20231127175904.png" alt="image"></p><h2 id="二-共享的文件属性设置共享"><a href="#二-共享的文件属性设置共享" class="headerlink" title="二.共享的文件属性设置共享"></a>二.共享的文件属性设置共享</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717592428-20231127175923.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717593264-20231127175932.png" alt="image"></p><h2 id="三-系统属性设置允许远程连接到此电脑"><a href="#三-系统属性设置允许远程连接到此电脑" class="headerlink" title="三.系统属性设置允许远程连接到此电脑"></a>三.系统属性设置允许远程连接到此电脑</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717595274-20231127175952.png" alt="image"></p><h2 id="四-设置无密码远程连接-Win-R打开运行输入指令gpedit-msc-打开-本地策略"><a href="#四-设置无密码远程连接-Win-R打开运行输入指令gpedit-msc-打开-本地策略" class="headerlink" title="四.设置无密码远程连接,Win+R打开运行输入指令gpedit.msc,打开:本地策略"></a>四.设置无密码远程连接,Win+R打开运行输入指令gpedit.msc,打开:本地策略</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718000711-20231127180006.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718001400-20231127180013.png" alt="image"></p><h2 id="五-切换到远程电脑-打开网络-则会自动搜索到该计算机-若没有搜索到-则在资源管理器的地址栏中输入-192-168-这里的-号是静态IP-则会进入-两个反斜杠不可以少"><a href="#五-切换到远程电脑-打开网络-则会自动搜索到该计算机-若没有搜索到-则在资源管理器的地址栏中输入-192-168-这里的-号是静态IP-则会进入-两个反斜杠不可以少" class="headerlink" title="五. 切换到远程电脑,打开网络,则会自动搜索到该计算机,若没有搜索到,则在资源管理器的地址栏中输入\192.168..(这里的*号是静态IP),则会进入.两个反斜杠不可以少"></a>五. 切换到远程电脑,打开网络,则会自动搜索到该计算机,若没有搜索到,则在资源管理器的地址栏中输入\192.168.<em>.</em>(这里的*号是静态IP),则会进入.两个反斜杠不可以少</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718003125-20231127180030.png" alt="image"></p><h2 id="六-远程桌面控制连接-输入静态IP-弹出输入凭证-只需输入用户名-密码一栏不用填写-点击确认即可"><a href="#六-远程桌面控制连接-输入静态IP-弹出输入凭证-只需输入用户名-密码一栏不用填写-点击确认即可" class="headerlink" title="六. 远程桌面控制连接,输入静态IP,弹出输入凭证,只需输入用户名,密码一栏不用填写.点击确认即可"></a>六. 远程桌面控制连接,输入静态IP,弹出输入凭证,只需输入用户名,密码一栏不用填写.点击确认即可</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718004945-20231127180049.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718005664-20231127180056.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112718010343-20231127180103.png" alt="image"></p><p>评价:</p><p>该方法可以在局域网内连接另一台电脑,作为服务器或者资料存储盘,再配合搭建一个http服务器,即可很方便管理,下载大文件.不会有云盘的限速问题.</p><pre><code>(本次的被控对象已经搭建了git服务器以及http服务器&lt;用于下载文件&gt;,远程操作软件使用的todesk(传输大文件很慢),搭建完成后即可使用windows远程桌面服务)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 办公 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 环境搭建 </tag>
+            
+            <tag> windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vscode-开发stm32</title>
+      <link href="/2023/02/15/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/vscode-%E5%BC%80%E5%8F%91stm32/"/>
+      <url>/2023/02/15/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/vscode-%E5%BC%80%E5%8F%91stm32/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vscode-开发stm32"><a href="#vscode-开发stm32" class="headerlink" title="vscode-开发stm32"></a>vscode-开发stm32</h1><h2 id="扩展下载"><a href="#扩展下载" class="headerlink" title="扩展下载"></a>扩展下载</h2><ul><li>keil Assistant</li><li>打开设置</li><li>设置UV4.exe的路径</li><li><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717374571-20231127173745.png" alt="image"></li></ul><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ul><li>点击KEIL UVISION PROJECT 右侧的加号</li><li>找到keil创建的项目并打开即可，编写代码，编译程序，下载程序等</li></ul><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul><li>使用vscode写代码的同时可以打开MDK，进行项目文件结构调整，仿真测试等</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 开发环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MDK </tag>
+            
+            <tag> vscode </tag>
+            
+            <tag> stm32 </tag>
+            
+            <tag> keil </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>visual studio 2022中编写Qt项目</title>
+      <link href="/2023/02/14/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/visual%20studio%202022%E4%B8%AD%E7%BC%96%E5%86%99Qt%E9%A1%B9%E7%9B%AE/"/>
+      <url>/2023/02/14/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/visual%20studio%202022%E4%B8%AD%E7%BC%96%E5%86%99Qt%E9%A1%B9%E7%9B%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="visual-studio-中编写Qt项目"><a href="#visual-studio-中编写Qt项目" class="headerlink" title="visual studio 中编写Qt项目"></a>visual studio 中编写Qt项目</h1><h2 id="一-visual-studio-2022-安装组件的时候可以选择安装编译器版本（需与Qt版本一致，此处使用的vs2019编译器）"><a href="#一-visual-studio-2022-安装组件的时候可以选择安装编译器版本（需与Qt版本一致，此处使用的vs2019编译器）" class="headerlink" title="一. visual studio 2022 安装组件的时候可以选择安装编译器版本（需与Qt版本一致，此处使用的vs2019编译器）"></a>一. visual studio 2022 安装组件的时候可以选择安装编译器版本（需与Qt版本一致，此处使用的vs2019编译器）</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717484907-20231127174848.png" alt="image"></p><h2 id="二-安装Qt扩展-注-此处使用外网安装较快-若没有梯子-则点击右侧的详细信息-进入网页下载后安装"><a href="#二-安装Qt扩展-注-此处使用外网安装较快-若没有梯子-则点击右侧的详细信息-进入网页下载后安装" class="headerlink" title="二. 安装Qt扩展(注:此处使用外网安装较快,若没有梯子,则点击右侧的详细信息,进入网页下载后安装)"></a>二. 安装Qt扩展(注:此处使用外网安装较快,若没有梯子,则点击右侧的详细信息,进入网页下载后安装)</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717491379-20231127174913.png" alt="image"></p><h2 id="三-选择Qt版本"><a href="#三-选择Qt版本" class="headerlink" title="三.选择Qt版本"></a>三.选择Qt版本</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717494277-20231127174942.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717495247-20231127174952.png" alt="image"></p><h2 id="四-打开Qt项目-将Qt项目转为vs项目"><a href="#四-打开Qt项目-将Qt项目转为vs项目" class="headerlink" title="四. 打开Qt项目(将Qt项目转为vs项目)"></a>四. 打开Qt项目(将Qt项目转为vs项目)</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717500810-20231127175007.png" alt="image"></p><h2 id="五-设置默认打开ui文件的打开方式"><a href="#五-设置默认打开ui文件的打开方式" class="headerlink" title="五. 设置默认打开ui文件的打开方式"></a>五. 设置默认打开ui文件的打开方式</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717502398-20231127175023.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717503177-20231127175031.png" alt="image"></p><h2 id="六-执行项目-执行成功"><a href="#六-执行项目-执行成功" class="headerlink" title="六. 执行项目(执行成功)"></a>六. 执行项目(执行成功)</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717504632-20231127175045.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717505458-20231127175054.png" alt="image"></p><h2 id="七-指定exe输出目录-配置属性-常规-输出目录-链接器-常规-输出文件-即可修改生成项目的exe的输出路径"><a href="#七-指定exe输出目录-配置属性-常规-输出目录-链接器-常规-输出文件-即可修改生成项目的exe的输出路径" class="headerlink" title="七. 指定exe输出目录,配置属性-&gt;常规-&gt;输出目录.链接器-&gt;常规-&gt;输出文件.即可修改生成项目的exe的输出路径."></a>七. 指定exe输出目录,配置属性-&gt;常规-&gt;输出目录.链接器-&gt;常规-&gt;输出文件.即可修改生成项目的exe的输出路径.</h2><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717511131-20231127175110.png" alt="image"></p><p><img src="http://cnbed.com:9000/mdimage/images/vscode-minio-picman/2023112717511756-20231127175117.png" alt="image"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 综合 </category>
+          
+          <category> 开发环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+            <tag> visual studio </tag>
+            
+        </tags>
       
     </entry>
     
