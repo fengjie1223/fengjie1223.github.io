@@ -1742,7 +1742,7 @@
         
         <a  class="全部文章 产品 光源控制器 "
            href="/2023/12/05/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/%E5%85%89%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8/"
-           data-tag="产品,光源控制器"
+           data-tag="光源控制器,产品"
            data-author="" >
             <span class="post-title" title="光源控制器">光源控制器</span>
             <span class="post-date" title="2023-12-05 14:40:03">2023/12/05</span>
@@ -2066,7 +2066,7 @@
         
         <a  class="全部文章 综合 开发环境 "
            href="/2023/02/15/%E7%BB%BC%E5%90%88/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/vscode-%E5%BC%80%E5%8F%91stm32/"
-           data-tag="vscode,MDK,stm32,keil"
+           data-tag="MDK,vscode,stm32,keil"
            data-author="" >
             <span class="post-title" title="vscode-开发stm32">vscode-开发stm32</span>
             <span class="post-date" title="2023-02-15 17:29:54">2023/02/15</span>
@@ -2160,9 +2160,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="下载SDK"><a href="#下载SDK" class="headerlink" title="下载SDK"></a>下载SDK</h2><p><a target="_blank" rel="noopener" href="https://www.baslerweb.com/cn/downloads/software-downloads/#type=pylonsoftware;os=windows;version=all">Basler Pylon 下载链接</a></p>
-<h2 id="2K线扫（ral2048-48gm）"><a href="#2K线扫（ral2048-48gm）" class="headerlink" title="2K线扫（ral2048_48gm）"></a>2K线扫（ral2048_48gm）</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="/image/Basler/1711533696881.png" alt="1711533696881"></p>
-<h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="/image/Basler/1711533704889.png" alt="1711533704889"></p>
-<p><img src="/image/Basler/1711533712878.png" alt="1711533712878"></p>
+<h2 id="2K线扫（ral2048-48gm）"><a href="#2K线扫（ral2048-48gm）" class="headerlink" title="2K线扫（ral2048_48gm）"></a>2K线扫（ral2048_48gm）</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p><img src="/.com//Basler/1711533696881.png" alt="1711533696881"></p>
+<h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p><img src="/.com//Basler/1711533704889.png" alt="1711533704889"></p>
+<p><img src="/.com//Basler/1711533712878.png" alt="1711533712878"></p>
 <h3 id="倍频设置-已验证成功"><a href="#倍频设置-已验证成功" class="headerlink" title="倍频设置    (已验证成功)"></a>倍频设置    (已验证成功)</h3><p><strong>简述</strong>：倍频模式只需要编码器一相输入即可，不需要AB两相。</p>
 <ol>
 <li>Trigger Selector选择Line Start</li>
@@ -2175,9 +2175,9 @@
 <li>Multiplier输入需要倍频的系数</li>
 <li>Prevent Overtrigger 打上对勾</li>
 </ol>
-<p><img src="/image/Basler/1711533723238.png" alt="1711533723238"></p>
-<p><img src="/image/Basler/1711533730769.png" alt="1711533730769"></p>
-<p><img src="/image/Basler/1711533739383.png" alt="1711533739383"></p>
+<p><img src="/.com//Basler/1711533723238.png" alt="1711533723238"></p>
+<p><img src="/.com//Basler/1711533730769.png" alt="1711533730769"></p>
+<p><img src="/.com//Basler/1711533739383.png" alt="1711533739383"></p>
 <h4 id="调试过程中遇到的问题"><a href="#调试过程中遇到的问题" class="headerlink" title="调试过程中遇到的问题"></a>调试过程中遇到的问题</h4><ul>
 <li>连接相机后立即且一直出图。<br>  解决办法：Line Debouncer Time Abs设置滤波解决</li>
 </ul>
@@ -2197,7 +2197,7 @@
 <li>Shaft Encoder Module Max Reverse Counter 负计数最大值，设置为32767</li>
 <li><strong>注意</strong>：两个计数，最大值是32767，最小值是0，若向上超过最大值则变成0开始计数，向下超过0，则变成32767</li>
 </ol>
-<p><img src="/image/Basler/1711533748800.png" alt="1711533748800"></p>
+<p><img src="/.com//Basler/1711533748800.png" alt="1711533748800"></p>
 <p>思考：若使用到检测停机中，配合采集触发就绪功能，则可以解决干扰以及正反转的问题</p>
 <h3 id="输出IO-采集就绪输出信号，未验证"><a href="#输出IO-采集就绪输出信号，未验证" class="headerlink" title="输出IO (采集就绪输出信号，未验证)"></a>输出IO (采集就绪输出信号，未验证)</h3><p><strong>简述</strong>：可以作为图像结束信号，对齐图像工位，避免受到干扰造成的影响（手册中，在线文档中都没有该功能的描述，因为要代码设置参数，且需要写下位机程序验证，需要花费较长的时间，故此没有验证，此处仅简单记录）</p>
 <p>部分功能验证，输出IO有效</p>
@@ -2206,7 +2206,7 @@
 <li>Line Source 选择 Acquisition Trigger Ready</li>
 <li>Line Output Pulse Min.Width[us] 设置为100us（似乎是最大值）</li>
 </ol>
-<p><img src="/image/Basler/1711533759425.png" alt="1711533759425"></p>
+<p><img src="/.com//Basler/1711533759425.png" alt="1711533759425"></p>
 <p>备注：Line Source 只能通过代码设置选择 Acquisition Trigger Ready，相机驱动中没有提供该功能的选项</p>
 
       
