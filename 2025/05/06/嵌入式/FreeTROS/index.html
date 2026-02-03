@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FreeRTOS | 冯杰的笔记</title>
+  <meta name="keywords" content=" stm32 , FreeRTOS ">
+  <meta name="description" content="FreeRTOS | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://fengjie1223.github.io/hello-world.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-03T03:12:54.239Z">
+<meta property="article:modified_time" content="2023-11-16T07:44:55.000Z">
+<meta property="article:author" content="冯杰">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(27)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工业相机">
+            <i class="fold iconfont icon-right"></i>
+            工业相机
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;度申">
+            
+            度申
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(8)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;输出电路">
+            
+            输出电路
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;Altium">
+            
+            Altium
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;C">
+            
+            C
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FPGA">
+            
+            FPGA
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FreeRTOS">
+            
+            FreeRTOS
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;RT_Thread">
+            
+            RT_Thread
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;STM32">
+            
+            STM32
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="软件编程">
+            <i class="fold iconfont icon-right"></i>
+            软件编程
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;OpenCV">
+            
+            OpenCV
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;Qt">
+            
+            Qt
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;vcpkg">
+            
+            vcpkg
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="深度学习">
+            <i class="fold iconfont icon-right"></i>
+            深度学习
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;python">
+            
+            python
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;yolov8">
+            
+            yolov8
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows">
+            <i class="fold iconfont icon-right"></i>
+            windows
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows&lt;---&gt;服务器">
+            
+            服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="PLC">
+            <i class="fold iconfont icon-right"></i>
+            PLC
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Delta">
+            
+            Delta
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;EIP">
+            
+            EIP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Modbus">
+            
+            Modbus
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="https://www.keyence.com.cn/">基恩士</a></li>
+            
+            <li><a target="_blank" href="https://www.delta-china.com.cn/zh-CN/index">台达</a></li>
+            
+            <li><a target="_blank" href="https://www.ad.siemens.com.cn/home/?_channel_track_key=lpSbj6Lj">西门子工业</a></li>
+            
+            <li><a target="_blank" href="https://www.hikrobotics.com/cn/">海康机器人</a></li>
+            
+            <li><a target="_blank" href="http://i-tek.cn/">埃科光电</a></li>
+            
+            <li><a target="_blank" href="https://www.china-vision.org/">中国机器视觉网</a></li>
+            
+            <li><a target="_blank" href="https://docs.ultralytics.com/zh/">ultralytics</a></li>
+            
+            <li><a target="_blank" href="https://www.st.com/content/st_com/en.html">STM32</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短路保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>泛编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回调函数</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>局域网</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>命名规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>启动</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>输出电路</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构_链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>台达</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>同步盘</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列号_芯片ID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>永久激活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>制作安装包</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Altium</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>conda</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CUDA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cudnn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>define</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Delta</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>EIP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FPGA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FreeRTOS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini读写</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini乱码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>keil</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MDK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Modbus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nvidia</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>opencv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PCB</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PLC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>potplayer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qDebug_重定向到日志</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt_QDir</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QUdpSocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ResilioSync</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RT_Thread</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vcpkg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>visual studio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>yolov8</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 PLC Modbus "
+           href="/2026/02/02/PLC/Modbus/"
+           data-tag="PLC,Modbus"
+           data-author="" >
+            <span class="post-title" title="Modbus">Modbus</span>
+            <span class="post-date" title="2026-02-02 10:54:22">2026/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 输出电路 "
+           href="/2026/01/14/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ouput/"
+           data-tag="技术,输出电路,短路保护"
+           data-author="" >
+            <span class="post-title" title="Output">Output</span>
+            <span class="post-date" title="2026-01-14 17:43:33">2026/01/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC EIP "
+           href="/2025/05/09/PLC/EIP/"
+           data-tag="EIP"
+           data-author="" >
+            <span class="post-title" title="EIP">EIP</span>
+            <span class="post-date" title="2025-05-09 17:00:37">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 度申 "
+           href="/2025/05/09/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Do3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Do3">Do3</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 vcpkg "
+           href="/2025/05/09/%E6%9D%82%E8%AE%B0/vcpkg/"
+           data-tag="vcpkg"
+           data-author="" >
+            <span class="post-title" title="vcpkg">vcpkg</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FreeRTOS "
+           href="/2025/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/FreeTROS/"
+           data-tag="stm32,FreeRTOS"
+           data-author="" >
+            <span class="post-title" title="FreeRTOS">FreeRTOS</span>
+            <span class="post-date" title="2025-05-06 10:46:36">2025/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Dalsa "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Basler "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FPGA "
+           href="/2024/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/"
+           data-tag="FPGA"
+           data-author="" >
+            <span class="post-title" title="FPGA">FPGA</span>
+            <span class="post-date" title="2024-12-12 16:58:42">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 RT_Thread "
+           href="/2024/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/RT_Thread/"
+           data-tag="stm32,RT_Thread"
+           data-author="" >
+            <span class="post-title" title="RT_Thread">RT_Thread</span>
+            <span class="post-date" title="2024-05-06 10:46:36">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 C++ "
+           href="/2024/04/09/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/C++/"
+           data-tag="技术,C++,设计模式,泛编程,ini读写"
+           data-author="" >
+            <span class="post-title" title="C++">C++</span>
+            <span class="post-date" title="2024-04-09 15:34:36">2024/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 OpenCV "
+           href="/2024/02/02/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/OpenCV/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="OpenCV">OpenCV</span>
+            <span class="post-date" title="2024-02-02 11:26:47">2024/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 C "
+           href="/2024/01/25/%E5%B5%8C%E5%85%A5%E5%BC%8F/C/"
+           data-tag="技术,C,回调函数,define,数据结构_链表,命名规则"
+           data-author="" >
+            <span class="post-title" title="C">C</span>
+            <span class="post-date" title="2024-01-25 10:38:17">2024/01/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/12/14/%E6%9D%82%E8%AE%B0/nssm/"
+           data-tag="博客,环境,启动"
+           data-author="" >
+            <span class="post-title" title="nssm">nssm</span>
+            <span class="post-date" title="2023-12-14 09:33:03">2023/12/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/MDK_keil/"
+           data-tag="MDK,keil"
+           data-author="" >
+            <span class="post-title" title="MDK">MDK</span>
+            <span class="post-date" title="2023-12-12 10:19:23">2023/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 yolov8 "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8/"
+           data-tag="python,conda,yolov8,Nvidia,GPU,CUDA,cudnn"
+           data-author="" >
+            <span class="post-title" title="yolov8">yolov8</span>
+            <span class="post-date" title="2023-12-05 13:58:51">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 python "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Python/"
+           data-tag="python,conda"
+           data-author="" >
+            <span class="post-title" title="Python">Python</span>
+            <span class="post-date" title="2023-12-05 13:53:02">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/vscode/"
+           data-tag="环境搭建,vscode,编程"
+           data-author="" >
+            <span class="post-title" title="vscode">vscode</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 windows 服务器 "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/Windows/"
+           data-tag="Windows,环境搭建,局域网,共享,永久激活,potplayer,同步盘,ResilioSync,服务器部署"
+           data-author="" >
+            <span class="post-title" title="Windows">Windows</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 Altium "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/Altium/"
+           data-tag="Altium,PCB"
+           data-author="" >
+            <span class="post-title" title="Altium">Altium</span>
+            <span class="post-date" title="2023-11-17 16:02:16">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 InnoSetup "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/InnoSetup/"
+           data-tag="InnoSetup,制作安装包"
+           data-author="" >
+            <span class="post-title" title="InnoSetup">InnoSetup</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 git "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/git/"
+           data-tag="git,版本管理,git服务器部署"
+           data-author="" >
+            <span class="post-title" title="git">git</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC Delta "
+           href="/2023/11/17/PLC/Delta/"
+           data-tag="PLC,台达,Delta"
+           data-author="" >
+            <span class="post-title" title="Delta">Delta</span>
+            <span class="post-date" title="2023-11-17 15:54:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/"
+           data-tag="STM32,HAL,vscode-stm32,序列号_芯片ID"
+           data-author="" >
+            <span class="post-title" title="STM32">STM32</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 HIK "
+           href="/2023/11/16/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E6%9D%82%E8%AE%B0/hexo/"
+           data-tag="博客,hexo,minio"
+           data-author="" >
+            <span class="post-title" title="hexo">hexo</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 Qt "
+           href="/2023/02/14/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/Qt/"
+           data-tag="Modbus,visual studio,Qt,vscode-Qt,QUdpSocket,QML,Qt_QDir,qDebug_重定向到日志,ini乱码,多线程"
+           data-author="" >
+            <span class="post-title" title="Qt">Qt</span>
+            <span class="post-date" title="2023-02-14 17:46:44">2023/02/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-嵌入式/FreeTROS" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">FreeRTOS</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="嵌入式">嵌入式</a> > 
+            
+            <a  data-rel="嵌入式&lt;---&gt;FreeRTOS">FreeRTOS</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">stm32</a>
+            
+            <a class="color4">FreeRTOS</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2026-02-02 11:49:43'>2025-05-06 10:46</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32%E5%B9%B3%E5%8F%B0FreeRTOS%E5%AE%9E%E6%93%8D%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3"><span class="toc-text">STM32平台FreeRTOS实操技术文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FreeRTOS-%E6%A6%82%E8%BF%B0"><span class="toc-text">FreeRTOS 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-text">工程创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-STM32CubeMX-Keil-MDK-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">1. STM32CubeMX + Keil MDK 工程创建（推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Keil-MDK-%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="toc-text">2. Keil MDK 手动创建工程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%BB%84%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-text">内核配置与组件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%88FreeRTOSConfig-h%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="toc-text">1. 内核配置文件（FreeRTOSConfig.h）详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%90%AF%E7%94%A8%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">2. 核心组件启用与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6%E9%9B%86%E6%88%90%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">3. 第三方组件集成（可选）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%EF%BC%88Task%EF%BC%89"><span class="toc-text">任务（Task）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 任务的核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-STM32-%E4%B8%8B%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%EF%BC%88%E5%B8%B8%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">2. STM32 下任务的创建与使用（常用方式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%BB%E5%8A%A1%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C-API"><span class="toc-text">3. 任务常用操作 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E4%B8%AD%E6%96%AD"><span class="toc-text">IO中断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-IO%E4%B8%AD%E6%96%AD%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-text">1. IO中断的核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-STM32-%E4%B8%8B-IO%E4%B8%AD%E6%96%AD%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8%EF%BC%88%E7%A4%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">2. STM32 下 IO中断的配置与使用（示例）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-IO%E4%B8%AD%E6%96%AD%E5%B8%B8%E7%94%A8-API%EF%BC%88FreeRTOS-%E4%B8%AD%E6%96%AD%E5%AE%89%E5%85%A8-API%EF%BC%89"><span class="toc-text">3. IO中断常用 API（FreeRTOS 中断安全 API）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">软件定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BD%AF%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 软件定时器核心概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">2. 软件定时器的使用示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BD%AF%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E5%B8%B8%E7%94%A8-API"><span class="toc-text">3. 软件定时器常用 API</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">硬件定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%A1%AC%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">1. 硬件定时器的配置与使用示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%A1%AC%E4%BB%B6%E5%AE%9A%E6%97%B6%E5%99%A8%E5%B8%B8%E7%94%A8-API%EF%BC%88STM32-HAL-%E5%BA%93-FreeRTOS-%E4%B8%AD%E6%96%AD%E5%AE%89%E5%85%A8-API%EF%BC%89"><span class="toc-text">2. 硬件定时器常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E4%B8%AD%E6%96%AD"><span class="toc-text">串口中断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%B2%E5%8F%A3%E4%B8%AD%E6%96%AD%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-text">1. 串口中断的核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-STM32-%E4%B8%8B%E4%B8%B2%E5%8F%A3%E4%B8%AD%E6%96%AD%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">2. STM32 下串口中断的配置与使用示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%B2%E5%8F%A3%E4%B8%AD%E6%96%AD%E5%B8%B8%E7%94%A8-API%EF%BC%88STM32-HAL-%E5%BA%93-FreeRTOS-%E4%B8%AD%E6%96%AD%E5%AE%89%E5%85%A8-API%EF%BC%89"><span class="toc-text">3. 串口中断常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPI%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8"><span class="toc-text">SPI设备使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SPI%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E7%9A%84%E6%A0%B8%E5%BF%83%E6%AD%A5%E9%AA%A4"><span class="toc-text">1. SPI设备使用的核心步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-SPI%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">2. SPI设备使用示例</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STM32平台FreeRTOS实操技术文档"><a href="#STM32平台FreeRTOS实操技术文档" class="headerlink" title="STM32平台FreeRTOS实操技术文档"></a>STM32平台FreeRTOS实操技术文档</h1><p>FreeRTOS 是一个开源的实时操作系统（RTOS），支持多种 CPU 架构，尤其在 ARM 架构（如 STM32 系列单片机）中应用广泛。其具有轻量级、高实时性、可裁剪、易移植的核心特点，专为资源受限的嵌入式场景设计，完美适配 STM32 全系列芯片（如 STM32F103、STM32F407、STM32L4 等）。本文档聚焦 STM32 平台下 FreeRTOS 的实操应用，完全沿用 RT-Thread 文档的结构与风格，详细讲解工程创建、核心功能使用及常用 API 调用，助力开发者快速上手 FreeRTOS 嵌入式开发，实现多任务、中断、定时器等核心功能。</p>
+<h1 id="FreeRTOS-概述"><a href="#FreeRTOS-概述" class="headerlink" title="FreeRTOS 概述"></a>FreeRTOS 概述</h1><p>FreeRTOS（Free Real-Time Operating System）是由 Real Time Engineers Ltd 开发维护的开源实时操作系统，相较于其他主流 RTOS，其内核精简、实时性强，且无需支付任何授权费用，广泛应用于工业控制、智能硬件、物联网、汽车电子等嵌入式领域。与 RT-Thread 相比，FreeRTOS 更侧重内核的稳定性与实时性，组件需手动集成，灵活性更高，适合对系统实时性要求严格、需要自定义组件的 STM32 开发场景。</p>
+<p>在 STM32 平台上，FreeRTOS 支持裸机移植、HAL 库移植两种主流方式，适配绝大多数 STM32 系列芯片。其内核可灵活裁剪，最小内核仅需几 KB 内存，既能满足 STM32F103C8T6 等入门级芯片的资源需求，也能支撑 STM32F407 等中高端芯片的复杂多任务协同开发，是 STM32 嵌入式开发中最常用的 RTOS 之一。</p>
+<h2 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h2><p>STM32 平台下 FreeRTOS 工程创建，推荐使用 STM32CubeMX 工具（可视化配置，自动生成工程模板，适配 FreeRTOS 官方内核），也可通过 Keil MDK 结合 FreeRTOS 源码手动创建，以下是两种方式的详细步骤，重点讲解更便捷的 STM32CubeMX 方式，与 RT-Thread 文档操作逻辑保持一致。</p>
+<h3 id="1-STM32CubeMX-Keil-MDK-工程创建（推荐）"><a href="#1-STM32CubeMX-Keil-MDK-工程创建（推荐）" class="headerlink" title="1. STM32CubeMX + Keil MDK 工程创建（推荐）"></a>1. STM32CubeMX + Keil MDK 工程创建（推荐）</h3><ol>
+<li><p>安装工具：安装 STM32CubeMX（官网下载，支持 Windows&#x2F;macOS）和 Keil MDK（需安装对应 ARM 工具链），STM32CubeMX 首次启动需下载对应 STM32 系列的 HAL 库包（如 STM32F1 系列 HAL 库）。</p>
+</li>
+<li><p>新建工程：打开 STM32CubeMX，点击「File」-「New Project」，在芯片列表中搜索并选择对应 STM32 型号（如 STM32F103C8T6），点击「Start Project」进入配置界面。</p>
+</li>
+<li><p>配置 FreeRTOS 内核：在左侧菜单栏找到「Middleware」，展开后勾选「FreeRTOS」，选择内核版本（推荐 V10 及以上，如 FreeRTOS V10.3.1），配置内核基础参数（如任务优先级范围、系统时钟节拍等），默认配置即可满足入门需求。</p>
+</li>
+<li><p>配置硬件与组件：根据项目需求配置 STM32 硬件（如 GPIO、串口、定时器等），例如配置 PA0 为输出（LED 引脚）、USART1 为串口通信，配置完成后，FreeRTOS 会自动适配硬件中断与内核调度。</p>
+</li>
+<li><p>生成工程模板：点击菜单栏「Project」-「Settings」，设置工程名称、保存路径，选择工具链为「MDK-ARM」，点击「OK」，再点击「GENERATE CODE」生成 Keil MDK 工程，工程中会自动包含 FreeRTOS 内核源码、HAL 库、启动文件及配置文件。</p>
+</li>
+<li><p>测试工程：打开生成的 Keil MDK 工程，在 main.c 文件的 FreeRTOS 任务函数中编写简单逻辑（如 LED 闪烁），点击工具栏「编译」-「下载」，调试器（如 ST-Link）连接 STM32 开发板，下载完成后复位开发板，即可看到对应功能实现。</p>
+</li>
+</ol>
+<h3 id="2-Keil-MDK-手动创建工程"><a href="#2-Keil-MDK-手动创建工程" class="headerlink" title="2. Keil MDK 手动创建工程"></a>2. Keil MDK 手动创建工程</h3><ol>
+<li><p>准备文件：下载 FreeRTOS 内核源码（从官方网站获取，选择对应版本）、STM32 对应型号的 HAL 库，新建 Keil MDK 工程，选择对应芯片型号，添加启动文件、HAL 库文件（如 stm32f1xx_hal.c、stm32f1xx_hal_gpio.c 等）。</p>
+</li>
+<li><p>添加 FreeRTOS 源码：将 FreeRTOS 内核源码（核心文件位于 FreeRTOS&#x2F;Source 目录下，包括任务调度、队列、定时器等核心模块）添加到工程中，创建 FreeRTOS 分组，分别添加 src 目录下的 .c 文件和 include 目录下的 .h 文件。</p>
+</li>
+<li><p>配置工程：在 Keil 中，配置包含路径（添加 FreeRTOS 内核头文件、HAL 库头文件路径），配置宏定义（如 USE_HAL_DRIVER、STM32F103xE、configUSE_PREEMPTION&#x3D;1 等），设置系统栈大小、任务栈大小，适配 STM32 的 RAM 资源。</p>
+</li>
+<li><p>编写启动代码：在 main.c 中，初始化 HAL 库、配置硬件（如 GPIO、串口），创建 FreeRTOS 任务，调用 vTaskStartScheduler() 函数（FreeRTOS 内核启动入口），编写任务入口函数，编译下载即可启动 FreeRTOS 内核。</p>
+</li>
+</ol>
+<p>注意：手动创建工程需手动处理 FreeRTOS 内核与 HAL 库的依赖关系，配置内核宏定义，适合有一定 FreeRTOS 基础的开发者，新手优先推荐使用 STM32CubeMX + Keil MDK 的方式，大幅降低配置难度。</p>
+<h2 id="内核配置与组件管理"><a href="#内核配置与组件管理" class="headerlink" title="内核配置与组件管理"></a>内核配置与组件管理</h2><p>FreeRTOS 的核心优势之一是内核可灵活裁剪，通过配置文件（FreeRTOSConfig.h）可启用&#x2F;禁用内核功能、调整内核参数，无需手动修改源码，适配不同 STM32 芯片的资源需求和项目场景。与 RT-Thread 的包&#x2F;组件管理不同，FreeRTOS 核心组件（如队列、信号量、定时器）集成在内核中，第三方组件需手动集成，以下详细讲解内核配置与常用组件的启用方法。</p>
+<h3 id="1-内核配置文件（FreeRTOSConfig-h）详解"><a href="#1-内核配置文件（FreeRTOSConfig-h）详解" class="headerlink" title="1. 内核配置文件（FreeRTOSConfig.h）详解"></a>1. 内核配置文件（FreeRTOSConfig.h）详解</h3><p>FreeRTOSConfig.h 是 FreeRTOS 内核的核心配置文件，由 STM32CubeMX 自动生成（手动创建工程需手动新建），通过修改该文件中的宏定义，可实现内核功能的裁剪与参数调整，适配 STM32 平台的常用配置如下：</p>
+<ul>
+<li><p>任务调度配置：configUSE_PREEMPTION（是否启用抢占式调度，STM32 开发推荐设为 1）、configUSE_TIME_SLICING（是否启用时间片轮转调度，多任务同优先级时需设为 1）。</p>
+</li>
+<li><p>优先级配置：configMAX_PRIORITIES（任务优先级最大值，范围 1~32，STM32 推荐设为 16，数值越大优先级越高）、configIDLE_SHOULD_YIELD（空闲任务是否让步，设为 1 提升系统响应速度）。</p>
+</li>
+<li><p>内存配置：configMINIMAL_STACK_SIZE（空闲任务栈大小，单位为字，STM32F103 推荐设为 64）、configTOTAL_HEAP_SIZE（FreeRTOS 堆大小，单位为字节，根据 STM32 RAM 大小调整，如 8KB 设为 8192）。</p>
+</li>
+<li><p>组件配置：configUSE_QUEUES（是否启用队列，设为 1）、configUSE_SEMAPHORES（是否启用信号量，设为 1）、configUSE_TIMERS（是否启用软件定时器，设为 1）、configUSE_IDLE_HOOK（是否启用空闲任务钩子函数）。</p>
+</li>
+<li><p>中断配置：configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY（系统调用允许的最高中断优先级，STM32 推荐设为 5，需与 NVIC 中断优先级匹配）。</p>
+</li>
+</ul>
+<h3 id="2-核心组件启用与使用"><a href="#2-核心组件启用与使用" class="headerlink" title="2. 核心组件启用与使用"></a>2. 核心组件启用与使用</h3><p>FreeRTOS 内核集成了任务管理、队列、信号量、软件定时器等核心组件，通过修改 FreeRTOSConfig.h 中的宏定义即可启用，适配 STM32 平台的常用组件如下：</p>
+<ul>
+<li><p>队列（Queue）：用于任务间通信，实现数据传递（如串口接收数据传递给处理任务），启用宏定义 configUSE_QUEUES&#x3D;1，通过 xQueueCreate()、xQueueSend()、xQueueReceive() 等 API 操作。</p>
+</li>
+<li><p>信号量（Semaphore）：用于任务同步与互斥（如避免多个任务同时操作同一个硬件资源），分为二进制信号量、计数信号量，启用宏定义 configUSE_SEMAPHORES&#x3D;1，通过 xSemaphoreCreateBinary()、xSemaphoreTake()、xSemaphoreGive() 等 API 操作。</p>
+</li>
+<li><p>软件定时器（Software Timer）：基于系统时钟节拍实现定时功能，无需占用 STM32 硬件定时器资源，启用宏定义 configUSE_TIMERS&#x3D;1，通过 xTimerCreate()、xTimerStart() 等 API 操作。</p>
+</li>
+<li><p>任务通知（Task Notification）：替代队列、信号量的轻量级通信方式，占用内存更少，响应速度更快，启用宏定义 configUSE_TASK_NOTIFICATIONS&#x3D;1，适合资源受限的 STM32 入门级芯片。</p>
+</li>
+</ul>
+<h3 id="3-第三方组件集成（可选）"><a href="#3-第三方组件集成（可选）" class="headerlink" title="3. 第三方组件集成（可选）"></a>3. 第三方组件集成（可选）</h3><p>FreeRTOS 本身不集成文件系统、网络协议栈等第三方组件，若 STM32 项目需要这些功能，需手动集成对应组件，常用第三方组件及集成方法如下：</p>
+<ul>
+<li><p>文件系统：集成 FatFs 文件系统，适配 STM32 外接的 SD 卡、Flash（如 W25Q64），将 FatFs 源码添加到工程中，通过 FreeRTOS 任务调用 FatFs 相关 API（如 f_open()、f_write()）实现文件操作。</p>
+</li>
+<li><p>网络协议栈：集成 lwIP 轻量级 TCP&#x2F;IP 协议栈，用于 STM32 网络开发（如以太网、WiFi 模块），将 lwIP 源码与 FreeRTOS 适配层添加到工程中，配置网络参数后即可实现网络通信。</p>
+</li>
+<li><p>传感器驱动：集成 DHT11、SSD1306 等传感器驱动，将驱动源码添加到工程中，通过 FreeRTOS 任务调用驱动 API，实现传感器数据读取、显示屏显示等功能。</p>
+</li>
+</ul>
+<p>注意：集成第三方组件时，需确保组件与 FreeRTOS 内核兼容，合理配置任务优先级，避免组件操作与内核调度冲突；同时根据 STM32 的 RAM、Flash 资源，裁剪组件功能，避免资源不足。</p>
+<h2 id="任务（Task）"><a href="#任务（Task）" class="headerlink" title="任务（Task）"></a>任务（Task）</h2><p>任务是 FreeRTOS 内核的核心调度单元，与 RT-Thread 的线程概念一致。在 STM32 平台下，任务本质上是一段可独立执行的代码，由 FreeRTOS 内核进行实时调度（支持抢占式调度、时间片轮转调度），实现多任务并行执行（宏观并行，微观串行）。相较于裸机开发的「轮询式」，任务开发可避免单个任务阻塞导致其他任务无法执行，大幅提升 STM32 系统的实时性和可靠性。</p>
+<h3 id="1-任务的核心概念"><a href="#1-任务的核心概念" class="headerlink" title="1. 任务的核心概念"></a>1. 任务的核心概念</h3><ul>
+<li><p>任务优先级：范围由 configMAX_PRIORITIES 定义（默认 0~31），数值越大优先级越高，FreeRTOS 内核优先调度优先级高的任务；同优先级任务采用时间片轮转调度（需启用 configUSE_TIME_SLICING&#x3D;1）。</p>
+</li>
+<li><p>任务栈：每个任务都有独立的栈空间，用于保存任务的上下文（寄存器值、局部变量、函数返回地址等），栈大小由创建任务时指定（单位为字，1 字 &#x3D; 4 字节），STM32 内存较小的芯片（如 F103C8T6）可设为 128~512 字，复杂任务需适当增大。</p>
+</li>
+<li><p>任务状态：包含就绪态（Ready）、运行态（Running）、阻塞态（Blocked）、挂起态（Suspended）、删除态（Deleted），内核通过任务控制块（TCB）管理任务状态，实现任务调度。</p>
+</li>
+<li><p>任务控制块（TCB）：每个任务对应一个 TCB 结构体，用于存储任务的优先级、栈指针、状态、名称等信息，由 FreeRTOS 内核自动创建和管理。</p>
+</li>
+</ul>
+<h3 id="2-STM32-下任务的创建与使用（常用方式）"><a href="#2-STM32-下任务的创建与使用（常用方式）" class="headerlink" title="2. STM32 下任务的创建与使用（常用方式）"></a>2. STM32 下任务的创建与使用（常用方式）</h3><p>FreeRTOS 提供两种任务创建方式：动态创建（内核自动分配栈空间和 TCB 内存）和静态创建（手动分配栈空间和 TCB 内存），常用动态创建（便捷高效，适合大多数 STM32 开发场景），示例代码如下（以 STM32F103C8T6 为例，实现两个任务：LED 闪烁 + 串口打印，沿用 RT-Thread 文档的硬件场景）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务句柄（动态创建时，由系统自动分配）</span></span><br><span class="line">TaskHandle_t led_task_handle = <span class="literal">NULL</span>;</span><br><span class="line">TaskHandle_t uart_task_handle = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// LED任务入口函数（任务核心逻辑）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_task</span><span class="params">(<span class="type">void</span> *pvParameters)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_0); <span class="comment">// 翻转PA0引脚（LED连接）</span></span><br><span class="line">        vTaskDelay(pdMS_TO_TICKS(<span class="number">500</span>)); <span class="comment">// 延时500ms（任务阻塞，释放CPU，单位为系统节拍）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 串口任务入口函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uart_task</span><span class="params">(<span class="type">void</span> *pvParameters)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)<span class="string">&quot;FreeRTOS UART Task Running...\r\n&quot;</span>, <span class="number">32</span>, HAL_MAX_DELAY); <span class="comment">// 串口打印</span></span><br><span class="line">        vTaskDelay(pdMS_TO_TICKS(<span class="number">1000</span>)); <span class="comment">// 延时1000ms</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化HAL库（STM32CubeMX生成的默认代码）</span></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    MX_GPIO_Init();</span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 动态创建LED任务</span></span><br><span class="line">    xTaskCreate(</span><br><span class="line">        (TaskFunction_t)led_task,        <span class="comment">// 任务入口函数</span></span><br><span class="line">        (<span class="type">const</span> <span class="type">char</span>*)<span class="string">&quot;led_task&quot;</span>,         <span class="comment">// 任务名称</span></span><br><span class="line">        (<span class="type">uint16_t</span>)<span class="number">128</span>,                   <span class="comment">// 任务栈大小（单位：字）</span></span><br><span class="line">        (<span class="type">void</span>*)<span class="literal">NULL</span>,                     <span class="comment">// 任务参数</span></span><br><span class="line">        (UBaseType_t)<span class="number">2</span>,                  <span class="comment">// 任务优先级（数值越大优先级越高）</span></span><br><span class="line">        (TaskHandle_t*)&amp;led_task_handle  <span class="comment">// 任务句柄（用于操作任务）</span></span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 动态创建串口任务</span></span><br><span class="line">    xTaskCreate(</span><br><span class="line">        (TaskFunction_t)uart_task,</span><br><span class="line">        (<span class="type">const</span> <span class="type">char</span>*)<span class="string">&quot;uart_task&quot;</span>,</span><br><span class="line">        (<span class="type">uint16_t</span>)<span class="number">128</span>,</span><br><span class="line">        (<span class="type">void</span>*)<span class="literal">NULL</span>,</span><br><span class="line">        (UBaseType_t)<span class="number">1</span>,                  <span class="comment">// 优先级低于LED任务</span></span><br><span class="line">        (TaskHandle_t*)&amp;uart_task_handle</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 启动FreeRTOS内核调度（启动后，内核开始调度任务）</span></span><br><span class="line">    vTaskStartScheduler();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 若启动失败，会执行以下代码（通常是堆内存不足）</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-任务常用操作-API"><a href="#3-任务常用操作-API" class="headerlink" title="3. 任务常用操作 API"></a>3. 任务常用操作 API</h3><ul>
+<li><p>xTaskCreate()：动态创建任务，返回 pdPASS（创建成功）或 errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY（内存不足创建失败），参数包含任务入口函数、名称、栈大小、优先级、句柄等。</p>
+</li>
+<li><p>vTaskStartScheduler()：启动 FreeRTOS 内核调度，启动后内核开始按照优先级调度任务，无返回值（启动失败会卡住）。</p>
+</li>
+<li><p>vTaskDelay(Ticks)：任务延时，Ticks 为系统节拍数（需用 pdMS_TO_TICKS(ms) 转换为毫秒），延时期间任务进入阻塞态，释放 CPU 给其他任务。</p>
+</li>
+<li><p>vTaskDelete(TaskHandle)：删除动态创建的任务，释放任务占用的栈空间和 TCB 内存，参数为任务句柄（NULL 表示删除当前任务）。</p>
+</li>
+<li><p>vTaskSuspend(TaskHandle)：挂起任务，任务进入挂起态，暂停执行，只有调用 vTaskResume() 才能恢复，参数为任务句柄（NULL 表示挂起当前任务）。</p>
+</li>
+<li><p>vTaskResume(TaskHandle)：恢复挂起的任务，任务从挂起态进入就绪态，等待内核调度执行，参数为任务句柄。</p>
+</li>
+<li><p>uxTaskPriorityGet(TaskHandle)：获取任务当前优先级，返回优先级数值，参数为任务句柄（NULL 表示当前任务）。</p>
+</li>
+<li><p>vTaskPrioritySet(TaskHandle, NewPriority)：修改任务优先级，参数为任务句柄和新优先级，优先级需在 configMAX_PRIORITIES 范围内。</p>
+</li>
+</ul>
+<p>注意：STM32 平台下，任务优先级配置需合理，避免高优先级任务长期占用 CPU（如无延时操作），导致低优先级任务无法执行；任务栈大小需根据任务复杂度配置，过大会浪费 RAM，过小会导致任务栈溢出，程序崩溃（可通过 FreeRTOS 栈溢出检测功能排查）；空闲任务是 FreeRTOS 自动创建的最低优先级任务，不可删除，用于释放删除任务的内存。</p>
+<h2 id="IO中断"><a href="#IO中断" class="headerlink" title="IO中断"></a>IO中断</h2><p>STM32 具有丰富的 IO 口，支持外部中断（EXIT）功能，FreeRTOS 对 STM32 的 IO 中断进行了适配，无需修改中断服务函数的核心逻辑，只需遵循 FreeRTOS 的中断使用规范（如在中断中调用内核提供的中断安全 API），即可实现 IO 中断与任务的协同工作，适用于按键触发、传感器电平变化等场景，操作逻辑与 RT-Thread 文档保持一致。</p>
+<h3 id="1-IO中断的核心原理"><a href="#1-IO中断的核心原理" class="headerlink" title="1. IO中断的核心原理"></a>1. IO中断的核心原理</h3><p>STM32 的 IO 口可配置为中断模式（上升沿触发、下降沿触发、双边沿触发），当 IO 口电平发生对应变化时，会触发外部中断，中断控制器（NVIC）会暂停当前正在执行的任务，转而执行中断服务函数；中断执行完成后，恢复原来的任务执行。FreeRTOS 中，中断服务函数可正常编写，但需注意：中断中不可调用非中断安全的 API（如 vTaskDelay()），只能调用以「FromISR」结尾的中断安全 API（如 xQueueSendFromISR()），避免破坏内核任务上下文。</p>
+<h3 id="2-STM32-下-IO中断的配置与使用（示例）"><a href="#2-STM32-下-IO中断的配置与使用（示例）" class="headerlink" title="2. STM32 下 IO中断的配置与使用（示例）"></a>2. STM32 下 IO中断的配置与使用（示例）</h3><p>以 STM32F103C8T6 为例，配置 PA1 为下降沿触发中断（按键触发），实现中断触发后通过队列通知 LED 任务翻转 PA0 的 LED 状态（中断与任务协同），代码如下（沿用 RT-Thread 文档的硬件场景）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;queue.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 队列句柄（用于中断与任务间通信）</span></span><br><span class="line">QueueHandle_t irq_queue = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">// 任务句柄</span></span><br><span class="line">TaskHandle_t led_task_handle = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中断回调函数（STM32 HAL库中断回调，替代传统中断服务函数）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_GPIO_EXTI_Callback</span><span class="params">(<span class="type">uint16_t</span> GPIO_Pin)</span></span><br><span class="line">&#123;</span><br><span class="line">    BaseType_t xHigherPriorityTaskWoken = pdFALSE; <span class="comment">// 标记是否需要切换高优先级任务</span></span><br><span class="line">    <span class="type">uint8_t</span> irq_flag = <span class="number">1</span>; <span class="comment">// 中断标志位（传递给任务）</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (GPIO_Pin == GPIO_PIN_1) <span class="comment">// 判断是否是PA1引脚的中断（按键触发）</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 中断中发送数据到队列（中断安全API）</span></span><br><span class="line">        xQueueSendFromISR(</span><br><span class="line">            irq_queue,          <span class="comment">// 队列句柄</span></span><br><span class="line">            &amp;irq_flag,          <span class="comment">// 发送的数据</span></span><br><span class="line">            &amp;xHigherPriorityTaskWoken <span class="comment">// 标记是否需要上下文切换</span></span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 若有高优先级任务就绪，请求上下文切换（中断中必须调用）</span></span><br><span class="line">        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// LED任务入口函数（处理中断通知）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_task</span><span class="params">(<span class="type">void</span> *pvParameters)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> recv_flag;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 从队列接收数据（阻塞等待，无数据时任务进入阻塞态）</span></span><br><span class="line">        <span class="keyword">if</span> (xQueueReceive(irq_queue, &amp;recv_flag, portMAX_DELAY) == pdPASS)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (recv_flag == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_0); <span class="comment">// 翻转PA0（LED）</span></span><br><span class="line">                HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)<span class="string">&quot;IO Interrupt Triggered!\r\n&quot;</span>, <span class="number">24</span>, HAL_MAX_DELAY); <span class="comment">// 串口打印中断信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化HAL库、GPIO、串口（STM32CubeMX生成的默认代码）</span></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    MX_GPIO_Init();</span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 创建队列（用于中断与任务间通信，队列长度为1，数据类型为uint8_t）</span></span><br><span class="line">    irq_queue = xQueueCreate(<span class="number">1</span>, <span class="keyword">sizeof</span>(<span class="type">uint8_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (irq_queue == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 队列创建失败（内存不足），可添加错误处理</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 创建LED任务</span></span><br><span class="line">    xTaskCreate(</span><br><span class="line">        led_task,</span><br><span class="line">        <span class="string">&quot;led_task&quot;</span>,</span><br><span class="line">        <span class="number">128</span>,</span><br><span class="line">        <span class="literal">NULL</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        &amp;led_task_handle</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 启动FreeRTOS内核调度</span></span><br><span class="line">    vTaskStartScheduler();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 启动失败处理</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-IO中断常用-API（FreeRTOS-中断安全-API）"><a href="#3-IO中断常用-API（FreeRTOS-中断安全-API）" class="headerlink" title="3. IO中断常用 API（FreeRTOS 中断安全 API）"></a>3. IO中断常用 API（FreeRTOS 中断安全 API）</h3><ul>
+<li><p>xQueueSendFromISR(QueueHandle, pvItemToQueue, pxHigherPriorityTaskWoken)：中断中发送数据到队列，中断安全 API，参数包含队列句柄、发送的数据、任务切换标记。</p>
+</li>
+<li><p>xQueueReceiveFromISR(QueueHandle, pvBuffer, pxHigherPriorityTaskWoken)：中断中接收队列数据，中断安全 API，适用于需要在中断中处理队列数据的场景。</p>
+</li>
+<li><p>vTaskNotifyGiveFromISR(TaskHandle, pxHigherPriorityTaskWoken)：中断中发送任务通知，替代队列的轻量级通信方式，中断安全，占用内存更少。</p>
+</li>
+<li><p>portYIELD_FROM_ISR(xHigherPriorityTaskWoken)：中断中请求任务上下文切换，若 xHigherPriorityTaskWoken 为 pdTRUE，说明有高优先级任务就绪，立即切换任务。</p>
+</li>
+</ul>
+<p>注意：STM32 中，每个 IO 口对应的外部中断线是固定的（如 PA0~PG0 对应 EXTI0），同一中断线只能使用一个 IO 口作为中断引脚；中断服务函数（或 HAL 回调函数）中应尽量简洁，避免执行耗时操作，耗时逻辑应交给任务处理（通过队列、任务通知传递数据）；FreeRTOS 中断优先级配置需与 STM32 NVIC 中断优先级匹配，确保中断能正常响应。</p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>定时器是 STM32 开发中常用的外设，用于实现定时触发、延时、频率测量等功能。FreeRTOS 针对定时功能，提供了两种实现方式：软件定时器（基于内核系统节拍）和硬件定时器（基于 STM32 定时器外设），与 RT-Thread 的定时器分类一致。其中软件定时器无需占用 STM32 硬件定时器资源，使用便捷；硬件定时器定时精度更高，适用于高精度定时场景，以下详细讲解两种定时器的配置与使用。</p>
+<h3 id="软件定时器"><a href="#软件定时器" class="headerlink" title="软件定时器"></a>软件定时器</h3><p>软件定时器由 FreeRTOS 内核的系统时钟节拍（SysTick）驱动，定时精度取决于系统时钟节拍频率（默认 SysTick 频率为 1ms，即一个节拍为 1ms），支持一次性定时和周期性定时，无需配置 STM32 的硬件定时器，使用便捷，适合对定时精度要求不高的场景（如定时打印、定时检测）。</p>
+<h4 id="1-软件定时器核心概念"><a href="#1-软件定时器核心概念" class="headerlink" title="1. 软件定时器核心概念"></a>1. 软件定时器核心概念</h4><ul>
+<li><p>定时周期：从定时器启动到触发回调函数的时间，单位为系统节拍，需通过 pdMS_TO_TICKS(ms) 转换为毫秒，最小定时周期为 1ms（与 SysTick 频率一致）。</p>
+</li>
+<li><p>定时器模式：一次性定时器（pdFALSE），触发一次回调函数后自动停止；周期性定时器（pdTRUE），每隔固定周期触发一次回调函数，循环执行。</p>
+</li>
+<li><p>定时器优先级：软件定时器的回调函数运行在「软件定时器服务任务」中，服务任务的优先级由 configTIMER_TASK_PRIORITY 宏定义配置（默认优先级为 3，可调整），高于普通任务时，回调函数会优先执行。</p>
+</li>
+</ul>
+<h4 id="2-软件定时器的使用示例"><a href="#2-软件定时器的使用示例" class="headerlink" title="2. 软件定时器的使用示例"></a>2. 软件定时器的使用示例</h4><p>以 STM32F103C8T6 为例，创建两个软件定时器：一次性定时器（3s 后触发，点亮 LED）、周期性定时器（1s 触发一次，串口打印），沿用 RT-Thread 文档的硬件场景，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;timers.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 软件定时器句柄</span></span><br><span class="line">TimerHandle_t one_shot_timer = <span class="literal">NULL</span>; <span class="comment">// 一次性定时器</span></span><br><span class="line">TimerHandle_t period_timer = <span class="literal">NULL</span>;   <span class="comment">// 周期性定时器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一次性定时器回调函数（定时触发后执行）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">one_shot_timer_cb</span><span class="params">(TimerHandle_t xTimer)</span></span><br><span class="line">&#123;</span><br><span class="line">    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_HIGH); <span class="comment">// 点亮LED（PA0）</span></span><br><span class="line">    HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)<span class="string">&quot;One-Shot Timer Triggered! LED ON\r\n&quot;</span>, <span class="number">34</span>, HAL_MAX_DELAY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 周期性定时器回调函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">period_timer_cb</span><span class="params">(TimerHandle_t xTimer)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">uint32_t</span> count = <span class="number">0</span>;</span><br><span class="line">    count++;</span><br><span class="line">    <span class="type">char</span> buf[<span class="number">32</span>];</span><br><span class="line">    <span class="built_in">sprintf</span>(buf, <span class="string">&quot;Period Timer Triggered! Count: %d\r\n&quot;</span>, count);</span><br><span class="line">    HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)buf, <span class="built_in">strlen</span>(buf), HAL_MAX_DELAY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化HAL库、GPIO、串口</span></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    MX_GPIO_Init();</span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化LED引脚（初始熄灭）</span></span><br><span class="line">    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_LOW);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 创建一次性软件定时器（3000ms后触发，不自动重装载）</span></span><br><span class="line">    one_shot_timer = xTimerCreate(</span><br><span class="line">        (<span class="type">const</span> <span class="type">char</span>*)<span class="string">&quot;one_shot_timer&quot;</span>,  <span class="comment">// 定时器名称</span></span><br><span class="line">        (TickType_t)pdMS_TO_TICKS(<span class="number">3000</span>),<span class="comment">// 定时周期（3000ms，转换为节拍）</span></span><br><span class="line">        (UBaseType_t)pdFALSE,           <span class="comment">// 模式：一次性（pdFALSE）</span></span><br><span class="line">        (<span class="type">void</span>*)<span class="number">0</span>,                       <span class="comment">// 定时器ID（可用于区分多个定时器）</span></span><br><span class="line">        (TimerCallbackFunction_t)one_shot_timer_cb <span class="comment">// 回调函数</span></span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 创建周期性软件定时器（1000ms周期，自动重装载）</span></span><br><span class="line">    period_timer = xTimerCreate(</span><br><span class="line">        (<span class="type">const</span> <span class="type">char</span>*)<span class="string">&quot;period_timer&quot;</span>,</span><br><span class="line">        (TickType_t)pdMS_TO_TICKS(<span class="number">1000</span>),</span><br><span class="line">        (UBaseType_t)pdTRUE,            <span class="comment">// 模式：周期性（pdTRUE）</span></span><br><span class="line">        (<span class="type">void</span>*)<span class="number">1</span>,</span><br><span class="line">        (TimerCallbackFunction_t)period_timer_cb</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 启动软件定时器（启动后开始计时）</span></span><br><span class="line">    <span class="keyword">if</span> (one_shot_timer != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        xTimerStart(one_shot_timer, <span class="number">0</span>); <span class="comment">// 第二个参数为阻塞时间，0表示立即启动</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (period_timer != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        xTimerStart(period_timer, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 5. 启动FreeRTOS内核调度</span></span><br><span class="line">    vTaskStartScheduler();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 启动失败处理</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-软件定时器常用-API"><a href="#3-软件定时器常用-API" class="headerlink" title="3. 软件定时器常用 API"></a>3. 软件定时器常用 API</h4><ul>
+<li><p>xTimerCreate()：创建软件定时器，返回定时器句柄（NULL 表示创建失败），参数包含定时器名称、周期、模式、ID、回调函数。</p>
+</li>
+<li><p>xTimerStart(TimerHandle, xTicksToWait)：启动软件定时器，xTicksToWait 为启动定时器时的阻塞时间（0 表示立即启动），返回 pdPASS 表示启动成功。</p>
+</li>
+<li><p>xTimerStop(TimerHandle, xTicksToWait)：停止软件定时器，计时暂停，可再次启动，参数与 xTimerStart() 一致。</p>
+</li>
+<li><p>xTimerDelete(TimerHandle, xTicksToWait)：删除软件定时器，释放占用的内存，参数与上述一致。</p>
+</li>
+<li><p>xTimerChangePeriod(TimerHandle, xNewPeriod, xTicksToWait)：修改软件定时器的周期，xNewPeriod 为新周期（节拍数），修改后需重新启动定时器。</p>
+</li>
+</ul>
+<h3 id="硬件定时器"><a href="#硬件定时器" class="headerlink" title="硬件定时器"></a>硬件定时器</h3><p>硬件定时器基于 STM32 的定时器外设（如 TIM2~TIM5 为通用定时器，TIM1、TIM8 为高级定时器）实现，定时精度由定时器的时钟频率和分频系数决定，可实现微秒（μs）级定时，适合对定时精度要求高的场景（如 PWM 输出、频率测量、高精度延时）。FreeRTOS 不对硬件定时器进行封装，直接使用 STM32 HAL 库的定时器 API，与内核协同工作时，需遵循中断安全规范。</p>
+<h4 id="1-硬件定时器的配置与使用示例"><a href="#1-硬件定时器的配置与使用示例" class="headerlink" title="1. 硬件定时器的配置与使用示例"></a>1. 硬件定时器的配置与使用示例</h4><p>以 STM32F103C8T6 为例，使用 TIM2 作为硬件定时器，配置为 100μs 周期性定时，触发中断后通过任务通知通知主线程，实现高精度定时打印，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 任务句柄</span></span><br><span class="line">TaskHandle_t main_task_handle = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">// 硬件定时器句柄（STM32 HAL库句柄）</span></span><br><span class="line">TIM_HandleTypeDef htim2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 硬件定时器中断回调函数（HAL库回调）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_TIM_PeriodElapsedCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span></span><br><span class="line">&#123;</span><br><span class="line">    BaseType_t xHigherPriorityTaskWoken = pdFALSE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (htim-&gt;Instance == TIM2) <span class="comment">// 判断是否是TIM2定时器中断</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 中断中发送任务通知（中断安全API）</span></span><br><span class="line">        vTaskNotifyGiveFromISR(main_task_handle, &amp;xHigherPriorityTaskWoken);</span><br><span class="line">        <span class="comment">// 请求任务上下文切换</span></span><br><span class="line">        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主线程（处理硬件定时器通知）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">main_task</span><span class="params">(<span class="type">void</span> *pvParameters)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> notify_count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 等待任务通知（阻塞等待，无通知时进入阻塞态）</span></span><br><span class="line">        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);</span><br><span class="line">        notify_count++;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 每1000次中断（100μs * 1000 = 100ms），串口打印一次</span></span><br><span class="line">        <span class="keyword">if</span> (notify_count % <span class="number">1000</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">char</span> buf[<span class="number">32</span>];</span><br><span class="line">            <span class="built_in">sprintf</span>(buf, <span class="string">&quot;Hardware Timer Triggered! Count: %d\r\n&quot;</span>, notify_count/<span class="number">1000</span>);</span><br><span class="line">            HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)buf, <span class="built_in">strlen</span>(buf), HAL_MAX_DELAY);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// TIM2初始化函数（STM32CubeMX生成，100μs周期）</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">MX_TIM2_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    TIM_ClockConfigTypeDef sClockSourceConfig = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    TIM_MasterConfigTypeDef sMasterConfig = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    htim2.Instance = TIM2;</span><br><span class="line">    htim2.Init.Prescaler = <span class="number">71</span>; <span class="comment">// 分频系数：72MHz / (71+1) = 1MHz</span></span><br><span class="line">    htim2.Init.CounterMode = TIM_COUNTERMODE_UP;</span><br><span class="line">    htim2.Init.Period = <span class="number">99</span>; <span class="comment">// 自动重装载值：1MHz / (99+1) = 10kHz，周期100μs</span></span><br><span class="line">    htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;</span><br><span class="line">    htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;</span><br><span class="line">    <span class="keyword">if</span> (HAL_TIM_Base_Init(&amp;htim2) != HAL_OK)</span><br><span class="line">    &#123;</span><br><span class="line">        Error_Handler();</span><br><span class="line">    &#125;</span><br><span class="line">    sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;</span><br><span class="line">    <span class="keyword">if</span> (HAL_TIM_ConfigClockSource(&amp;htim2, &amp;sClockSourceConfig) != HAL_OK)</span><br><span class="line">    &#123;</span><br><span class="line">        Error_Handler();</span><br><span class="line">    &#125;</span><br><span class="line">    sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;</span><br><span class="line">    sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;</span><br><span class="line">    <span class="keyword">if</span> (HAL_TIMEx_MasterConfigSynchronization(&amp;htim2, &amp;sMasterConfig) != HAL_OK)</span><br><span class="line">    &#123;</span><br><span class="line">        Error_Handler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化HAL库、GPIO、串口、TIM2定时器</span></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    MX_GPIO_Init();</span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    MX_TIM2_Init();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 创建主线程</span></span><br><span class="line">    xTaskCreate(</span><br><span class="line">        main_task,</span><br><span class="line">        <span class="string">&quot;main_task&quot;</span>,</span><br><span class="line">        <span class="number">128</span>,</span><br><span class="line">        <span class="literal">NULL</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        &amp;main_task_handle</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 启动硬件定时器中断</span></span><br><span class="line">    HAL_TIM_Base_Start_IT(&amp;htim2);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 启动FreeRTOS内核调度</span></span><br><span class="line">    vTaskStartScheduler();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 启动失败处理</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-硬件定时器常用-API（STM32-HAL-库-FreeRTOS-中断安全-API）"><a href="#2-硬件定时器常用-API（STM32-HAL-库-FreeRTOS-中断安全-API）" class="headerlink" title="2. 硬件定时器常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）"></a>2. 硬件定时器常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）</h4><ul>
+<li><p>HAL_TIM_Base_Init(&amp;htim)：初始化硬件定时器，配置分频系数、自动重装载值等参数。</p>
+</li>
+<li><p>HAL_TIM_Base_Start_IT(&amp;htim)：启动硬件定时器中断，定时器开始计时，中断使能。</p>
+</li>
+<li><p>HAL_TIM_Base_Stop_IT(&amp;htim)：停止硬件定时器中断，计时暂停。</p>
+</li>
+<li><p>HAL_TIM_PeriodElapsedCallback(&amp;htim)：硬件定时器周期中断回调函数，定时器计数到周期后触发。</p>
+</li>
+<li><p>vTaskNotifyGiveFromISR(TaskHandle, pxHigherPriorityTaskWoken)：中断中发送任务通知，实现中断与任务协同，中断安全。</p>
+</li>
+</ul>
+<p>注意：STM32 的硬件定时器资源有限（如 STM32F103C8T6 有 TIM1~TIM4 四个定时器），使用时需避免资源冲突；定时周期的最小值由定时器的时钟频率决定，可通过修改分频系数调整定时器时钟频率，进而调整定时精度；硬件定时器中断优先级需与 FreeRTOS 内核中断优先级匹配，确保中断能正常响应且不影响内核调度。</p>
+<h2 id="串口中断"><a href="#串口中断" class="headerlink" title="串口中断"></a>串口中断</h2><p>串口是 STM32 与外部设备（如电脑、传感器、蓝牙模块）通信的常用接口，FreeRTOS 与 STM32 HAL 库的串口中断完美适配，无需手动配置串口寄存器和中断服务函数，只需在串口中断回调函数中调用 FreeRTOS 中断安全 API，即可实现串口数据的中断接收（避免轮询接收浪费 CPU 资源）和发送，适配大多数串口通信场景，与 RT-Thread 串口中断的使用场景一致。</p>
+<h3 id="1-串口中断的核心原理"><a href="#1-串口中断的核心原理" class="headerlink" title="1. 串口中断的核心原理"></a>1. 串口中断的核心原理</h3><p>STM32 的串口支持中断模式，当串口接收到数据（RXNE 标志位置1）或发送完成（TC 标志位置1）时，会触发串口中断，中断控制器会暂停当前正在执行的任务，转而执行串口中断服务函数（HAL 库中为回调函数）；FreeRTOS 中，串口中断回调函数可正常编写，但需注意：中断中只能调用中断安全 API（如 xQueueSendFromISR()），将接收的数据传递给任务处理，避免在中断中执行耗时的数据分析逻辑，确保系统实时性。</p>
+<h3 id="2-STM32-下串口中断的配置与使用示例"><a href="#2-STM32-下串口中断的配置与使用示例" class="headerlink" title="2. STM32 下串口中断的配置与使用示例"></a>2. STM32 下串口中断的配置与使用示例</h3><p>以 STM32F103C8T6 为例，配置 USART1 为串口中断模式，波特率 115200，实现中断接收数据（接收后回显），通过队列实现中断与任务的协同，代码如下（沿用 RT-Thread 文档的硬件场景）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;queue.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 串口句柄（STM32 HAL库句柄）</span></span><br><span class="line">UART_HandleTypeDef huart1;</span><br><span class="line"><span class="comment">// 队列句柄（用于串口中断与任务间通信，存储接收的数据）</span></span><br><span class="line">QueueHandle_t uart_queue = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">// 任务句柄</span></span><br><span class="line">TaskHandle_t uart_task_handle = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 串口接收中断回调函数（HAL库回调，接收完成后触发）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_UART_RxCpltCallback</span><span class="params">(UART_HandleTypeDef *huart)</span></span><br><span class="line">&#123;</span><br><span class="line">    BaseType_t xHigherPriorityTaskWoken = pdFALSE;</span><br><span class="line">    <span class="type">static</span> <span class="type">uint8_t</span> uart_rx_data; <span class="comment">// 存储接收的单个字节数据</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (huart-&gt;Instance == USART1) <span class="comment">// 判断是否是USART1串口中断</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 中断中发送接收的数据到队列（中断安全API）</span></span><br><span class="line">        xQueueSendFromISR(</span><br><span class="line">            uart_queue,</span><br><span class="line">            &amp;uart_rx_data,</span><br><span class="line">            &amp;xHigherPriorityTaskWoken</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 重新开启串口中断接收（HAL库中断接收需手动重新开启）</span></span><br><span class="line">        HAL_UART_Receive_IT(&amp;huart1, &amp;uart_rx_data, <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 请求任务上下文切换</span></span><br><span class="line">        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 串口任务（处理队列中的接收数据，实现回显）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uart_task</span><span class="params">(<span class="type">void</span> *pvParameters)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> recv_data;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 从队列接收数据（阻塞等待，无数据时任务进入阻塞态）</span></span><br><span class="line">        <span class="keyword">if</span> (xQueueReceive(uart_queue, &amp;recv_data, portMAX_DELAY) == pdPASS)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 回显接收的数据（串口发送）</span></span><br><span class="line">            HAL_UART_Transmit(&amp;huart1, &amp;recv_data, <span class="number">1</span>, HAL_MAX_DELAY);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// USART1初始化函数（STM32CubeMX生成，波特率115200）</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">MX_USART1_UART_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    huart1.Instance = USART1;</span><br><span class="line">    huart1.Init.BaudRate = <span class="number">115200</span>;</span><br><span class="line">    huart1.Init.WordLength = UART_WORDLENGTH_8B;</span><br><span class="line">    huart1.Init.StopBits = UART_STOPBITS_1;</span><br><span class="line">    huart1.Init.Parity = UART_PARITY_NONE;</span><br><span class="line">    huart1.Init.Mode = UART_MODE_TX_RX;</span><br><span class="line">    huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;</span><br><span class="line">    huart1.Init.OverSampling = UART_OVERSAMPLING_16;</span><br><span class="line">    <span class="keyword">if</span> (HAL_UART_Init(&amp;huart1) != HAL_OK)</span><br><span class="line">    &#123;</span><br><span class="line">        Error_Handler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化HAL库、GPIO、USART1串口</span></span><br><span class="line">    HAL_Init();</span><br><span class="line">    SystemClock_Config();</span><br><span class="line">    MX_GPIO_Init();</span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 创建队列（用于存储串口接收的数据，队列长度为32，数据类型为uint8_t）</span></span><br><span class="line">    uart_queue = xQueueCreate(<span class="number">32</span>, <span class="keyword">sizeof</span>(<span class="type">uint8_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (uart_queue == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 队列创建失败，错误处理</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 创建串口任务</span></span><br><span class="line">    xTaskCreate(</span><br><span class="line">        uart_task,</span><br><span class="line">        <span class="string">&quot;uart_task&quot;</span>,</span><br><span class="line">        <span class="number">128</span>,</span><br><span class="line">        <span class="literal">NULL</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        &amp;uart_task_handle</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 开启串口中断接收（接收1个字节触发中断）</span></span><br><span class="line">    <span class="type">uint8_t</span> init_data;</span><br><span class="line">    HAL_UART_Receive_IT(&amp;huart1, &amp;init_data, <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 5. 启动FreeRTOS内核调度</span></span><br><span class="line">    vTaskStartScheduler();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 启动失败处理</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-串口中断常用-API（STM32-HAL-库-FreeRTOS-中断安全-API）"><a href="#3-串口中断常用-API（STM32-HAL-库-FreeRTOS-中断安全-API）" class="headerlink" title="3. 串口中断常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）"></a>3. 串口中断常用 API（STM32 HAL 库 + FreeRTOS 中断安全 API）</h3><ul>
+<li><p>HAL_UART_Init(&amp;huart)：初始化串口，配置波特率、数据位、停止位等参数。</p>
+</li>
+<li><p>HAL_UART_Receive_IT(&amp;huart, &amp;data, len)：开启串口中断接收，接收 len 个字节后触发中断回调函数。</p>
+</li>
+<li><p>HAL_UART_RxCpltCallback(&amp;huart)：串口接收完成中断回调函数，接收指定长度数据后触发。</p>
+</li>
+<li><p>HAL_UART_Transmit(&amp;huart, &amp;data, len, timeout)：串口发送数据，timeout 为发送超时时间（HAL_MAX_DELAY 表示无限等待）。</p>
+</li>
+<li><p>xQueueSendFromISR(QueueHandle, pvItemToQueue, pxHigherPriorityTaskWoken)：中断中发送数据到队列，实现中断与任务间的数据传递，中断安全。</p>
+</li>
+<li><p>xQueueReceive(QueueHandle, pvBuffer, xTicksToWait)：任务中接收队列数据，实现串口数据的后续处理。</p>
+</li>
+</ul>
+<p>注意：STM32 的串口中断优先级需合理配置，避免串口中断被低优先级中断阻塞；接收队列的大小需根据实际通信数据量配置，避免数据溢出；HAL 库的串口中断接收需手动重新开启（在回调函数中调用 HAL_UART_Receive_IT()），否则只能接收一次数据；中断中避免执行耗时操作，耗时逻辑（如数据解析）交给任务处理。</p>
+<h2 id="SPI设备使用"><a href="#SPI设备使用" class="headerlink" title="SPI设备使用"></a>SPI设备使用</h2><p>SPI（Serial Peripheral Interface）是一种高速同步串行通信协议，STM32 支持多个 SPI 外设（如 SPI1、SPI2），常用于与 SPI 接口的设备通信（如 OLED 显示屏、Flash 芯片、ADC 芯片等）。FreeRTOS 不提供专门的 SPI 设备驱动框架，直接使用 STM32 HAL 库的 SPI API，与 FreeRTOS 任务协同工作时，需通过信号量实现 SPI 设备的互斥访问（避免多个任务同时操作 SPI 外设），确保通信稳定性，使用逻辑与 RT-Thread 的 SPI 设备注册类似，重点讲解实操应用。</p>
+<h3 id="1-SPI设备使用的核心步骤"><a href="#1-SPI设备使用的核心步骤" class="headerlink" title="1. SPI设备使用的核心步骤"></a>1. SPI设备使用的核心步骤</h3><p>STM32 平台下，FreeRTOS 中 SPI 设备的使用分为三步：① 初始化 SPI 外设（通过 STM32 HAL 库配置引脚、通信参数）；② 创建信号量（实现 SPI 设备的互斥访问）；③ 在任务中调用 HAL 库 SPI API 实现通信，通过信号量控制任务对 SPI 外设的访问权限，避免冲突。</p>
+<p>常用的 SPI 通信参数：波特率、时钟极性（CPOL）、时钟相位（CPHA）、数据位数、主从模式（STM32 通常作为 SPI 主机）。</p>
+<h3 id="2-SPI设备使用示例"><a href="#2-SPI设备使用示例" class="headerlink" title="2. SPI设备使用示例"></a>2. SPI设备使用示例</h3><p>以 STM32F103C8T6 为例，使用 SPI1 外设，配置为 SPI 主机，与 SPI 接口的 W25Q64 Flash 芯片通信（读取 Flash ID），通过信号量实现 SPI 设备的互斥访问，代码如下（沿用 RT-Thread 文档的硬件场景，PA4 为 Flash 片选引脚）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f1xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;semphr.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SPI句柄（STM32 HAL库句柄）</span></span><br><span class="line">SPI_HandleTypeDef hspi1;</span><br><span class="line"><span class="comment">// 信号量句柄（用于SPI设备互斥访问）</span></span><br><span class="line">SemaphoreHandle_t spi_mutex_sem = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">// Flash片选引脚定义</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FLASH_CS_PIN GPIO_PIN_4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FLASH_CS_PORT GPIOA</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化Flash片选引脚</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">flash_cs_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStruct = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使能GPIOA时钟</span></span><br><span class="line">    __HAL_RCC_GPIOA_CLK_ENABLE();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 配置PA4为输出引脚</span></span><br><span class="line">    GPIO_InitStruct.Pin = FLASH_CS_PIN;</span><br><span class="line">    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;</span><br><span class="line">    GPIO_InitStruct.Pull = GPIO_NOPULL;</span><br><span class="line">    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;</span><br><span class="line">    HAL_GPIO_Init(FLASH_CS_PORT, &amp;GPIO_InitStruct);</span><br><span class="line">    </span><br><span class="line">    HAL_GPIO_WritePin(FLASH_CS_PORT, FLASH_CS_PIN, GPIO_PIN_HIGH); <span class="comment">// 初始状态片选拉高（不选中Flash）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取W25Q64 Flash ID</span></span><br><span class="line"><span class="type">uint32_t</span> <span class="title function_">flash_read_id</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> id = <span class="number">0</span>;</span><br><span class="line">    <span class="type">uint8_t</span> cmd[<span class="number">4</span>] = &#123;<span class="number">0x90</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;; <span class="comment">// 读取ID的指令</span></span><br><span class="line">    <span class="type">uint8_t</span> recv_data[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 申请信号量（互斥访问SPI，阻塞等待，无超时限制）</span></span><br><span class="line">    <span class="keyword">if</span> (xSemaphoreTake(spi_mutex_sem, portMAX_DELAY) == pdPASS)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_WritePin</span><br></pre></td></tr></table></figure>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 邮件 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">作者: <a href="https://hexo.io/" target="_blank">FenJE</a></p>
+
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FPGA | 冯杰的笔记</title>
+  <meta name="keywords" content=" FPGA ">
+  <meta name="description" content="FPGA | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://fengjie1223.github.io/hello-world.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-03T03:12:54.239Z">
+<meta property="article:modified_time" content="2023-11-16T07:44:55.000Z">
+<meta property="article:author" content="冯杰">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(27)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工业相机">
+            <i class="fold iconfont icon-right"></i>
+            工业相机
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;度申">
+            
+            度申
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(8)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;输出电路">
+            
+            输出电路
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;Altium">
+            
+            Altium
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;C">
+            
+            C
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FPGA">
+            
+            FPGA
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FreeRTOS">
+            
+            FreeRTOS
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;RT_Thread">
+            
+            RT_Thread
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;STM32">
+            
+            STM32
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="软件编程">
+            <i class="fold iconfont icon-right"></i>
+            软件编程
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;OpenCV">
+            
+            OpenCV
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;Qt">
+            
+            Qt
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;vcpkg">
+            
+            vcpkg
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="深度学习">
+            <i class="fold iconfont icon-right"></i>
+            深度学习
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;python">
+            
+            python
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;yolov8">
+            
+            yolov8
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows">
+            <i class="fold iconfont icon-right"></i>
+            windows
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows&lt;---&gt;服务器">
+            
+            服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="PLC">
+            <i class="fold iconfont icon-right"></i>
+            PLC
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Delta">
+            
+            Delta
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;EIP">
+            
+            EIP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Modbus">
+            
+            Modbus
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="https://www.keyence.com.cn/">基恩士</a></li>
+            
+            <li><a target="_blank" href="https://www.delta-china.com.cn/zh-CN/index">台达</a></li>
+            
+            <li><a target="_blank" href="https://www.ad.siemens.com.cn/home/?_channel_track_key=lpSbj6Lj">西门子工业</a></li>
+            
+            <li><a target="_blank" href="https://www.hikrobotics.com/cn/">海康机器人</a></li>
+            
+            <li><a target="_blank" href="http://i-tek.cn/">埃科光电</a></li>
+            
+            <li><a target="_blank" href="https://www.china-vision.org/">中国机器视觉网</a></li>
+            
+            <li><a target="_blank" href="https://docs.ultralytics.com/zh/">ultralytics</a></li>
+            
+            <li><a target="_blank" href="https://www.st.com/content/st_com/en.html">STM32</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短路保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>泛编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回调函数</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>局域网</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>命名规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>启动</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>输出电路</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构_链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>台达</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>同步盘</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列号_芯片ID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>永久激活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>制作安装包</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Altium</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>conda</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CUDA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cudnn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>define</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Delta</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>EIP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FPGA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FreeRTOS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini读写</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini乱码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>keil</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MDK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Modbus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nvidia</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>opencv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PCB</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PLC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>potplayer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qDebug_重定向到日志</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt_QDir</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QUdpSocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ResilioSync</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RT_Thread</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vcpkg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>visual studio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>yolov8</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 PLC Modbus "
+           href="/2026/02/02/PLC/Modbus/"
+           data-tag="PLC,Modbus"
+           data-author="" >
+            <span class="post-title" title="Modbus">Modbus</span>
+            <span class="post-date" title="2026-02-02 10:54:22">2026/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 输出电路 "
+           href="/2026/01/14/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ouput/"
+           data-tag="技术,输出电路,短路保护"
+           data-author="" >
+            <span class="post-title" title="Output">Output</span>
+            <span class="post-date" title="2026-01-14 17:43:33">2026/01/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC EIP "
+           href="/2025/05/09/PLC/EIP/"
+           data-tag="EIP"
+           data-author="" >
+            <span class="post-title" title="EIP">EIP</span>
+            <span class="post-date" title="2025-05-09 17:00:37">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 度申 "
+           href="/2025/05/09/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Do3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Do3">Do3</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 vcpkg "
+           href="/2025/05/09/%E6%9D%82%E8%AE%B0/vcpkg/"
+           data-tag="vcpkg"
+           data-author="" >
+            <span class="post-title" title="vcpkg">vcpkg</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FreeRTOS "
+           href="/2025/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/FreeTROS/"
+           data-tag="stm32,FreeRTOS"
+           data-author="" >
+            <span class="post-title" title="FreeRTOS">FreeRTOS</span>
+            <span class="post-date" title="2025-05-06 10:46:36">2025/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Dalsa "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Basler "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FPGA "
+           href="/2024/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/"
+           data-tag="FPGA"
+           data-author="" >
+            <span class="post-title" title="FPGA">FPGA</span>
+            <span class="post-date" title="2024-12-12 16:58:42">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 RT_Thread "
+           href="/2024/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/RT_Thread/"
+           data-tag="stm32,RT_Thread"
+           data-author="" >
+            <span class="post-title" title="RT_Thread">RT_Thread</span>
+            <span class="post-date" title="2024-05-06 10:46:36">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 C++ "
+           href="/2024/04/09/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/C++/"
+           data-tag="技术,C++,设计模式,泛编程,ini读写"
+           data-author="" >
+            <span class="post-title" title="C++">C++</span>
+            <span class="post-date" title="2024-04-09 15:34:36">2024/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 OpenCV "
+           href="/2024/02/02/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/OpenCV/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="OpenCV">OpenCV</span>
+            <span class="post-date" title="2024-02-02 11:26:47">2024/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 C "
+           href="/2024/01/25/%E5%B5%8C%E5%85%A5%E5%BC%8F/C/"
+           data-tag="技术,C,回调函数,define,数据结构_链表,命名规则"
+           data-author="" >
+            <span class="post-title" title="C">C</span>
+            <span class="post-date" title="2024-01-25 10:38:17">2024/01/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/12/14/%E6%9D%82%E8%AE%B0/nssm/"
+           data-tag="博客,环境,启动"
+           data-author="" >
+            <span class="post-title" title="nssm">nssm</span>
+            <span class="post-date" title="2023-12-14 09:33:03">2023/12/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/MDK_keil/"
+           data-tag="MDK,keil"
+           data-author="" >
+            <span class="post-title" title="MDK">MDK</span>
+            <span class="post-date" title="2023-12-12 10:19:23">2023/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 yolov8 "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8/"
+           data-tag="python,conda,yolov8,Nvidia,GPU,CUDA,cudnn"
+           data-author="" >
+            <span class="post-title" title="yolov8">yolov8</span>
+            <span class="post-date" title="2023-12-05 13:58:51">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 python "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Python/"
+           data-tag="python,conda"
+           data-author="" >
+            <span class="post-title" title="Python">Python</span>
+            <span class="post-date" title="2023-12-05 13:53:02">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/vscode/"
+           data-tag="环境搭建,vscode,编程"
+           data-author="" >
+            <span class="post-title" title="vscode">vscode</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 windows 服务器 "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/Windows/"
+           data-tag="Windows,环境搭建,局域网,共享,永久激活,potplayer,同步盘,ResilioSync,服务器部署"
+           data-author="" >
+            <span class="post-title" title="Windows">Windows</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 Altium "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/Altium/"
+           data-tag="Altium,PCB"
+           data-author="" >
+            <span class="post-title" title="Altium">Altium</span>
+            <span class="post-date" title="2023-11-17 16:02:16">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 InnoSetup "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/InnoSetup/"
+           data-tag="InnoSetup,制作安装包"
+           data-author="" >
+            <span class="post-title" title="InnoSetup">InnoSetup</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 git "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/git/"
+           data-tag="git,版本管理,git服务器部署"
+           data-author="" >
+            <span class="post-title" title="git">git</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC Delta "
+           href="/2023/11/17/PLC/Delta/"
+           data-tag="PLC,台达,Delta"
+           data-author="" >
+            <span class="post-title" title="Delta">Delta</span>
+            <span class="post-date" title="2023-11-17 15:54:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/"
+           data-tag="STM32,HAL,vscode-stm32,序列号_芯片ID"
+           data-author="" >
+            <span class="post-title" title="STM32">STM32</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 HIK "
+           href="/2023/11/16/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E6%9D%82%E8%AE%B0/hexo/"
+           data-tag="博客,hexo,minio"
+           data-author="" >
+            <span class="post-title" title="hexo">hexo</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 Qt "
+           href="/2023/02/14/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/Qt/"
+           data-tag="Modbus,visual studio,Qt,vscode-Qt,QUdpSocket,QML,Qt_QDir,qDebug_重定向到日志,ini乱码,多线程"
+           data-author="" >
+            <span class="post-title" title="Qt">Qt</span>
+            <span class="post-date" title="2023-02-14 17:46:44">2023/02/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-嵌入式/FPGA" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">FPGA</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="嵌入式">嵌入式</a> > 
+            
+            <a  data-rel="嵌入式&lt;---&gt;FPGA">FPGA</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">FPGA</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2026-02-02 11:52:45'>2024-12-12 16:58</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Artix7%E7%B3%BB%E5%88%97FPGA%E6%A6%82%E8%BF%B0"><span class="toc-text">Artix7系列FPGA概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XC7A100T%E5%AE%9E%E6%93%8D%E6%A0%B8%E5%BF%83%E5%86%85%E5%AE%B9"><span class="toc-text">XC7A100T实操核心内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Vivado%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%9B%BA%E5%8C%96"><span class="toc-text">一、Vivado工具安装与代码固化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%B7%A5%E5%85%B7%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9"><span class="toc-text">1.1 工具版本选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-text">1.2 详细安装步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E4%BB%A3%E7%A0%81%E5%9B%BA%E5%8C%96%E8%AF%B4%E6%98%8E"><span class="toc-text">1.3 代码固化说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Verilog%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">二、Verilog语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.1 进制格式表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">2.2 常用数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%B8%B8%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2.3 常用运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="toc-text">2.4 常用语句</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-1-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5%EF%BC%88if%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="toc-text">2.4.1 条件语句（if语句）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81IO%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE%EF%BC%88INPUT-OUTPUT%EF%BC%89"><span class="toc-text">三、IO接口配置（INPUT&#x2F;OUTPUT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%97%B6%E9%92%9F%E7%AE%A1%E7%90%86"><span class="toc-text">四、时钟管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E6%97%B6%E9%92%9F%E7%BC%93%E5%86%B2%E5%99%A8%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%94%A8%E6%B3%95"><span class="toc-text">4.1 时钟缓冲器类型及用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%97%B6%E9%92%9F%E7%9B%B8%E5%85%B3%E8%A1%A5%E5%85%85"><span class="toc-text">4.2 时钟相关补充</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-text">五、代码编辑相关配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%B8%B8%E7%94%A8Verilog%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-text">5.1 常用Verilog代码格式化工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-VS-Code%E7%BC%96%E8%BE%91%E5%99%A8%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">5.2 VS Code编辑器插件配置</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Artix7系列FPGA概述"><a href="#Artix7系列FPGA概述" class="headerlink" title="Artix7系列FPGA概述"></a>Artix7系列FPGA概述</h1><p>Artix7是Xilinx公司推出的低成本、高性能FPGA系列，适用于中低端嵌入式、工业控制、通信接口等场景，其中XC7A100T是该系列中应用广泛的型号，具备丰富的逻辑资源、IO接口和时钟管理模块，本文聚焦XC7A100T型号，详细讲解Vivado工具安装、代码固化、Verilog语法基础、IO配置及时钟管理等核心实操内容，助力开发者快速上手Artix7 FPGA开发。</p>
+<h2 id="XC7A100T实操核心内容"><a href="#XC7A100T实操核心内容" class="headerlink" title="XC7A100T实操核心内容"></a>XC7A100T实操核心内容</h2><h3 id="一、Vivado工具安装与代码固化"><a href="#一、Vivado工具安装与代码固化" class="headerlink" title="一、Vivado工具安装与代码固化"></a>一、Vivado工具安装与代码固化</h3><h4 id="1-1-工具版本选择"><a href="#1-1-工具版本选择" class="headerlink" title="1.1 工具版本选择"></a>1.1 工具版本选择</h4><p>推荐使用 Vivado 2019.2 版本，该版本稳定性高，对Artix7系列FPGA兼容性好，适配XC7A100T型号的开发需求，同时支持后续代码固化、仿真验证等全流程操作。</p>
+<h4 id="1-2-详细安装步骤"><a href="#1-2-详细安装步骤" class="headerlink" title="1.2 详细安装步骤"></a>1.2 详细安装步骤</h4><ol>
+<li><p>准备工作：下载Vivado 2019.2安装包，确保安装包存放路径无中文、无空格（中文路径会导致安装失败或后续工具异常）。</p>
+</li>
+<li><p>启动安装：双击安装包中的xsetup.exe文件，启动安装程序，等待程序加载完成后进入安装向导。</p>
+</li>
+<li><p>安装向导操作：全程遵循安装向导提示，遇到许可协议（License Agreement）时，勾选“Agree”同意相关协议，点击“Next”继续；遇到路径选择界面时，自行指定安装路径（建议安装在非系统盘，预留足够存储空间，至少20GB）。</p>
+</li>
+<li><p>版本选择：在版本选择界面，勾选“Vivado HL System Edition”（完整版，包含FPGA开发所需的全部功能，无需额外安装组件）。</p>
+</li>
+<li><p>等待安装：点击“Install”开始安装，安装过程耗时较长（取决于电脑配置，通常需要30分钟至1小时），期间请勿关闭安装程序或中断安装进程。</p>
+</li>
+<li><p>License配置：安装完成后，会自动弹出“License Manager 2019.2”窗口，点击左侧“Load License”，选择提前准备好的License文件，加载完成后关闭窗口，即可正常使用Vivado工具。</p>
+</li>
+</ol>
+<h4 id="1-3-代码固化说明"><a href="#1-3-代码固化说明" class="headerlink" title="1.3 代码固化说明"></a>1.3 代码固化说明</h4><p>代码固化（烧录）需在Vivado工具中完成，后续可结合具体项目需求，在代码编写、综合、实现完成后，通过JTAG下载器将比特流文件烧录至XC7A100T芯片，实现程序固化与启动运行，具体烧录步骤将在后续实操章节补充。</p>
+<h3 id="二、Verilog语言基础"><a href="#二、Verilog语言基础" class="headerlink" title="二、Verilog语言基础"></a>二、Verilog语言基础</h3><p>Verilog是FPGA开发中最常用的硬件描述语言，用于描述FPGA的逻辑功能、时序特性，以下梳理开发中常用的基础语法，适配XC7A100T的开发场景，确保代码规范、可综合。</p>
+<h4 id="2-1-进制格式表示"><a href="#2-1-进制格式表示" class="headerlink" title="2.1 进制格式表示"></a>2.1 进制格式表示</h4><p>Verilog中支持三种常用进制，分别用于不同场景，格式规范如下：</p>
+<ul>
+<li><p>二进制：格式为“位宽’b数值”，示例：4’b0000（4位二进制数0）、8’b10101100（8位二进制数172），位宽可根据实际需求调整，未指定位宽时默认1位。</p>
+</li>
+<li><p>十进制：格式为“位宽’d数值”，示例：4’d0（4位十进制数0）、32’d100（32位十进制数100），适用于直观表示数值大小。</p>
+</li>
+<li><p>十六进制：格式为“位宽’h数值”，示例：4’h0（4位十六进制数0）、8’hA5（8位十六进制数，对应二进制10100101），适用于简化长二进制数的表示，常用在地址、数据总线等场景。</p>
+</li>
+</ul>
+<h4 id="2-2-常用数据类型"><a href="#2-2-常用数据类型" class="headerlink" title="2.2 常用数据类型"></a>2.2 常用数据类型</h4><p>FPGA开发中，Verilog常用数据类型分为三类，分别对应不同的硬件结构，核心用法如下：</p>
+<ul>
+<li><p>寄存器类型（reg）：用于表示时序逻辑中的存储单元（如触发器），格式：reg [位宽-1:0] 变量名; 示例：reg [31:0] a;（定义32位寄存器变量a），reg类型变量仅能在always块、initial块中赋值。</p>
+</li>
+<li><p>线网类型（wire）：用于表示组合逻辑中的导线，连接不同的逻辑模块，格式：wire [位宽-1:0] 变量名; 示例：wire [31:0] a;（定义32位线网变量a），wire类型变量通常通过assign语句赋值，或作为模块的输入输出端口。</p>
+</li>
+<li><p>参数类型（parameter）：用于定义常量，方便代码修改和复用，格式：parameter [位宽-1:0] 参数名 &#x3D; 数值; 示例：parameter [31:0] a &#x3D; 32’d100;（定义32位常量a，值为100），参数值在编译阶段确定，不可修改。</p>
+</li>
+</ul>
+<h4 id="2-3-常用运算符"><a href="#2-3-常用运算符" class="headerlink" title="2.3 常用运算符"></a>2.3 常用运算符</h4><p>Verilog运算符按功能分为算术运算符、位运算符、关系运算符、逻辑运算符四类，常用运算符及用法如下，确保代码可综合（避免使用不可综合运算符）：</p>
+<ul>
+<li><p>算术运算符：+（加）、-（减）、*（乘）、&#x2F;（除）、%（取余），示例：a &#x3D; b + c;（a等于b加c）、a &#x3D; b % c;（a等于b对c取余），注意：除法、取余运算仅支持除数为2的幂次时可综合，否则需调用IP核。</p>
+</li>
+<li><p>位运算符：&amp;（位与）、|（位或）、^（位异或）、~（位取反），示例：a &#x3D; b &amp; c;（a的每一位等于b和c对应位的与运算）、a &#x3D; ~b;（a的每一位等于b对应位的取反）。</p>
+</li>
+<li><p>关系运算符：&lt;（小于）、&lt;&#x3D;（小于等于）、&gt;（大于）、&gt;&#x3D;（大于等于），用于比较两个数值的大小，返回1（真）或0（假），示例：if(a &lt;&#x3D; 100)（判断a是否小于等于100）。</p>
+</li>
+<li><p>逻辑运算符：&amp;&amp;（逻辑与）、||（逻辑或）、!（逻辑非），用于逻辑判断，仅判断变量的真假（非0为真，0为假），示例：if(a &amp;&amp; b)（判断a和b均为真）、if(!a)（判断a为假）。</p>
+</li>
+</ul>
+<h4 id="2-4-常用语句"><a href="#2-4-常用语句" class="headerlink" title="2.4 常用语句"></a>2.4 常用语句</h4><p>FPGA开发中，Verilog常用语句以条件语句为主，用于实现逻辑判断和分支控制，格式规范及示例如下，确保代码可读性和可综合：</p>
+<h5 id="2-4-1-条件语句（if语句）"><a href="#2-4-1-条件语句（if语句）" class="headerlink" title="2.4.1 条件语句（if语句）"></a>2.4.1 条件语句（if语句）</h5><p>if语句分为简单条件语句和复合条件语句，适用于不同的分支场景：</p>
+<ol>
+<li><p>简单条件语句（单分支）：适用于单个逻辑判断，格式：<br> <code>if (a == 100)  b = 1;</code>说明：当a等于100时，将b赋值为1；否则b保持原有值（reg类型）或高阻态（wire类型）。</p>
+</li>
+<li><p>复合条件语句（多操作）：适用于多个操作的分支控制，需用begin…end包裹操作语句，格式：<br> <code>if(a == 100) begin  b = 1;  b = 2; // 多个操作语句，按顺序执行 end</code>说明：当a等于100时，依次执行begin…end中的所有操作语句；否则不执行。</p>
+</li>
+</ol>
+<p>补充：if语句可嵌套使用（if…else if…else），用于多分支判断，嵌套层数不宜过多（避免时序变差），适配XC7A100T的逻辑资源和时序要求。</p>
+<h3 id="三、IO接口配置（INPUT-OUTPUT）"><a href="#三、IO接口配置（INPUT-OUTPUT）" class="headerlink" title="三、IO接口配置（INPUT&#x2F;OUTPUT）"></a>三、IO接口配置（INPUT&#x2F;OUTPUT）</h3><p>XC7A100T具备丰富的IO接口，可配置为输入（INPUT）、输出（OUTPUT）或双向（INOUT）模式，适配不同的外部设备连接需求，核心配置原则如下：</p>
+<ul>
+<li><p>输入接口（INPUT）：用于接收外部设备的信号（如按键、传感器输出），在模块定义中声明，格式：input [位宽-1:0] 端口名; 示例：input clk;（单个时钟输入）、input [7:0] data_in;（8位数据输入）。</p>
+</li>
+<li><p>输出接口（OUTPUT）：用于向外部设备输出信号（如LED、显示屏控制信号），在模块定义中声明，格式：output reg [位宽-1:0] 端口名;（时序逻辑输出）、output [位宽-1:0] 端口名;（组合逻辑输出），示例：output reg led;（LED控制输出，时序逻辑）、output [7:0] data_out;（8位数据输出，组合逻辑）。</p>
+</li>
+<li><p>配置注意事项：IO接口需根据外部设备的电平标准（如3.3V、5V）配置对应的IOBank电压，避免电平不匹配导致芯片损坏；同时需注意IO接口的驱动能力，高频信号需添加约束，确保信号完整性。</p>
+</li>
+</ul>
+<h3 id="四、时钟管理"><a href="#四、时钟管理" class="headerlink" title="四、时钟管理"></a>四、时钟管理</h3><p>时钟是FPGA时序逻辑的核心，XC7A100T内置时钟管理模块（CMT），同时支持全局时钟、区域时钟两种时钟分配方式，不同时钟缓冲器（bufg、bufr）的用法的如下，确保时钟信号稳定、时序收敛。</p>
+<h4 id="4-1-时钟缓冲器类型及用法"><a href="#4-1-时钟缓冲器类型及用法" class="headerlink" title="4.1 时钟缓冲器类型及用法"></a>4.1 时钟缓冲器类型及用法</h4><ul>
+<li><p>全局时钟缓冲器（bufg）：用于驱动全局时钟信号，可控制FPGA内部所有的逻辑资源、IO资源和时钟管理模块，具备低时延、低抖动的特点，适用于系统主时钟（如50MHz、100MHz）的分配，确保整个芯片的时钟同步。</p>
+</li>
+<li><p>区域时钟缓冲器（bufr）：用于驱动局部区域的时钟信号，仅能控制FPGA内部一个Clock Region（局域时钟区域）的IO和逻辑资源，时延略高于bufg，适用于局部模块的时钟分配（如低速外设时钟），可减少全局时钟资源的占用。</p>
+</li>
+</ul>
+<h4 id="4-2-时钟相关补充"><a href="#4-2-时钟相关补充" class="headerlink" title="4.2 时钟相关补充"></a>4.2 时钟相关补充</h4><p>Clock Region（局域时钟区域）：XC7A100T芯片内部按区域划分多个Clock Region，每个区域包含独立的IO资源、逻辑资源和时钟缓冲器，区域时钟（bufr）仅能在自身区域内分配时钟，合理划分时钟区域可优化时序、降低功耗。</p>
+<h3 id="五、代码编辑相关配置"><a href="#五、代码编辑相关配置" class="headerlink" title="五、代码编辑相关配置"></a>五、代码编辑相关配置</h3><p>推荐使用VS Code编辑器进行Verilog代码编写，配合相关插件和格式化工具，提升代码编写效率和规范性，以下介绍常用的代码格式化工具和编辑器插件配置。</p>
+<h4 id="5-1-常用Verilog代码格式化工具"><a href="#5-1-常用Verilog代码格式化工具" class="headerlink" title="5.1 常用Verilog代码格式化工具"></a>5.1 常用Verilog代码格式化工具</h4><p>三款常用格式化工具对比及推荐，根据实际使用场景选择，优先保证代码格式化效果和兼容性：</p>
+<ul>
+<li><p>verilog-format：配置简单，无需复杂操作，可快速实现代码格式化，但格式化效果一般，对复杂代码（如多always块、嵌套语句）的排版不够规范。</p>
+</li>
+<li><p>iStyle：格式化效果较好，支持自定义格式化规则，对复杂代码的排版规范、可读性强，但需要下载源码并编译生成二进制文件，配置步骤略繁琐，<strong>推荐使用</strong>。</p>
+</li>
+<li><p>verible-verilog-format：配置简单，格式化效果较好，支持大多数Verilog语法的格式化，但存在兼容性问题——同一文件内出现多个always语句块时无法正常格式化，因此不推荐用于复杂代码编写。</p>
+</li>
+</ul>
+<p>补充：三款工具的核心功能均为代码格式化，仅在配置难度和格式化效果上存在差异，实际开发中优先使用iStyle，确保代码规范统一。</p>
+<h4 id="5-2-VS-Code编辑器插件配置"><a href="#5-2-VS-Code编辑器插件配置" class="headerlink" title="5.2 VS Code编辑器插件配置"></a>5.2 VS Code编辑器插件配置</h4><p>安装插件：在VS Code编辑器中搜索并安装“Verilog-HDL&#x2F;System Verilog&#x2F;**”插件，该插件支持Verilog代码关键字高亮、语法检查、代码补全，同时兼容上述三款格式化工具，可直接在编辑器中调用格式化功能，提升开发效率。</p>
+<p>插件补充：安装完成后，可在VS Code设置中配置默认格式化工具（如iStyle），自定义缩进、空格等格式化规则，适配个人编码习惯。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 邮件 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">作者: <a href="https://hexo.io/" target="_blank">FenJE</a></p>
+
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

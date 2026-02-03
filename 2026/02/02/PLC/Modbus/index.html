@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Modbus | 冯杰的笔记</title>
+  <meta name="keywords" content=" PLC , Modbus ">
+  <meta name="description" content="Modbus | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://fengjie1223.github.io/hello-world.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-03T03:12:54.239Z">
+<meta property="article:modified_time" content="2023-11-16T07:44:55.000Z">
+<meta property="article:author" content="冯杰">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(27)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工业相机">
+            <i class="fold iconfont icon-right"></i>
+            工业相机
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;度申">
+            
+            度申
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(8)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;输出电路">
+            
+            输出电路
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;Altium">
+            
+            Altium
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;C">
+            
+            C
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FPGA">
+            
+            FPGA
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FreeRTOS">
+            
+            FreeRTOS
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;RT_Thread">
+            
+            RT_Thread
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;STM32">
+            
+            STM32
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="软件编程">
+            <i class="fold iconfont icon-right"></i>
+            软件编程
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;OpenCV">
+            
+            OpenCV
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;Qt">
+            
+            Qt
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;vcpkg">
+            
+            vcpkg
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="深度学习">
+            <i class="fold iconfont icon-right"></i>
+            深度学习
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;python">
+            
+            python
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;yolov8">
+            
+            yolov8
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows">
+            <i class="fold iconfont icon-right"></i>
+            windows
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows&lt;---&gt;服务器">
+            
+            服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="PLC">
+            <i class="fold iconfont icon-right"></i>
+            PLC
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Delta">
+            
+            Delta
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;EIP">
+            
+            EIP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Modbus">
+            
+            Modbus
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="https://www.keyence.com.cn/">基恩士</a></li>
+            
+            <li><a target="_blank" href="https://www.delta-china.com.cn/zh-CN/index">台达</a></li>
+            
+            <li><a target="_blank" href="https://www.ad.siemens.com.cn/home/?_channel_track_key=lpSbj6Lj">西门子工业</a></li>
+            
+            <li><a target="_blank" href="https://www.hikrobotics.com/cn/">海康机器人</a></li>
+            
+            <li><a target="_blank" href="http://i-tek.cn/">埃科光电</a></li>
+            
+            <li><a target="_blank" href="https://www.china-vision.org/">中国机器视觉网</a></li>
+            
+            <li><a target="_blank" href="https://docs.ultralytics.com/zh/">ultralytics</a></li>
+            
+            <li><a target="_blank" href="https://www.st.com/content/st_com/en.html">STM32</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短路保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>泛编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回调函数</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>局域网</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>命名规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>启动</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>输出电路</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构_链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>台达</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>同步盘</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列号_芯片ID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>永久激活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>制作安装包</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Altium</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>conda</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CUDA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cudnn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>define</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Delta</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>EIP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FPGA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FreeRTOS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini读写</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini乱码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>keil</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MDK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Modbus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nvidia</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>opencv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PCB</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PLC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>potplayer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qDebug_重定向到日志</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt_QDir</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QUdpSocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ResilioSync</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RT_Thread</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vcpkg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>visual studio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>yolov8</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 PLC Modbus "
+           href="/2026/02/02/PLC/Modbus/"
+           data-tag="PLC,Modbus"
+           data-author="" >
+            <span class="post-title" title="Modbus">Modbus</span>
+            <span class="post-date" title="2026-02-02 10:54:22">2026/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 输出电路 "
+           href="/2026/01/14/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ouput/"
+           data-tag="技术,输出电路,短路保护"
+           data-author="" >
+            <span class="post-title" title="Output">Output</span>
+            <span class="post-date" title="2026-01-14 17:43:33">2026/01/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC EIP "
+           href="/2025/05/09/PLC/EIP/"
+           data-tag="EIP"
+           data-author="" >
+            <span class="post-title" title="EIP">EIP</span>
+            <span class="post-date" title="2025-05-09 17:00:37">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 度申 "
+           href="/2025/05/09/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Do3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Do3">Do3</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 vcpkg "
+           href="/2025/05/09/%E6%9D%82%E8%AE%B0/vcpkg/"
+           data-tag="vcpkg"
+           data-author="" >
+            <span class="post-title" title="vcpkg">vcpkg</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FreeRTOS "
+           href="/2025/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/FreeTROS/"
+           data-tag="stm32,FreeRTOS"
+           data-author="" >
+            <span class="post-title" title="FreeRTOS">FreeRTOS</span>
+            <span class="post-date" title="2025-05-06 10:46:36">2025/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Dalsa "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Basler "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FPGA "
+           href="/2024/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/"
+           data-tag="FPGA"
+           data-author="" >
+            <span class="post-title" title="FPGA">FPGA</span>
+            <span class="post-date" title="2024-12-12 16:58:42">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 RT_Thread "
+           href="/2024/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/RT_Thread/"
+           data-tag="stm32,RT_Thread"
+           data-author="" >
+            <span class="post-title" title="RT_Thread">RT_Thread</span>
+            <span class="post-date" title="2024-05-06 10:46:36">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 C++ "
+           href="/2024/04/09/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/C++/"
+           data-tag="技术,C++,设计模式,泛编程,ini读写"
+           data-author="" >
+            <span class="post-title" title="C++">C++</span>
+            <span class="post-date" title="2024-04-09 15:34:36">2024/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 OpenCV "
+           href="/2024/02/02/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/OpenCV/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="OpenCV">OpenCV</span>
+            <span class="post-date" title="2024-02-02 11:26:47">2024/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 C "
+           href="/2024/01/25/%E5%B5%8C%E5%85%A5%E5%BC%8F/C/"
+           data-tag="技术,C,回调函数,define,数据结构_链表,命名规则"
+           data-author="" >
+            <span class="post-title" title="C">C</span>
+            <span class="post-date" title="2024-01-25 10:38:17">2024/01/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/12/14/%E6%9D%82%E8%AE%B0/nssm/"
+           data-tag="博客,环境,启动"
+           data-author="" >
+            <span class="post-title" title="nssm">nssm</span>
+            <span class="post-date" title="2023-12-14 09:33:03">2023/12/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/MDK_keil/"
+           data-tag="MDK,keil"
+           data-author="" >
+            <span class="post-title" title="MDK">MDK</span>
+            <span class="post-date" title="2023-12-12 10:19:23">2023/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 yolov8 "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8/"
+           data-tag="python,conda,yolov8,Nvidia,GPU,CUDA,cudnn"
+           data-author="" >
+            <span class="post-title" title="yolov8">yolov8</span>
+            <span class="post-date" title="2023-12-05 13:58:51">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 python "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Python/"
+           data-tag="python,conda"
+           data-author="" >
+            <span class="post-title" title="Python">Python</span>
+            <span class="post-date" title="2023-12-05 13:53:02">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/vscode/"
+           data-tag="环境搭建,vscode,编程"
+           data-author="" >
+            <span class="post-title" title="vscode">vscode</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 windows 服务器 "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/Windows/"
+           data-tag="Windows,环境搭建,局域网,共享,永久激活,potplayer,同步盘,ResilioSync,服务器部署"
+           data-author="" >
+            <span class="post-title" title="Windows">Windows</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 Altium "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/Altium/"
+           data-tag="Altium,PCB"
+           data-author="" >
+            <span class="post-title" title="Altium">Altium</span>
+            <span class="post-date" title="2023-11-17 16:02:16">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 InnoSetup "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/InnoSetup/"
+           data-tag="InnoSetup,制作安装包"
+           data-author="" >
+            <span class="post-title" title="InnoSetup">InnoSetup</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 git "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/git/"
+           data-tag="git,版本管理,git服务器部署"
+           data-author="" >
+            <span class="post-title" title="git">git</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC Delta "
+           href="/2023/11/17/PLC/Delta/"
+           data-tag="PLC,台达,Delta"
+           data-author="" >
+            <span class="post-title" title="Delta">Delta</span>
+            <span class="post-date" title="2023-11-17 15:54:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/"
+           data-tag="STM32,HAL,vscode-stm32,序列号_芯片ID"
+           data-author="" >
+            <span class="post-title" title="STM32">STM32</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 HIK "
+           href="/2023/11/16/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E6%9D%82%E8%AE%B0/hexo/"
+           data-tag="博客,hexo,minio"
+           data-author="" >
+            <span class="post-title" title="hexo">hexo</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 Qt "
+           href="/2023/02/14/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/Qt/"
+           data-tag="Modbus,visual studio,Qt,vscode-Qt,QUdpSocket,QML,Qt_QDir,qDebug_重定向到日志,ini乱码,多线程"
+           data-author="" >
+            <span class="post-title" title="Qt">Qt</span>
+            <span class="post-date" title="2023-02-14 17:46:44">2023/02/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-PLC/Modbus" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Modbus</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="PLC">PLC</a> > 
+            
+            <a  data-rel="PLC&lt;---&gt;Modbus">Modbus</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">PLC</a>
+            
+            <a class="color2">Modbus</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2026-02-02 11:11:37'>2026-02-02 10:54</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%AE%8C%E6%95%B4%E6%96%87%E6%A1%A3"><span class="toc-text">Modbus 协议完整文档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Modbus-%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="toc-text">一、Modbus 协议概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Modbus-%E6%A0%B8%E5%BF%83%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">二、Modbus 核心通信模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BB%E7%AB%99%EF%BC%88Client-Master%EF%BC%89"><span class="toc-text">1. 主站（Client&#x2F;Master）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%8E%E7%AB%99%EF%BC%88Slave-Server%EF%BC%89"><span class="toc-text">2. 从站（Slave&#x2F;Server）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Modbus-%E5%B8%B8%E7%94%A8%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F"><span class="toc-text">三、Modbus 常用传输模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Modbus-RTU"><span class="toc-text">1. Modbus RTU</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Client%EF%BC%88%E4%B8%BB%E7%AB%99%EF%BC%89"><span class="toc-text">（1）Client（主站）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Slave%EF%BC%88%E4%BB%8E%E7%AB%99%EF%BC%89"><span class="toc-text">（2）Slave（从站）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Modbus-TCP"><span class="toc-text">2. Modbus TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89Client%EF%BC%88%E4%B8%BB%E7%AB%99%EF%BC%89-1"><span class="toc-text">（1）Client（主站）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Slave%EF%BC%88%E4%BB%8E%E7%AB%99%EF%BC%89-1"><span class="toc-text">（2）Slave（从站）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Modbus-ASCII%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="toc-text">3. Modbus ASCII（补充）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Modbus-%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%AF%84%E5%AD%98%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">四、Modbus 四大核心寄存器类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%85%B3%E9%94%AE%E8%AF%B4%E6%98%8E"><span class="toc-text">寄存器关键说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Modbus-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-text">五、Modbus 常用功能码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%8E%B0%E5%9C%BA%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%87%E5%87%86%E5%8A%9F%E8%83%BD%E7%A0%81%EF%BC%88%E5%BF%85%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-text">工业现场最常用的标准功能码（必实现）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%8A%9F%E8%83%BD%E7%A0%81%E4%B8%8E%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8%E7%A0%81%EF%BC%88%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="toc-text">异常功能码与常见异常码（核心）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81Modbus-%E5%8D%8F%E8%AE%AE%E5%85%B3%E9%94%AE%E9%80%9A%E4%BF%A1%E5%8F%82%E6%95%B0"><span class="toc-text">六、Modbus 协议关键通信参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Modbus-RTU-%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1%E5%8F%82%E6%95%B0%EF%BC%88%E5%BF%85%E9%A1%BB%E4%B8%BB%E4%BB%8E%E4%B8%80%E8%87%B4%EF%BC%89"><span class="toc-text">1. Modbus RTU 串行通信参数（必须主从一致）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Modbus-TCP-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8F%82%E6%95%B0"><span class="toc-text">2. Modbus TCP 网络通信参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81Modbus-%E5%8D%8F%E8%AE%AE%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">七、Modbus 协议异常处理与常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-text">1. 核心异常处理机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B7%A5%E4%B8%9A%E7%8E%B0%E5%9C%BA%E5%B8%B8%E8%A7%81%E9%80%9A%E4%BF%A1%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">2. 工业现场常见通信问题及解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81Modbus-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%B8%9A%E5%BA%94%E7%94%A8%E6%8B%93%E5%B1%95"><span class="toc-text">八、Modbus 协议的工业应用拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Modbus-%E5%8D%8F%E8%AE%AE%E6%A0%B8%E5%BF%83%E7%89%B9%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">九、Modbus 协议核心特点总结</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Modbus-协议完整文档"><a href="#Modbus-协议完整文档" class="headerlink" title="Modbus 协议完整文档"></a>Modbus 协议完整文档</h1><h2 id="一、Modbus-协议概述"><a href="#一、Modbus-协议概述" class="headerlink" title="一、Modbus 协议概述"></a>一、Modbus 协议概述</h2><p>Modbus 是由施耐德公司于1979年推出的<strong>工业现场串行通信协议</strong>，是工业自动化领域应用最广泛的开放式、标准化通信协议之一，主打<strong>简单易用、跨厂商兼容、轻量高效</strong>的特点。</p>
+<ul>
+<li><p>核心定位：为工业设备（PLC、变频器、传感器、仪表等）提供统一的通信交互标准，实现不同厂商、不同类型设备之间的互联互通。</p>
+</li>
+<li><p>通信架构：基于<strong>主从式（Client&#x2F;Server）</strong> 通信模型，由主站（Client）主动发起请求，从站（Slave&#x2F;Server）被动响应，无主站请求时从站不主动发送数据。</p>
+</li>
+<li><p>协议优势：无专利限制、协议解析简单、硬件要求低，支持串行和以太网多种传输方式，适配工业现场复杂的通信环境。</p>
+</li>
+<li><p>应用场景：工业自动化产线数据采集、设备远程控制、楼宇自控、智能家居、电力监控等场景，是工业物联网（IIoT）底层通信的核心协议之一。</p>
+</li>
+</ul>
+<h2 id="二、Modbus-核心通信模型"><a href="#二、Modbus-核心通信模型" class="headerlink" title="二、Modbus 核心通信模型"></a>二、Modbus 核心通信模型</h2><p>Modbus 协议全程遵循<strong>主从式（Client&#x2F;Slave）</strong> 通信模型，这是所有Modbus衍生版本的基础通信规则，无主站请求时，从站始终处于静默监听状态，具体分工如下：</p>
+<h3 id="1-主站（Client-Master）"><a href="#1-主站（Client-Master）" class="headerlink" title="1. 主站（Client&#x2F;Master）"></a>1. 主站（Client&#x2F;Master）</h3><ul>
+<li><p>唯一发起通信的主体，同一通信链路中<strong>仅允许存在一个主站</strong>（RTU&#x2F;ASCII），TCP版本支持多主站并发。</p>
+</li>
+<li><p>核心职责：主动向指定从站发送请求指令、等待从站响应、校验响应数据合法性、解析并处理数据（如采集传感器值、下发设备控制指令），对无响应&#x2F;异常响应的从站做超时、重发等处理。</p>
+</li>
+</ul>
+<h3 id="2-从站（Slave-Server）"><a href="#2-从站（Slave-Server）" class="headerlink" title="2. 从站（Slave&#x2F;Server）"></a>2. 从站（Slave&#x2F;Server）</h3><ul>
+<li><p>被动响应方，同一通信链路中可挂载多个从站（RTU&#x2F;ASCII通常支持32&#x2F;64个，TCP无节点数限制）。</p>
+</li>
+<li><p>核心职责：实时监听总线&#x2F;网络请求，仅解析指向自身唯一标识（RTU为地址，TCP为IP）的请求帧；校验请求合法性后执行对应操作（读&#x2F;写寄存器、返回设备状态）；按协议格式封装响应数据并回传，对非法请求返回异常响应帧。</p>
+</li>
+</ul>
+<h2 id="三、Modbus-常用传输模式"><a href="#三、Modbus-常用传输模式" class="headerlink" title="三、Modbus 常用传输模式"></a>三、Modbus 常用传输模式</h2><p>Modbus 协议根据传输介质和编码方式，衍生出<strong>3种核心传输模式</strong>，其中 Modbus RTU 和 Modbus TCP 为工业现场最主流的版本，Modbus ASCII 因传输效率低仅用于部分老旧设备。</p>
+<h3 id="1-Modbus-RTU"><a href="#1-Modbus-RTU" class="headerlink" title="1. Modbus RTU"></a>1. Modbus RTU</h3><p>基于<strong>串行总线（RS-232&#x2F;RS-485）</strong> 的二进制传输模式，是工业现场最常用的版本，主打<strong>传输效率高、抗干扰能力强</strong>，适配现场总线的短距离、多节点通信场景。</p>
+<h4 id="（1）Client（主站）"><a href="#（1）Client（主站）" class="headerlink" title="（1）Client（主站）"></a>（1）Client（主站）</h4><ul>
+<li><p>通信特性：基于RS-232&#x2F;RS-485传输，二进制编码（数据帧无冗余），通信速率支持2400~19200bps，<strong>主从站必须统一波特率、数据位（8位）、停止位（1&#x2F;2位）、校验位（奇&#x2F;偶&#x2F;无）</strong> 等串行参数，否则无法通信。</p>
+</li>
+<li><p>核心功能：主动发送功能码指令，指定目标从站地址（1~247），携带寄存器地址、数据长度&#x2F;写入值等参数；接收从站响应帧，通过<strong>CRC16循环冗余校验</strong>验证数据完整性；解析有效数据并完成业务逻辑（如采集温湿度、控制电机启停）。</p>
+</li>
+<li><p>帧格式（固定结构，字节数随数据段变化）：<code>从站地址(1字节) + 功能码(1字节) + 数据段(N字节) + CRC16校验(2字节)</code></p>
+</li>
+<li><p>关键要求：发送请求后需设置合理超时时间（通常100~500ms），避免总线阻塞；支持总线故障检测，对校验错误、无响应的从站执行重发或异常标记。</p>
+</li>
+</ul>
+<h4 id="（2）Slave（从站）"><a href="#（2）Slave（从站）" class="headerlink" title="（2）Slave（从站）"></a>（2）Slave（从站）</h4><ul>
+<li><p>通信特性：与主站保持完全一致的串行通信参数，实时监听总线数据，<strong>仅解析地址匹配的帧数据</strong>，忽略其他从站地址的请求，降低资源占用。</p>
+</li>
+<li><p>核心功能：接收主站请求帧，校验从站地址和功能码合法性；执行对应操作（读取本地寄存器数据、写入指定寄存器值、返回设备异常状态）；按RTU格式封装响应数据，在规定时间内回传主站；若请求非法（功能码不支持、寄存器地址越界），返回<strong>异常响应帧</strong>（功能码最高位置1 + 异常码）。</p>
+</li>
+<li><p>关键要求：本地需维护<strong>Modbus寄存器映射表</strong>，确保物理量（如传感器数据、设备开关状态）与寄存器地址一一对应；响应延迟需控制在总线允许范围内，避免主站超时；总线内从站地址必须唯一，禁止地址冲突。</p>
+</li>
+</ul>
+<h3 id="2-Modbus-TCP"><a href="#2-Modbus-TCP" class="headerlink" title="2. Modbus TCP"></a>2. Modbus TCP</h3><p>基于<strong>以太网TCP&#x2F;IP协议</strong>的传输模式，是Modbus协议的以太网扩展版本，解决了串行Modbus的<strong>传输距离短、节点数有限、不支持多主站</strong>等问题，适配工业局域网&#x2F;广域网的远距离、多设备并发通信场景。</p>
+<h4 id="（1）Client（主站）-1"><a href="#（1）Client（主站）-1" class="headerlink" title="（1）Client（主站）"></a>（1）Client（主站）</h4><ul>
+<li><p>通信特性：基于以太网（TCP&#x2F;IP v4&#x2F;v6）传输，采用<strong>MBAP（Modbus Application Protocol）报文头</strong>封装，兼容局域网&#x2F;广域网；传输速率由以太网带宽决定（10&#x2F;100&#x2F;1000Mbps），无串行通信的参数匹配限制；使用<strong>TCP 502端口</strong>（Modbus标准端口，不可随意修改）。</p>
+</li>
+<li><p>核心功能：向从站IP地址发起TCP连接，支持单连接&#x2F;多连接（同时与多个从站通信）；发送Modbus TCP请求帧，包含<strong>7字节MBAP报文头 + 传统Modbus RTU应用数据</strong>；通过MBAP中的<strong>事务标识</strong>匹配请求与响应（解决多请求并发乱序问题）；解析响应数据并处理通信异常（断连、超时、网络丢包）。</p>
+</li>
+<li><p>帧格式：<code>MBAP报文头(7字节) + RTU应用数据(N字节)</code></p>
+<ul>
+<li>MBAP报文头详解：<code>事务标识(2字节，请求/响应一一对应) + 协议标识(2字节，固定0x0000表示Modbus) + 长度(2字节，后续应用数据的总字节数) + 单元标识(1字节，映射串口从站地址，纯TCP场景设为0)</code></li>
+</ul>
+</li>
+<li><p>关键要求：确保主从站网络连通性，支持TCP自动重连机制；MBAP的<strong>长度字段需准确标识后续应用数据字节数</strong>，否则从站解析失败；防火墙需开放502端口，避免网络阻塞。</p>
+</li>
+</ul>
+<h4 id="（2）Slave（从站）-1"><a href="#（2）Slave（从站）-1" class="headerlink" title="（2）Slave（从站）"></a>（2）Slave（从站）</h4><ul>
+<li><p>通信特性：基于以太网TCP&#x2F;IP协议，监听本地<strong>TCP 502端口</strong>，等待客户端连接；支持<strong>多客户端并发通信</strong>（无主站数量限制），通过IP地址唯一标识，无地址冲突问题；传输距离无限制（只要网络可达）。</p>
+</li>
+<li><p>核心功能：监听TCP 502端口，接受客户端连接并维护连接会话；解析请求帧的MBAP报文头和功能码，校验合法性后操作本地寄存器映射表；封装响应帧（MBAP报文头 + 响应应用数据），通过TCP连接回传客户端；对非法请求返回含异常码的响应帧，同时记录通信日志（连接状态、请求错误类型）。</p>
+</li>
+<li><p>关键要求：配置<strong>固定IP地址</strong>和子网掩码，确保网络可达；本地寄存器映射表需与客户端请求的寄存器类型、地址严格匹配；具备并发处理能力，避免多客户端请求时的响应阻塞；支持TCP异常断连检测，及时释放无效连接资源。</p>
+</li>
+</ul>
+<h3 id="3-Modbus-ASCII（补充）"><a href="#3-Modbus-ASCII（补充）" class="headerlink" title="3. Modbus ASCII（补充）"></a>3. Modbus ASCII（补充）</h3><p>基于串行总线的<strong>ASCII字符编码</strong>传输模式，是早期Modbus的基础版本，主打<strong>调试方便、易识别</strong>，但传输效率低（数据帧冗余大），目前仅用于部分老旧设备或调试场景。</p>
+<ul>
+<li><p>核心特性：所有数据以ASCII字符（09、AF）传输，帧起始符为<code>:</code>，结束符为<code>\r\n</code>；采用LRC（纵向冗余校验），校验能力弱于CRC16；通信速率仅支持300~9600bps。</p>
+</li>
+<li><p>应用场景：仅用于设备调试、串口监控等对传输效率要求低的场景，工业现场已基本被Modbus RTU替代。</p>
+</li>
+</ul>
+<h2 id="四、Modbus-四大核心寄存器类型"><a href="#四、Modbus-四大核心寄存器类型" class="headerlink" title="四、Modbus 四大核心寄存器类型"></a>四、Modbus 四大核心寄存器类型</h2><p>Modbus 协议通过<strong>寄存器</strong>实现工业设备的参数读写，将设备的物理量（输入、输出、状态、参数）映射为四种标准化寄存器，所有主从站的交互均围绕这四种寄存器展开，<strong>寄存器地址为16位，地址范围0~65535</strong>，不同寄存器的读写属性、用途不同，是Modbus协议的核心数据载体。</p>
+<table>
+<thead>
+<tr>
+<th>寄存器类型</th>
+<th>英文名称</th>
+<th>读写属性</th>
+<th>核心用途</th>
+<th>典型地址范围</th>
+<th>对应常用功能码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>离散输入寄存器</td>
+<td>Discrete Inputs</td>
+<td>只读</td>
+<td>采集设备数字量输入（如按钮、限位开关状态）</td>
+<td>00001~09999</td>
+<td>02（读）</td>
+</tr>
+<tr>
+<td>线圈寄存器</td>
+<td>Coils</td>
+<td>读写</td>
+<td>控制设备数字量输出（如继电器、指示灯）</td>
+<td>00001~09999</td>
+<td>01（读）、05（单写）、15（多写）</td>
+</tr>
+<tr>
+<td>输入寄存器</td>
+<td>Input Registers</td>
+<td>只读</td>
+<td>采集设备模拟量输入（如传感器、仪表检测值）</td>
+<td>30001~39999</td>
+<td>04（读）</td>
+</tr>
+<tr>
+<td>保持寄存器</td>
+<td>Holding Registers</td>
+<td>读写</td>
+<td>存储&#x2F;修改设备参数、模拟量输出（如变频器频率、PLC设定值）</td>
+<td>40001~49999</td>
+<td>03（读）、06（单写）、16（多写）</td>
+</tr>
+</tbody></table>
+<h3 id="寄存器关键说明"><a href="#寄存器关键说明" class="headerlink" title="寄存器关键说明"></a>寄存器关键说明</h3><ol>
+<li><p>地址表示：Modbus协议有<strong>1-based（基于1）</strong> 和<strong>0-based（基于0）</strong> 两种地址表示方式，工业现场常用1-based，编程时需注意转换（如1-based地址40001对应0-based地址0000）；</p>
+</li>
+<li><p>数据长度：所有寄存器均为<strong>16位（2字节）</strong>，若需存储32位数据（如浮点数、大整数），需连续占用2个寄存器，主从站需约定高低字节顺序；</p>
+</li>
+<li><p>映射关系：从站需将本地物理量与寄存器地址一一映射（如将温度传感器值映射到保持寄存器40001），主站通过读写对应地址实现数据交互。</p>
+</li>
+</ol>
+<h2 id="五、Modbus-常用功能码"><a href="#五、Modbus-常用功能码" class="headerlink" title="五、Modbus 常用功能码"></a>五、Modbus 常用功能码</h2><p>功能码是Modbus请求帧的<strong>核心指令</strong>，为1字节（0~255），用于指定从站需执行的操作类型（读&#x2F;写寄存器、返回异常等），主站通过发送功能码告知从站“要做什么”，从站根据功能码执行对应操作并返回响应。</p>
+<p>Modbus 功能码分为<strong>正常功能码（01~127）</strong> 和<strong>异常功能码（128~255）</strong>，异常功能码由正常功能码最高位置1得到（如功能码03异常为131&#x3D;03+128），用于告知主站请求失败的原因。</p>
+<h3 id="工业现场最常用的标准功能码（必实现）"><a href="#工业现场最常用的标准功能码（必实现）" class="headerlink" title="工业现场最常用的标准功能码（必实现）"></a>工业现场最常用的标准功能码（必实现）</h3><table>
+<thead>
+<tr>
+<th>功能码</th>
+<th>名称</th>
+<th>操作类型</th>
+<th>对应寄存器类型</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>读线圈状态</td>
+<td>读</td>
+<td>线圈寄存器</td>
+<td>批量读取多个数字量输出状态（如指示灯、继电器）</td>
+</tr>
+<tr>
+<td>02</td>
+<td>读离散输入状态</td>
+<td>读</td>
+<td>离散输入寄存器</td>
+<td>批量读取多个数字量输入状态（如按钮、限位开关）</td>
+</tr>
+<tr>
+<td>03</td>
+<td>读保持寄存器</td>
+<td>读</td>
+<td>保持寄存器</td>
+<td>批量读取多个保持寄存器数据（如设备参数、模拟量）</td>
+</tr>
+<tr>
+<td>04</td>
+<td>读输入寄存器</td>
+<td>读</td>
+<td>输入寄存器</td>
+<td>批量读取多个输入寄存器数据（如传感器、仪表值）</td>
+</tr>
+<tr>
+<td>05</td>
+<td>写单个线圈</td>
+<td>写</td>
+<td>线圈寄存器</td>
+<td>单独控制一个数字量输出（如单独点亮一个指示灯）</td>
+</tr>
+<tr>
+<td>06</td>
+<td>写单个保持寄存器</td>
+<td>写</td>
+<td>保持寄存器</td>
+<td>单独修改一个设备参数（如设置变频器频率）</td>
+</tr>
+<tr>
+<td>15（0F）</td>
+<td>写多个线圈</td>
+<td>写</td>
+<td>线圈寄存器</td>
+<td>批量控制多个数字量输出（如同时控制多个继电器）</td>
+</tr>
+<tr>
+<td>16（10）</td>
+<td>写多个保持寄存器</td>
+<td>写</td>
+<td>保持寄存器</td>
+<td>批量修改多个设备参数（如同时设置多个PLC参数）</td>
+</tr>
+</tbody></table>
+<h3 id="异常功能码与常见异常码（核心）"><a href="#异常功能码与常见异常码（核心）" class="headerlink" title="异常功能码与常见异常码（核心）"></a>异常功能码与常见异常码（核心）</h3><p>当从站接收到非法请求时，返回<strong>异常功能码（原功能码+128）</strong> + <strong>1字节异常码</strong>，主站通过异常码判断请求失败原因，常见异常码如下：</p>
+<table>
+<thead>
+<tr>
+<th>异常码</th>
+<th>异常名称</th>
+<th>产生原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td>非法功能码</td>
+<td>主站发送的功能码从站不支持&#x2F;未实现</td>
+</tr>
+<tr>
+<td>02</td>
+<td>非法数据地址</td>
+<td>主站请求的寄存器地址超出从站有效地址范围</td>
+</tr>
+<tr>
+<td>03</td>
+<td>非法数据值</td>
+<td>主站写入的数据超出从站寄存器的有效值范围</td>
+</tr>
+<tr>
+<td>04</td>
+<td>从站设备故障</td>
+<td>从站执行请求时发生硬件&#x2F;软件故障（如寄存器读写失败）</td>
+</tr>
+<tr>
+<td>05</td>
+<td>确认</td>
+<td>从站已接收请求并开始执行，需等待完成（极少用）</td>
+</tr>
+<tr>
+<td>06</td>
+<td>从站设备忙</td>
+<td>从站正在执行其他操作，暂时无法响应</td>
+</tr>
+</tbody></table>
+<h2 id="六、Modbus-协议关键通信参数"><a href="#六、Modbus-协议关键通信参数" class="headerlink" title="六、Modbus 协议关键通信参数"></a>六、Modbus 协议关键通信参数</h2><h3 id="1-Modbus-RTU-串行通信参数（必须主从一致）"><a href="#1-Modbus-RTU-串行通信参数（必须主从一致）" class="headerlink" title="1. Modbus RTU 串行通信参数（必须主从一致）"></a>1. Modbus RTU 串行通信参数（必须主从一致）</h3><p>Modbus RTU基于RS-232&#x2F;RS-485串行总线，<strong>所有挂在同一总线的主从站必须配置完全相同的串行参数</strong>，否则会出现数据解析失败、通信中断，核心参数如下：</p>
+<ul>
+<li><p>波特率：2400&#x2F;4800&#x2F;9600&#x2F;19200bps（工业现场最常用9600bps）；</p>
+</li>
+<li><p>数据位：固定8位（Modbus协议规定，不可修改）；</p>
+</li>
+<li><p>停止位：1位或2位（通常1位，与波特率匹配）；</p>
+</li>
+<li><p>校验位：奇校验（Odd）&#x2F;偶校验（Even）&#x2F;无校验（None）（通常无校验，需配合1位停止位）；</p>
+</li>
+<li><p>流控：无（RS-485为半双工通信，无需硬件流控）。</p>
+</li>
+</ul>
+<h3 id="2-Modbus-TCP-网络通信参数"><a href="#2-Modbus-TCP-网络通信参数" class="headerlink" title="2. Modbus TCP 网络通信参数"></a>2. Modbus TCP 网络通信参数</h3><p>Modbus TCP基于以太网TCP&#x2F;IP，无串行参数限制，核心配置为网络参数，确保主从站网络可达即可：</p>
+<ul>
+<li><p>标准端口：TCP 502（Modbus协议规定，主从站均需遵循，防火墙需开放）；</p>
+</li>
+<li><p>从站配置：固定IP地址、子网掩码、网关（确保主站能通过IP访问）；</p>
+</li>
+<li><p>传输协议：TCP（面向连接，保证数据可靠传输，禁止使用UDP）；</p>
+</li>
+<li><p>MTU值：默认以太网1500字节，无需修改（避免数据分片）。</p>
+</li>
+</ul>
+<h2 id="七、Modbus-协议异常处理与常见问题"><a href="#七、Modbus-协议异常处理与常见问题" class="headerlink" title="七、Modbus 协议异常处理与常见问题"></a>七、Modbus 协议异常处理与常见问题</h2><h3 id="1-核心异常处理机制"><a href="#1-核心异常处理机制" class="headerlink" title="1. 核心异常处理机制"></a>1. 核心异常处理机制</h3><ul>
+<li><p>数据校验：RTU采用CRC16校验，ASCII采用LRC校验，TCP基于TCP&#x2F;IP本身的校验机制，从站校验失败则直接丢弃帧，不返回响应；</p>
+</li>
+<li><p>异常响应：从站解析请求后，若发现非法操作（如非法功能码、地址越界），立即返回<strong>异常响应帧</strong>，主站根据异常码做对应处理；</p>
+</li>
+<li><p>超时重发：主站发送请求后，若在规定超时时间内未收到从站响应，判定为通信超时，可执行1~3次重发，超过次数则标记设备离线。</p>
+</li>
+</ul>
+<h3 id="2-工业现场常见通信问题及解决方法"><a href="#2-工业现场常见通信问题及解决方法" class="headerlink" title="2. 工业现场常见通信问题及解决方法"></a>2. 工业现场常见通信问题及解决方法</h3><table>
+<thead>
+<tr>
+<th>常见问题</th>
+<th>核心原因</th>
+<th>解决方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总线无响应（RTU）</td>
+<td>主从站串行参数不一致&#x2F;从站地址冲突&#x2F;总线短路</td>
+<td>统一波特率&#x2F;校验位等参数；检查从站地址是否唯一；用万用表检测RS-485总线A&#x2F;B线是否短路</td>
+</tr>
+<tr>
+<td>数据解析错误（RTU）</td>
+<td>CRC16校验失败&#x2F;总线干扰大&#x2F;接线接触不良</td>
+<td>检查接线是否牢固；在总线两端增加120Ω终端电阻；远离强电干扰源（如变频器、电机）</td>
+</tr>
+<tr>
+<td>网络无法连接（TCP）</td>
+<td>从站IP错误&#x2F;502端口被屏蔽&#x2F;网络不通</td>
+<td>核对从站固定IP；关闭防火墙或开放502端口；用ping命令测试主从站网络连通性</td>
+</tr>
+<tr>
+<td>部分寄存器读写失败</td>
+<td>寄存器地址&#x2F;类型不匹配&#x2F;从站寄存器只读</td>
+<td>核对从站寄存器映射表，确认地址和读写属性；避免向只读寄存器（如输入寄存器）写入数据</td>
+</tr>
+<tr>
+<td>多客户端并发响应慢（TCP）</td>
+<td>从站硬件性能低&#x2F;并发连接数过多</td>
+<td>更换高性能从站设备；限制客户端最大连接数；优化请求频率</td>
+</tr>
+</tbody></table>
+<h2 id="八、Modbus-协议的工业应用拓展"><a href="#八、Modbus-协议的工业应用拓展" class="headerlink" title="八、Modbus 协议的工业应用拓展"></a>八、Modbus 协议的工业应用拓展</h2><ol>
+<li><p><strong>Modbus TCP&#x2F;IP 转 RTU&#x2F;ASCII 网关</strong>：解决串行Modbus设备的以太网接入问题，网关作为Modbus TCP从站与以太网主站通信，同时作为Modbus RTU主站与现场串行从站通信，实现“串行设备上云&#x2F;上局域网”；</p>
+</li>
+<li><p><strong>Modbus 与工业物联网（IIoT）</strong>：通过边缘网关采集Modbus设备数据，转换为MQTT&#x2F;HTTP等物联网协议，上传到云平台（如阿里云、华为云），实现工业设备的远程监控、数据分析、故障预警；</p>
+</li>
+<li><p><strong>跨协议兼容</strong>：多数工业PLC、SCADA系统（如WinCC、Intouch、组态王）均原生支持Modbus协议，可直接与Modbus设备通信，无需额外开发驱动；</p>
+</li>
+<li><p><strong>安全加固</strong>：Modbus协议本身无加密和身份认证机制，工业现场可通过<strong>网络隔离（如工业防火墙）、VPN加密、端口映射</strong>等方式提升通信安全性，避免非法设备接入。</p>
+</li>
+</ol>
+<h2 id="九、Modbus-协议核心特点总结"><a href="#九、Modbus-协议核心特点总结" class="headerlink" title="九、Modbus 协议核心特点总结"></a>九、Modbus 协议核心特点总结</h2><ol>
+<li><p><strong>开放性</strong>：无专利限制，所有厂商均可免费实现，跨厂商兼容能力强；</p>
+</li>
+<li><p><strong>轻量性</strong>：协议帧结构简单，解析难度低，硬件要求不高，适配低成本工业设备；</p>
+</li>
+<li><p><strong>灵活性</strong>：支持串行（RTU&#x2F;ASCII）和以太网（TCP）多种传输方式，适配不同工业通信场景；</p>
+</li>
+<li><p><strong>扩展性</strong>：通过功能码和寄存器实现灵活的读写操作，支持多节点、多设备并发通信（TCP）；</p>
+</li>
+<li><p><strong>局限性</strong>：无原生加密机制，通信安全性较低；RTU版本受串行总线限制，传输距离和节点数有限。</p>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 邮件 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">作者: <a href="https://hexo.io/" target="_blank">FenJE</a></p>
+
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

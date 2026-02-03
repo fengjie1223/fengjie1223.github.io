@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Delta | 冯杰的笔记</title>
+  <meta name="keywords" content=" PLC , 台达 , Delta ">
+  <meta name="description" content="Delta | 冯杰的笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://fengjie1223.github.io/hello-world.html">
+<meta property="og:site_name" content="冯杰的笔记">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-03T03:12:54.239Z">
+<meta property="article:modified_time" content="2023-11-16T07:44:55.000Z">
+<meta property="article:author" content="冯杰">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>冯杰</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengjie1223"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:970782239@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(27)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工业相机">
+            <i class="fold iconfont icon-right"></i>
+            工业相机
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;度申">
+            
+            度申
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Basler">
+            
+            Basler
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;Dalsa">
+            
+            Dalsa
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工业相机&lt;---&gt;HIK">
+            
+            HIK
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(8)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;输出电路">
+            
+            输出电路
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;Altium">
+            
+            Altium
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;C">
+            
+            C
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FPGA">
+            
+            FPGA
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;FreeRTOS">
+            
+            FreeRTOS
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;RT_Thread">
+            
+            RT_Thread
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;STM32">
+            
+            STM32
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="软件编程">
+            <i class="fold iconfont icon-right"></i>
+            软件编程
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;InnoSetup">
+            
+            InnoSetup
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;OpenCV">
+            
+            OpenCV
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;Qt">
+            
+            Qt
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="软件编程&lt;---&gt;vcpkg">
+            
+            vcpkg
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="深度学习">
+            <i class="fold iconfont icon-right"></i>
+            深度学习
+            <small>(2)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;python">
+            
+            python
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="深度学习&lt;---&gt;yolov8">
+            
+            yolov8
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="综合">
+            <i class="fold iconfont icon-right"></i>
+            综合
+            <small>(5)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;博客">
+            
+            博客
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;git">
+            
+            git
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;vscode">
+            
+            vscode
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows">
+            <i class="fold iconfont icon-right"></i>
+            windows
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="综合&lt;---&gt;windows&lt;---&gt;服务器">
+            
+            服务器
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="PLC">
+            <i class="fold iconfont icon-right"></i>
+            PLC
+            <small>(3)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Delta">
+            
+            Delta
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;EIP">
+            
+            EIP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="PLC&lt;---&gt;Modbus">
+            
+            Modbus
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.github.com">github</a></li>
+            
+            <li><a target="_blank" href="https://www.google.com">google</a></li>
+            
+            <li><a target="_blank" href="https://www.bilibili.com">bilibili</a></li>
+            
+            <li><a target="_blank" href="https://www.keyence.com.cn/">基恩士</a></li>
+            
+            <li><a target="_blank" href="https://www.delta-china.com.cn/zh-CN/index">台达</a></li>
+            
+            <li><a target="_blank" href="https://www.ad.siemens.com.cn/home/?_channel_track_key=lpSbj6Lj">西门子工业</a></li>
+            
+            <li><a target="_blank" href="https://www.hikrobotics.com/cn/">海康机器人</a></li>
+            
+            <li><a target="_blank" href="http://i-tek.cn/">埃科光电</a></li>
+            
+            <li><a target="_blank" href="https://www.china-vision.org/">中国机器视觉网</a></li>
+            
+            <li><a target="_blank" href="https://docs.ultralytics.com/zh/">ultralytics</a></li>
+            
+            <li><a target="_blank" href="https://www.st.com/content/st_com/en.html">STM32</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>版本管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短路保护</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>泛编程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>共享</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>海康</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境搭建</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>回调函数</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>技术</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>局域网</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>命名规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>启动</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>输出电路</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构_链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>台达</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>同步盘</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>相机</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列号_芯片ID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>永久激活</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>制作安装包</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Altium</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>conda</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CUDA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cudnn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>define</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Delta</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>EIP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FPGA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FreeRTOS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git服务器部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPU</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HAL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HIK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini读写</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ini乱码</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>InnoSetup</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>keil</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MDK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>minio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Modbus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nvidia</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>opencv</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PCB</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PLC</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>potplayer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>qDebug_重定向到日志</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QML</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Qt_QDir</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>QUdpSocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ResilioSync</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RT_Thread</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STM32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vcpkg</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>visual studio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-Qt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vscode-stm32</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>yolov8</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 PLC Modbus "
+           href="/2026/02/02/PLC/Modbus/"
+           data-tag="PLC,Modbus"
+           data-author="" >
+            <span class="post-title" title="Modbus">Modbus</span>
+            <span class="post-date" title="2026-02-02 10:54:22">2026/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 输出电路 "
+           href="/2026/01/14/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ouput/"
+           data-tag="技术,输出电路,短路保护"
+           data-author="" >
+            <span class="post-title" title="Output">Output</span>
+            <span class="post-date" title="2026-01-14 17:43:33">2026/01/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC EIP "
+           href="/2025/05/09/PLC/EIP/"
+           data-tag="EIP"
+           data-author="" >
+            <span class="post-title" title="EIP">EIP</span>
+            <span class="post-date" title="2025-05-09 17:00:37">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 度申 "
+           href="/2025/05/09/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Do3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Do3">Do3</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 vcpkg "
+           href="/2025/05/09/%E6%9D%82%E8%AE%B0/vcpkg/"
+           data-tag="vcpkg"
+           data-author="" >
+            <span class="post-title" title="vcpkg">vcpkg</span>
+            <span class="post-date" title="2025-05-09 16:56:39">2025/05/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FreeRTOS "
+           href="/2025/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/FreeTROS/"
+           data-tag="stm32,FreeRTOS"
+           data-author="" >
+            <span class="post-title" title="FreeRTOS">FreeRTOS</span>
+            <span class="post-date" title="2025-05-06 10:46:36">2025/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Dalsa "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Dalsa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Dalsa">Dalsa</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 Basler "
+           href="/2024/12/12/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/Basler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Basler">Basler</span>
+            <span class="post-date" title="2024-12-12 16:58:47">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 FPGA "
+           href="/2024/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/"
+           data-tag="FPGA"
+           data-author="" >
+            <span class="post-title" title="FPGA">FPGA</span>
+            <span class="post-date" title="2024-12-12 16:58:42">2024/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 RT_Thread "
+           href="/2024/05/06/%E5%B5%8C%E5%85%A5%E5%BC%8F/RT_Thread/"
+           data-tag="stm32,RT_Thread"
+           data-author="" >
+            <span class="post-title" title="RT_Thread">RT_Thread</span>
+            <span class="post-date" title="2024-05-06 10:46:36">2024/05/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 C++ "
+           href="/2024/04/09/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/C++/"
+           data-tag="技术,C++,设计模式,泛编程,ini读写"
+           data-author="" >
+            <span class="post-title" title="C++">C++</span>
+            <span class="post-date" title="2024-04-09 15:34:36">2024/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 OpenCV "
+           href="/2024/02/02/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/OpenCV/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="OpenCV">OpenCV</span>
+            <span class="post-date" title="2024-02-02 11:26:47">2024/02/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 C "
+           href="/2024/01/25/%E5%B5%8C%E5%85%A5%E5%BC%8F/C/"
+           data-tag="技术,C,回调函数,define,数据结构_链表,命名规则"
+           data-author="" >
+            <span class="post-title" title="C">C</span>
+            <span class="post-date" title="2024-01-25 10:38:17">2024/01/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/12/14/%E6%9D%82%E8%AE%B0/nssm/"
+           data-tag="博客,环境,启动"
+           data-author="" >
+            <span class="post-title" title="nssm">nssm</span>
+            <span class="post-date" title="2023-12-14 09:33:03">2023/12/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/12/12/%E5%B5%8C%E5%85%A5%E5%BC%8F/MDK_keil/"
+           data-tag="MDK,keil"
+           data-author="" >
+            <span class="post-title" title="MDK">MDK</span>
+            <span class="post-date" title="2023-12-12 10:19:23">2023/12/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 yolov8 "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/yolov8/"
+           data-tag="python,conda,yolov8,Nvidia,GPU,CUDA,cudnn"
+           data-author="" >
+            <span class="post-title" title="yolov8">yolov8</span>
+            <span class="post-date" title="2023-12-05 13:58:51">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 深度学习 python "
+           href="/2023/12/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Python/"
+           data-tag="python,conda"
+           data-author="" >
+            <span class="post-title" title="Python">Python</span>
+            <span class="post-date" title="2023-12-05 13:53:02">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 vscode "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/vscode/"
+           data-tag="环境搭建,vscode,编程"
+           data-author="" >
+            <span class="post-title" title="vscode">vscode</span>
+            <span class="post-date" title="2023-11-17 16:10:15">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 windows 服务器 "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/Windows/"
+           data-tag="Windows,环境搭建,局域网,共享,永久激活,potplayer,同步盘,ResilioSync,服务器部署"
+           data-author="" >
+            <span class="post-title" title="Windows">Windows</span>
+            <span class="post-date" title="2023-11-17 16:05:31">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 Altium "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/Altium/"
+           data-tag="Altium,PCB"
+           data-author="" >
+            <span class="post-title" title="Altium">Altium</span>
+            <span class="post-date" title="2023-11-17 16:02:16">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 InnoSetup "
+           href="/2023/11/17/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/InnoSetup/"
+           data-tag="InnoSetup,制作安装包"
+           data-author="" >
+            <span class="post-title" title="InnoSetup">InnoSetup</span>
+            <span class="post-date" title="2023-11-17 15:59:34">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 git "
+           href="/2023/11/17/%E6%9D%82%E8%AE%B0/git/"
+           data-tag="git,版本管理,git服务器部署"
+           data-author="" >
+            <span class="post-title" title="git">git</span>
+            <span class="post-date" title="2023-11-17 15:56:52">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 PLC Delta "
+           href="/2023/11/17/PLC/Delta/"
+           data-tag="PLC,台达,Delta"
+           data-author="" >
+            <span class="post-title" title="Delta">Delta</span>
+            <span class="post-date" title="2023-11-17 15:54:22">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 嵌入式 STM32 "
+           href="/2023/11/17/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/"
+           data-tag="STM32,HAL,vscode-stm32,序列号_芯片ID"
+           data-author="" >
+            <span class="post-title" title="STM32">STM32</span>
+            <span class="post-date" title="2023-11-17 15:26:42">2023/11/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 工业相机 HIK "
+           href="/2023/11/16/%E5%B7%A5%E4%B8%9A%E7%9B%B8%E6%9C%BA/HIK/"
+           data-tag="相机,海康,HIK"
+           data-author="" >
+            <span class="post-title" title="HIK">HIK</span>
+            <span class="post-date" title="2023-11-16 15:13:20">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 综合 博客 "
+           href="/2023/11/15/%E6%9D%82%E8%AE%B0/hexo/"
+           data-tag="博客,hexo,minio"
+           data-author="" >
+            <span class="post-title" title="hexo">hexo</span>
+            <span class="post-date" title="2023-11-15 14:55:10">2023/11/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 软件编程 Qt "
+           href="/2023/02/14/%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B/Qt/"
+           data-tag="Modbus,visual studio,Qt,vscode-Qt,QUdpSocket,QML,Qt_QDir,qDebug_重定向到日志,ini乱码,多线程"
+           data-author="" >
+            <span class="post-title" title="Qt">Qt</span>
+            <span class="post-date" title="2023-02-14 17:46:44">2023/02/14</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-PLC/Delta" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Delta</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="PLC">PLC</a> > 
+            
+            <a  data-rel="PLC&lt;---&gt;Delta">Delta</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">PLC</a>
+            
+            <a class="color3">台达</a>
+            
+            <a class="color1">Delta</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2026-02-02 11:27:15'>2023-11-17 15:54</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Delta-PLC-%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">Delta PLC 高级应用技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81PID-%E6%8E%A7%E5%88%B6"><span class="toc-text">一、PID 控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-PID-%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86"><span class="toc-text">1.1 PID 控制原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%8F%B0%E8%BE%BE-PLC-PID-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">1.2 台达 PLC PID 参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%AE%9E%E6%93%8D%E8%A6%81%E7%82%B9"><span class="toc-text">1.3 实操要点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E6%97%B6%E4%B8%AD%E6%96%AD"><span class="toc-text">二、定时中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%9A%E6%97%B6%E4%B8%AD%E6%96%AD%E5%8E%9F%E7%90%86"><span class="toc-text">2.1 定时中断原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%8F%B0%E8%BE%BE-PLC-%E5%AE%9A%E6%97%B6%E4%B8%AD%E6%96%AD%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BB%A5-DVP-%E7%B3%BB%E5%88%97%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">2.2 台达 PLC 定时中断设置（以 DVP 系列为例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">2.3 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AE%A1%E6%95%B0%E4%B8%AD%E6%96%AD"><span class="toc-text">三、计数中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%AE%A1%E6%95%B0%E4%B8%AD%E6%96%AD%E5%8E%9F%E7%90%86"><span class="toc-text">3.1 计数中断原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%8F%B0%E8%BE%BE-PLC-%E8%AE%A1%E6%95%B0%E4%B8%AD%E6%96%AD%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BB%A5-DVP-EH3-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">3.2 台达 PLC 计数中断设置（以 DVP-EH3 为例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">3.3 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81IO-%E4%B8%AD%E6%96%AD"><span class="toc-text">四、IO 中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-IO-%E4%B8%AD%E6%96%AD%E5%8E%9F%E7%90%86"><span class="toc-text">4.1 IO 中断原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%8F%B0%E8%BE%BE-PLC-IO-%E4%B8%AD%E6%96%AD%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BB%A5-DVP-ES2-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">4.2 台达 PLC IO 中断设置（以 DVP-ES2 为例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">4.3 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%A8%A1%E6%8B%9F%E9%87%8F"><span class="toc-text">五、模拟量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%A8%A1%E6%8B%9F%E9%87%8F%E5%9F%BA%E7%A1%80"><span class="toc-text">5.1 模拟量基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%A8%A1%E6%8B%9F%E9%87%8F%E6%A8%A1%E5%9D%97%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%A0%A1%E5%87%86"><span class="toc-text">5.2 模拟量模块配置与校准</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-%E6%A8%A1%E5%9D%97%E9%85%8D%E7%BD%AE"><span class="toc-text">5.2.1 模块配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E6%A8%A1%E6%8B%9F%E9%87%8F%E6%A0%A1%E5%87%86"><span class="toc-text">5.2.2 模拟量校准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%A8%A1%E6%8B%9F%E9%87%8F%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%93%8D"><span class="toc-text">5.3 模拟量编程实操</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">5.4 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1"><span class="toc-text">六、串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80"><span class="toc-text">6.1 串口通信基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">6.2 串口通信参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BB%A5-RS-485-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">6.3 串口通信编程（以 RS-485 为例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">6.4 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BD%91%E5%8F%A3%E9%80%9A%E4%BF%A1"><span class="toc-text">七、网口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E7%BD%91%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80"><span class="toc-text">7.1 网口通信基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E7%BD%91%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">7.2 网口通信参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E7%BD%91%E5%8F%A3%E9%80%9A%E4%BF%A1%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BB%A5-Modbus-TCP-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">7.3 网口通信编程（以 Modbus TCP 为例）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">7.4 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-text">八、浮点运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97%E5%9F%BA%E7%A1%80"><span class="toc-text">8.1 浮点运算基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E5%8F%B0%E8%BE%BE-PLC-%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">8.2 台达 PLC 浮点运算指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E5%AE%9E%E6%93%8D%E8%A6%81%E7%82%B9%E4%B8%8E%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">8.3 实操要点与注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Modbus"><span class="toc-text">九、Modbus</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-Modbus-%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80"><span class="toc-text">9.1 Modbus 协议基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-Modbus-RTU-%E4%BB%8E%E7%AB%99%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">9.2 Modbus RTU 从站（重点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-Modbus-RTU-%E4%B8%BB%E7%AB%99"><span class="toc-text">9.3 Modbus RTU 主站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-Modbus-TCP-%E4%B8%BB%E7%AB%99-%E4%BB%8E%E7%AB%99"><span class="toc-text">9.4 Modbus TCP 主站&#x2F;从站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">9.5 注意事项</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Delta-PLC-高级应用技术"><a href="#Delta-PLC-高级应用技术" class="headerlink" title="Delta PLC 高级应用技术"></a>Delta PLC 高级应用技术</h1><p>本文档针对台达（Delta）PLC 高级应用功能进行详细说明，涵盖 PID 控制、各类中断、模拟量处理、通信功能及浮点运算等核心模块，结合实操要点与参数设置，适用于具备基础 PLC 操作经验的技术人员，用于指导现场调试与程序开发。</p>
+<h1 id="一、PID-控制"><a href="#一、PID-控制" class="headerlink" title="一、PID 控制"></a>一、PID 控制</h1><h2 id="1-1-PID-控制原理"><a href="#1-1-PID-控制原理" class="headerlink" title="1.1 PID 控制原理"></a>1.1 PID 控制原理</h2><p>PID（比例-积分-微分）控制是台达 PLC 中常用的闭环控制算法，通过对比设定值（SV）与实际反馈值（PV）的偏差（EV&#x3D;SV-PV），利用比例（P）、积分（I）、微分（D）三个环节的协同作用，自动调节输出值（MV），使被控量（如温度、压力、流量）稳定在设定值附近，适用于温度控制、液位控制、速度控制等连续过程控制场景。</p>
+<h2 id="1-2-台达-PLC-PID-参数设置"><a href="#1-2-台达-PLC-PID-参数设置" class="headerlink" title="1.2 台达 PLC PID 参数设置"></a>1.2 台达 PLC PID 参数设置</h2><p>台达 PLC 支持两种 PID 编程方式：一是利用专用 PID 指令（如 DVP 系列的 PIDL、PIDR 指令），二是通过 PLC 编程软件（如 WPLSoft）的 PID 向导进行参数配置，推荐新手使用向导配置，高效且不易出错。核心参数如下：</p>
+<ul>
+<li><p>比例增益（Kp）：决定偏差响应的灵敏度，Kp 越大，偏差纠正速度越快，但过大会导致系统震荡；Kp 过小，系统响应迟缓，无法快速达到设定值。</p>
+</li>
+<li><p>积分时间（Ti）：消除静态偏差，Ti 越小，积分作用越强，静态偏差消除越快，但过大会导致系统超调量增大；Ti 过大，积分作用微弱，无法彻底消除静态偏差。</p>
+</li>
+<li><p>微分时间（Td）：抑制系统震荡，提前预判偏差变化趋势，Td 越大，微分作用越强，系统稳定性越好，但过大会导致输出响应迟缓；Td 过小，微分作用不足，无法有效抑制震荡。</p>
+</li>
+<li><p>其他参数：采样时间（Ts，建议根据被控对象特性设置为 0.1~10s）、比例带宽（PB，与 Kp 成反比）、积分分离值、输出上下限等。</p>
+</li>
+</ul>
+<h2 id="1-3-实操要点"><a href="#1-3-实操要点" class="headerlink" title="1.3 实操要点"></a>1.3 实操要点</h2><ol>
+<li><p>反馈值（PV）需来自模拟量输入（如温度传感器、压力变送器），需提前完成模拟量校准，确保数据准确；</p>
+</li>
+<li><p>首次调试时，建议采用“先比例、后积分、再微分”的调试方法：先将 Ti 设为无穷大、Td 设为 0，逐步增大 Kp 至系统出现轻微震荡，再减小 Kp 至震荡消失；随后逐步减小 Ti，消除静态偏差；最后逐步增大 Td，提升系统稳定性；</p>
+</li>
+<li><p>对于非线性、大滞后被控对象（如温度控制），可启用台达 PLC 内置的 PID 自整定功能，自动计算最优参数；</p>
+</li>
+<li><p>输出值（MV）可对应模拟量输出（如变频器频率、调节阀开度）或开关量输出（如继电器通断），需根据执行器类型设置输出类型。</p>
+</li>
+</ol>
+<h1 id="二、定时中断"><a href="#二、定时中断" class="headerlink" title="二、定时中断"></a>二、定时中断</h1><h2 id="2-1-定时中断原理"><a href="#2-1-定时中断原理" class="headerlink" title="2.1 定时中断原理"></a>2.1 定时中断原理</h2><p>定时中断是台达 PLC 中一种主动触发的中断方式，通过设定固定的中断周期（如 10ms、100ms），PLC 会每隔设定时间，暂停当前主程序执行，优先执行中断子程序，执行完成后再返回主程序继续运行。适用于需要高精度定时控制的场景，如高频采样、精准计时、同步控制等（精度高于普通定时器 T 指令）。</p>
+<h2 id="2-2-台达-PLC-定时中断设置（以-DVP-系列为例）"><a href="#2-2-台达-PLC-定时中断设置（以-DVP-系列为例）" class="headerlink" title="2.2 台达 PLC 定时中断设置（以 DVP 系列为例）"></a>2.2 台达 PLC 定时中断设置（以 DVP 系列为例）</h2><p>台达 DVP 系列 PLC 定时中断主要通过 WPLSoft 软件配置，结合中断子程序编程，步骤如下：</p>
+<ol>
+<li><p>打开 WPLSoft 软件，新建工程，选择对应 PLC 型号（如 DVP-ES2、DVP-EH3）；</p>
+</li>
+<li><p>在“程序编辑区”切换至“中断子程序”界面，新建定时中断子程序（中断编号可选择，如 INT0~INT7，不同型号 PLC 中断数量不同）；</p>
+</li>
+<li><p>在“系统寄存器”中配置定时中断参数：设定中断周期（单位：μs 或 ms，如 10000μs&#x3D;10ms）、启用中断允许位，选择中断触发方式（上升沿、下降沿或持续触发）；</p>
+</li>
+<li><p>在中断子程序中编写需要精准定时执行的逻辑（如数据采样、计数器清零、输出触发），子程序长度不宜过长，避免影响主程序执行；</p>
+</li>
+<li><p>在主程序中启用定时中断（置位中断允许标志位），中断触发后，PLC 自动跳转至中断子程序执行。</p>
+</li>
+</ol>
+<h2 id="2-3-注意事项"><a href="#2-3-注意事项" class="headerlink" title="2.3 注意事项"></a>2.3 注意事项</h2><ol>
+<li><p>中断周期不可设置过短（如小于 1ms），否则会导致主程序无法正常执行，出现 PLC 卡顿、程序报错等问题；</p>
+</li>
+<li><p>同一时间建议只启用 1~2 个定时中断，多个定时中断同时启用时，需合理分配中断优先级，避免中断冲突；</p>
+</li>
+<li><p>中断子程序中禁止使用长时间延时指令（如 TON、TOF 指令），禁止修改主程序中关键变量的值（如需修改，需做好逻辑判断，避免数据混乱）；</p>
+</li>
+<li><p>若需暂停定时中断，可复位中断允许标志位；若需清除中断状态，可使用中断清除指令。</p>
+</li>
+</ol>
+<h1 id="三、计数中断"><a href="#三、计数中断" class="headerlink" title="三、计数中断"></a>三、计数中断</h1><h2 id="3-1-计数中断原理"><a href="#3-1-计数中断原理" class="headerlink" title="3.1 计数中断原理"></a>3.1 计数中断原理</h2><p>计数中断是台达 PLC 基于计数器的中断方式，通过设定计数器的目标值（中断触发值），当计数器的当前值达到设定目标值时，PLC 立即暂停主程序，执行对应的计数中断子程序，执行完成后返回主程序。适用于高精度计数控制场景，如工件计数、脉冲计数、位置定位等（精度高于普通计数器 C 指令）。</p>
+<p>台达 PLC 计数中断支持两种计数方式：内部计数（对 PLC 内部脉冲信号计数）和外部计数（对 PLC 外部输入端子的脉冲信号计数，如编码器脉冲）。</p>
+<h2 id="3-2-台达-PLC-计数中断设置（以-DVP-EH3-为例）"><a href="#3-2-台达-PLC-计数中断设置（以-DVP-EH3-为例）" class="headerlink" title="3.2 台达 PLC 计数中断设置（以 DVP-EH3 为例）"></a>3.2 台达 PLC 计数中断设置（以 DVP-EH3 为例）</h2><ol>
+<li><p>新建工程，选择对应 PLC 型号，切换至“中断子程序”界面，新建计数中断子程序（中断编号与定时中断区分，如 INT8~INT15）；</p>
+</li>
+<li><p>在“系统寄存器”中配置计数中断参数：选择计数通道（如 CH0~CH3，不同型号通道数量不同）、计数方式（增计数、减计数、增减计数）、中断触发值（目标计数次数）、计数脉冲输入端子（外部计数时设置）；</p>
+</li>
+<li><p>在计数中断子程序中编写触发后的逻辑（如工件计数完成报警、设备停机、计数器清零）；</p>
+</li>
+<li><p>主程序中启用计数中断（置位中断允许标志位），同时初始化计数器当前值，启动计数（外部计数需确保输入端子脉冲信号稳定）；</p>
+</li>
+<li><p>当计数器当前值达到设定触发值时，触发计数中断，执行子程序，执行完成后，计数器当前值可自动清零或保持（根据参数设置）。</p>
+</li>
+</ol>
+<h2 id="3-3-注意事项"><a href="#3-3-注意事项" class="headerlink" title="3.3 注意事项"></a>3.3 注意事项</h2><ol>
+<li><p>外部计数时，输入脉冲信号的频率需匹配 PLC 计数通道的最大响应频率（如 DVP-EH3 最大计数频率可达 100kHz），避免脉冲丢失，导致计数不准确；</p>
+</li>
+<li><p>中断触发值需根据实际需求设置，避免过大或过小，同时需预留一定余量，防止计数误差；</p>
+</li>
+<li><p>多个计数中断同时启用时，需设置中断优先级，优先执行关键场景的中断子程序（如紧急停机相关的计数中断）；</p>
+</li>
+<li><p>若需修改计数中断触发值，需先暂停计数中断，修改完成后再重新启用，避免中断误触发。</p>
+</li>
+</ol>
+<h1 id="四、IO-中断"><a href="#四、IO-中断" class="headerlink" title="四、IO 中断"></a>四、IO 中断</h1><h2 id="4-1-IO-中断原理"><a href="#4-1-IO-中断原理" class="headerlink" title="4.1 IO 中断原理"></a>4.1 IO 中断原理</h2><p>IO 中断（又称外部中断）是台达 PLC 由外部输入端子的信号变化触发的中断方式，当指定的外部输入端子出现上升沿、下降沿或电平变化时，PLC 立即暂停主程序，执行对应的 IO 中断子程序。适用于需要快速响应外部信号的场景，如紧急停止、外部触发、信号检测等（响应时间通常在 μs 级）。</p>
+<p>台达 PLC 常用的 IO 中断类型：上升沿中断（输入信号从 OFF 变为 ON 时触发）、下降沿中断（输入信号从 ON 变为 OFF 时触发）、双边沿中断（上升沿和下降沿均触发）。</p>
+<h2 id="4-2-台达-PLC-IO-中断设置（以-DVP-ES2-为例）"><a href="#4-2-台达-PLC-IO-中断设置（以-DVP-ES2-为例）" class="headerlink" title="4.2 台达 PLC IO 中断设置（以 DVP-ES2 为例）"></a>4.2 台达 PLC IO 中断设置（以 DVP-ES2 为例）</h2><ol>
+<li><p>新建工程，选择 PLC 型号，切换至“中断子程序”界面，新建 IO 中断子程序，分配中断编号（如 INT0 对应 X0 端子）；</p>
+</li>
+<li><p>在“系统寄存器”中配置 IO 中断参数：选择中断触发端子（如 X0、X1）、触发方式（上升沿、下降沿、双边沿）、启用中断允许位；</p>
+</li>
+<li><p>在 IO 中断子程序中编写外部信号触发后的逻辑（如紧急停机、设备启动、信号采集），子程序需简洁，避免占用过长执行时间；</p>
+</li>
+<li><p>主程序中启用 IO 中断（置位中断允许标志位），同时确保外部输入信号稳定，避免干扰导致误触发（可在输入端子并联滤波电容）。</p>
+</li>
+</ol>
+<h2 id="4-3-注意事项"><a href="#4-3-注意事项" class="headerlink" title="4.3 注意事项"></a>4.3 注意事项</h2><ol>
+<li><p>不同型号 PLC 支持的 IO 中断端子数量不同（如 DVP-ES2 支持 X0~X3 端子作为中断输入），需根据 PLC 型号选择合适的中断端子；</p>
+</li>
+<li><p>外部输入信号需避免抖动（如按钮、传感器信号），可通过硬件滤波（并联电容）或软件滤波（在子程序中增加延时判断）消除抖动，防止中断误触发；</p>
+</li>
+<li><p>IO 中断响应优先级最高，当 IO 中断与定时中断、计数中断同时触发时，优先执行 IO 中断子程序；</p>
+</li>
+<li><p>紧急停止场景建议使用 IO 中断，确保外部紧急信号触发后，PLC 能立即响应，避免设备故障或人员安全问题。</p>
+</li>
+</ol>
+<h1 id="五、模拟量"><a href="#五、模拟量" class="headerlink" title="五、模拟量"></a>五、模拟量</h1><h2 id="5-1-模拟量基础"><a href="#5-1-模拟量基础" class="headerlink" title="5.1 模拟量基础"></a>5.1 模拟量基础</h2><p>台达 PLC 的模拟量功能主要用于处理连续变化的物理量（如温度、压力、流量、速度等），通过模拟量输入模块（AI）将外部传感器的模拟信号（如 0<del>10V 电压信号、4</del>20mA 电流信号）转换为 PLC 可识别的数字信号（二进制数），再通过主程序逻辑处理后，由模拟量输出模块（AO）将数字信号转换为模拟信号，控制执行器（如变频器、调节阀、伺服驱动器）动作。</p>
+<p>台达 PLC 常用模拟量信号类型：</p>
+<ul>
+<li><p>模拟量输入（AI）：4<del>20mA 电流信号（常用，抗干扰能力强）、0</del>10V 电压信号（适用于短距离传输）、-10~10V 双极性电压信号（适用于正负变化的物理量）；</p>
+</li>
+<li><p>模拟量输出（AO）：4<del>20mA 电流信号、0</del>10V 电压信号，与输入信号对应，用于控制执行器的输出量。</p>
+</li>
+</ul>
+<h2 id="5-2-模拟量模块配置与校准"><a href="#5-2-模拟量模块配置与校准" class="headerlink" title="5.2 模拟量模块配置与校准"></a>5.2 模拟量模块配置与校准</h2><h3 id="5-2-1-模块配置"><a href="#5-2-1-模块配置" class="headerlink" title="5.2.1 模块配置"></a>5.2.1 模块配置</h3><p>台达 PLC 模拟量模块需与主机匹配（如 DVP-ES2 系列主机搭配 DVP04AD-E2 模拟量输入模块、DVP04DA-E2 模拟量输出模块），配置步骤如下：</p>
+<ol>
+<li><p>将模拟量模块与 PLC 主机正确连接（通过总线连接器连接，确保接线牢固）；</p>
+</li>
+<li><p>打开 WPLSoft 软件，在“工程设置”中选择“模块配置”，添加对应的模拟量输入&#x2F;输出模块，设置模块地址（默认地址可修改，需与程序中地址对应）；</p>
+</li>
+<li><p>配置模拟量信号类型：在模块配置界面，选择每个通道的信号类型（如 AI 通道选择 4<del>20mA，AO 通道选择 0</del>10V），保存配置并下载至 PLC。</p>
+</li>
+</ol>
+<h3 id="5-2-2-模拟量校准"><a href="#5-2-2-模拟量校准" class="headerlink" title="5.2.2 模拟量校准"></a>5.2.2 模拟量校准</h3><p>模拟量模块使用前需进行校准，确保输入&#x2F;输出信号的准确性，校准分为零点校准和满量程校准：</p>
+<ol>
+<li><p>零点校准：将模拟量输入端子接入零点信号（如 4<del>20mA 信号接入 4mA，0</del>10V 信号接入 0V），在 WPLSoft 软件中执行零点校准指令，或通过 PLC 面板操作完成校准；</p>
+</li>
+<li><p>满量程校准：将模拟量输入端子接入满量程信号（如 4<del>20mA 信号接入 20mA，0</del>10V 信号接入 10V），执行满量程校准指令，保存校准参数；</p>
+</li>
+<li><p>校准完成后，可通过软件监控模拟量输入&#x2F;输出值，确认数据是否准确（如 4mA 对应数字值 0，20mA 对应数字值 32767）。</p>
+</li>
+</ol>
+<h2 id="5-3-模拟量编程实操"><a href="#5-3-模拟量编程实操" class="headerlink" title="5.3 模拟量编程实操"></a>5.3 模拟量编程实操</h2><p>台达 PLC 模拟量编程核心是“模拟量信号与数字量信号的转换”，常用指令如下：</p>
+<ul>
+<li><p>AIW 指令：读取模拟量输入值（如 AIW0 对应第一个 AI 通道的输入数字量，范围 0~32767）；</p>
+</li>
+<li><p>AOW 指令：写入模拟量输出值（如 AOW0 对应第一个 AO 通道的输出数字量，范围 0~32767）；</p>
+</li>
+<li><p>SCALE 指令：模拟量比例转换指令，将 AIW 读取的数字量转换为实际物理量（如将 4<del>20mA 对应的 0</del>32767 数字量，转换为 0~100℃的温度值）；</p>
+</li>
+<li><p>UNSCALE 指令：将实际物理量转换为模拟量输出数字量（如将 0<del>50Hz 的频率值，转换为 4</del>20mA 对应的数字量，控制变频器频率）。</p>
+</li>
+</ul>
+<p>实操示例：读取温度传感器（4<del>20mA 信号，对应 0</del>100℃）的温度值，控制变频器（4<del>20mA 信号，对应 0</del>50Hz）频率，温度越高，频率越高。</p>
+<h2 id="5-4-注意事项"><a href="#5-4-注意事项" class="headerlink" title="5.4 注意事项"></a>5.4 注意事项</h2><ol>
+<li><p>模拟量接线需采用屏蔽线，屏蔽层一端接地，避免干扰（尤其是电流信号，接线距离不宜超过 100m）；</p>
+</li>
+<li><p>模拟量模块需远离变频器、接触器等强电磁干扰设备，防止信号失真；</p>
+</li>
+<li><p>编程时需注意模拟量数字量与实际物理量的对应关系，避免比例转换错误；</p>
+</li>
+<li><p>定期对模拟量模块进行校准，尤其是环境温度变化较大的场景，确保测量精度。</p>
+</li>
+</ol>
+<h1 id="六、串口通信"><a href="#六、串口通信" class="headerlink" title="六、串口通信"></a>六、串口通信</h1><h2 id="6-1-串口通信基础"><a href="#6-1-串口通信基础" class="headerlink" title="6.1 串口通信基础"></a>6.1 串口通信基础</h2><p>台达 PLC 内置串口通信接口（如 RS-232、RS-485），用于与外部设备（如触摸屏、变频器、传感器、电脑）进行数据交互，采用异步串行通信方式，核心是通过设定通信参数，实现 PLC 与外部设备的双向数据传输。</p>
+<p>台达 PLC 常用串口类型：</p>
+<ul>
+<li><p>RS-232：点对点通信，传输距离短（≤15m），抗干扰能力弱，适用于 PLC 与电脑、触摸屏的近距离通信；</p>
+</li>
+<li><p>RS-485：多点通信（可连接 32 个从站），传输距离长（≤1200m），抗干扰能力强，适用于 PLC 与变频器、多个传感器的远距离通信。</p>
+</li>
+</ul>
+<h2 id="6-2-串口通信参数设置"><a href="#6-2-串口通信参数设置" class="headerlink" title="6.2 串口通信参数设置"></a>6.2 串口通信参数设置</h2><p>台达 PLC 串口通信参数需与外部设备保持一致，否则无法正常通信，核心参数如下，通过 WPLSoft 软件“系统寄存器”配置：</p>
+<ul>
+<li><p>波特率：常用 9600bps、19200bps、38400bps，需与外部设备波特率一致（波特率越高，传输速度越快，抗干扰能力越弱）；</p>
+</li>
+<li><p>数据长度：常用 8 位（bit），即一个字节的数据；</p>
+</li>
+<li><p>校验位：无校验（N）、奇校验（O）、偶校验（E），常用无校验或偶校验，需与外部设备一致；</p>
+</li>
+<li><p>停止位：常用 1 位（bit），用于标识一个数据帧的结束；</p>
+</li>
+<li><p>通信协议：常用 Modbus RTU、台达专用协议（如 DVP 协议），根据外部设备支持的协议选择。</p>
+</li>
+</ul>
+<h2 id="6-3-串口通信编程（以-RS-485-为例）"><a href="#6-3-串口通信编程（以-RS-485-为例）" class="headerlink" title="6.3 串口通信编程（以 RS-485 为例）"></a>6.3 串口通信编程（以 RS-485 为例）</h2><p>台达 PLC 串口通信编程核心是使用通信指令，实现数据的发送与接收，常用指令如下：</p>
+<ul>
+<li><p>RS 指令：串口通信控制指令，用于启动&#x2F;停止串口通信，配置通信参数（可替代系统寄存器配置，灵活度更高）；</p>
+</li>
+<li><p>SEND 指令：串口数据发送指令，将 PLC 内部寄存器（如 D 寄存器）的数据发送至外部设备；</p>
+</li>
+<li><p>RECV 指令：串口数据接收指令，接收外部设备发送的数据，存储至 PLC 内部寄存器；</p>
+</li>
+<li><p>校验指令：如 CRC 校验指令，用于验证接收数据的准确性，避免数据传输错误。</p>
+</li>
+</ul>
+<p>实操示例：PLC 通过 RS-485 串口与变频器通信，发送频率设定值（存储在 D100 寄存器），接收变频器实际频率值（存储在 D101 寄存器），当实际频率与设定频率偏差过大时，触发报警。</p>
+<h2 id="6-4-注意事项"><a href="#6-4-注意事项" class="headerlink" title="6.4 注意事项"></a>6.4 注意事项</h2><ol>
+<li><p>RS-485 通信需使用差分信号线（A、B 线），接线时需注意 A 接 A、B 接 B，避免接反，否则无法通信；</p>
+</li>
+<li><p>远距离通信时，需在 RS-485 总线两端并联终端电阻（120Ω），抑制信号反射，提升通信稳定性；</p>
+</li>
+<li><p>编程时需增加通信异常处理逻辑（如通信超时、数据校验错误），避免 PLC 因通信故障死机；</p>
+</li>
+<li><p>多个设备通信时，需为每个设备分配唯一地址（从站地址），避免地址冲突。</p>
+</li>
+</ol>
+<h1 id="七、网口通信"><a href="#七、网口通信" class="headerlink" title="七、网口通信"></a>七、网口通信</h1><h2 id="7-1-网口通信基础"><a href="#7-1-网口通信基础" class="headerlink" title="7.1 网口通信基础"></a>7.1 网口通信基础</h2><p>台达中高端 PLC（如 DVP-EH3、DVP-SV2 系列）内置以太网接口（RJ45 接口），支持网口通信，采用 TCP&#x2F;IP 协议，可实现 PLC 与电脑、触摸屏、其他 PLC、工业以太网设备（如交换机、路由器）的高速数据交互，传输速度远高于串口通信，适用于大型自动化系统、多设备联动、远程监控等场景。</p>
+<p>台达 PLC 网口通信常用协议：Modbus TCP、EtherNet&#x2F;IP、台达 Ethernet 协议，其中 Modbus TCP 协议应用最广泛，兼容性强，可与各类支持 Modbus TCP 的设备通信。</p>
+<h2 id="7-2-网口通信参数设置"><a href="#7-2-网口通信参数设置" class="headerlink" title="7.2 网口通信参数设置"></a>7.2 网口通信参数设置</h2><ol>
+<li><p>IP 地址设置：PLC 网口需设置唯一的 IP 地址（如 192.168.1.100），子网掩码（默认 255.255.255.0）、网关（根据网络拓扑设置），需与通信网络中的其他设备（如电脑、触摸屏）在同一网段；</p>
+</li>
+<li><p>协议设置：在 WPLSoft 软件“系统寄存器”中，选择网口通信协议（如 Modbus TCP），设置端口号（Modbus TCP 默认端口号 502）；</p>
+</li>
+<li><p>网络连接：将 PLC 网口通过网线连接至交换机或电脑，确保物理连接正常（PLC 网口指示灯常亮或闪烁，表明连接正常）；</p>
+</li>
+<li><p>测试连接：在电脑上通过 ping 命令（如 ping 192.168.1.100）测试与 PLC 的网络连接，若能 ping 通，表明网络参数设置正确。</p>
+</li>
+</ol>
+<h2 id="7-3-网口通信编程（以-Modbus-TCP-为例）"><a href="#7-3-网口通信编程（以-Modbus-TCP-为例）" class="headerlink" title="7.3 网口通信编程（以 Modbus TCP 为例）"></a>7.3 网口通信编程（以 Modbus TCP 为例）</h2><p>台达 PLC 网口通信编程需根据通信角色（主站&#x2F;从站）编写程序，常用指令如下：</p>
+<ul>
+<li><p>MB_TCP_MASTER 指令：Modbus TCP 主站指令，用于 PLC 作为主站，读取&#x2F;写入从站设备（如其他 PLC、变频器）的数据；</p>
+</li>
+<li><p>MB_TCP_SLAVE 指令：Modbus TCP 从站指令，用于 PLC 作为从站，接收主站（如电脑、触摸屏）的读取&#x2F;写入指令，返回对应数据；</p>
+</li>
+<li><p>Socket 指令：通用网口通信指令，用于自定义通信协议，实现 PLC 与其他设备的灵活通信（适用于高级用户）。</p>
+</li>
+</ul>
+<p>实操示例：PLC 作为 Modbus TCP 主站，通过网口读取 3 台从站 PLC 的温度数据（存储在从站 D100 寄存器），存储至主站 D200、D201、D202 寄存器，通过触摸屏实时监控所有温度数据。</p>
+<h2 id="7-4-注意事项"><a href="#7-4-注意事项" class="headerlink" title="7.4 注意事项"></a>7.4 注意事项</h2><ol>
+<li><p>IP 地址需唯一，避免与网络中其他设备冲突，否则会导致网口通信失败；</p>
+</li>
+<li><p>网口通信需确保网络稳定，避免网线松动、交换机故障等问题，远距离通信可使用光纤交换机；</p>
+</li>
+<li><p>编程时需设置通信超时时间，当通信超时（如超过 1s），触发异常处理逻辑（如重新连接、报警）；</p>
+</li>
+<li><p>远程监控场景中，需配置网关、路由器端口映射，确保外部设备能访问 PLC 网口（注意网络安全，避免非法访问）。</p>
+</li>
+</ol>
+<h1 id="八、浮点运算"><a href="#八、浮点运算" class="headerlink" title="八、浮点运算"></a>八、浮点运算</h1><h2 id="8-1-浮点运算基础"><a href="#8-1-浮点运算基础" class="headerlink" title="8.1 浮点运算基础"></a>8.1 浮点运算基础</h2><p>浮点运算用于处理带有小数的数值（如 3.14、10.5），台达 PLC 支持 32 位浮点运算（单精度浮点型，符合 IEEE 754 标准），通过浮点运算指令，实现小数的加、减、乘、除、平方根、三角函数等运算，适用于需要高精度数值计算的场景，如流量计算、液位控制、位置定位、复杂算法实现等。</p>
+<p>台达 PLC 浮点型数据存储：采用两个连续的 D 寄存器存储一个 32 位浮点数（如 D100、D101 存储一个浮点数，D100 为低 16 位，D101 为高 16 位），编程时需注意寄存器的连续使用，避免数据覆盖。</p>
+<h2 id="8-2-台达-PLC-浮点运算指令"><a href="#8-2-台达-PLC-浮点运算指令" class="headerlink" title="8.2 台达 PLC 浮点运算指令"></a>8.2 台达 PLC 浮点运算指令</h2><p>台达 PLC 浮点运算指令以“F”开头，区分于整数运算指令，常用指令如下：</p>
+<ul>
+<li><p>FADD：浮点加法指令（如 FADD D100 D102 D104，将 D100&#x2F;D101、D102&#x2F;D103 存储的浮点数相加，结果存储在 D104&#x2F;D105）；</p>
+</li>
+<li><p>FSUB：浮点减法指令；</p>
+</li>
+<li><p>FMUL：浮点乘法指令；</p>
+</li>
+<li><p>FDIV：浮点除法指令；</p>
+</li>
+<li><p>FSQRT：浮点平方根指令（如 FSQRT D100 D102，计算 D100&#x2F;D101 浮点数的平方根，结果存储在 D102&#x2F;D103）；</p>
+</li>
+<li><p>FABS：浮点绝对值指令（计算浮点数的绝对值）；</p>
+</li>
+<li><p>FTAN、FSIN、FCOS：浮点三角函数指令（正切、正弦、余弦）；</p>
+</li>
+<li><p>INT_F：整数转浮点指令（将整数转换为浮点数，如 INT_F D0 D100，将 D0 中的整数转换为浮点数，存储在 D100&#x2F;D101）；</p>
+</li>
+<li><p>F_INT：浮点转整数指令（将浮点数转换为整数，舍去小数部分）。</p>
+</li>
+</ul>
+<h2 id="8-3-实操要点与注意事项"><a href="#8-3-实操要点与注意事项" class="headerlink" title="8.3 实操要点与注意事项"></a>8.3 实操要点与注意事项</h2><ol>
+<li><p>浮点运算前，需将整数转换为浮点数（使用 INT_F 指令），否则会导致运算错误（如整数 5 需转换为浮点数 5.0 后，才能与 3.14 进行运算）；</p>
+</li>
+<li><p>浮点运算结果需存储在两个连续的 D 寄存器中，编程时需预留足够的寄存器空间，避免数据覆盖；</p>
+</li>
+<li><p>浮点运算存在微小误差（如 0.1+0.2 可能不等于 0.3），高精度场景中，可通过扩大倍数（如将 0.1 转换为 1，运算后再除以 10）减少误差；</p>
+</li>
+<li><p>避免浮点运算结果为无穷大或NaN（非数字），如除数为 0，会导致运算异常，编程时需增加逻辑判断（如判断除数是否为 0）；</p>
+</li>
+<li><p>浮点运算指令执行时间比整数运算长，高频运算场景中，需合理分配程序执行时间，避免 PLC 卡顿。</p>
+</li>
+</ol>
+<h1 id="九、Modbus"><a href="#九、Modbus" class="headerlink" title="九、Modbus"></a>九、Modbus</h1><p>Modbus 是工业领域最常用的通信协议之一，分为 Modbus RTU 和 Modbus TCP 两种类型，台达 PLC 全面支持这两种协议，可作为主站或从站与外部设备（如变频器、触摸屏、传感器、其他 PLC）通信，实现数据的双向传输，兼容性强、操作简单，是台达 PLC 通信应用的核心协议。</p>
+<h2 id="9-1-Modbus-协议基础"><a href="#9-1-Modbus-协议基础" class="headerlink" title="9.1 Modbus 协议基础"></a>9.1 Modbus 协议基础</h2><p>Modbus 协议采用“主从通信”模式，即一个主站对应多个从站，主站发送指令，从站接收指令并响应（从站不可主动发送指令），核心是通过“功能码”区分不同的通信指令（如读取线圈、读取寄存器、写入寄存器等）。</p>
+<p>台达 PLC Modbus 常用功能码：</p>
+<ul>
+<li><p>0x01：读取线圈状态（对应 PLC 输出继电器 Y，如 Y0~Y17）；</p>
+</li>
+<li><p>0x02：读取离散输入状态（对应 PLC 输入继电器 X，如 X0~X17）；</p>
+</li>
+<li><p>0x03：读取保持寄存器（对应 PLC 数据寄存器 D，如 D0~D9999），最常用；</p>
+</li>
+<li><p>0x04：读取输入寄存器（对应 PLC 模拟量输入寄存器 AIW，如 AIW0~AIW7）；</p>
+</li>
+<li><p>0x05：强制单个线圈（控制 PLC 输出继电器 Y 通断）；</p>
+</li>
+<li><p>0x06：预置单个保持寄存器（写入 PLC 数据寄存器 D），最常用；</p>
+</li>
+<li><p>0x10：预置多个保持寄存器（批量写入 PLC 数据寄存器 D）。</p>
+</li>
+</ul>
+<h2 id="9-2-Modbus-RTU-从站（重点）"><a href="#9-2-Modbus-RTU-从站（重点）" class="headerlink" title="9.2 Modbus RTU 从站（重点）"></a>9.2 Modbus RTU 从站（重点）</h2><p>台达 PLC 作为 Modbus RTU 从站时，无需编写复杂的通信程序，只需正确配置串口参数和从站地址，即可响应主站的指令（如触摸屏、电脑作为主站，读取&#x2F;写入 PLC 数据），实操步骤如下：</p>
+<ol>
+<li><p>规划串口使用：选择 PLC 内置的串口（如 COM1 对应 RS-485，COM2 对应 RS-232），确认该串口未被其他功能占用（如未用于其他通信协议）；</p>
+</li>
+<li><p>配置串口通信参数：在 WPLSoft 软件“系统寄存器”中，设置该串口的波特率（如 9600bps）、校验位（如无校验）、数据长度（8 位）、停止位（1 位）；</p>
+</li>
+<li><p>选择通信协议：设置串口通信协议为“Modbus RTU”，确认与其通信的主站设备（如触摸屏）使用的是 RTU 协议（而非 ASCII 协议），两者协议必须一致；</p>
+</li>
+<li><p>设置从站地址：为 PLC 分配唯一的 Modbus RTU 从站地址（范围 1~247，默认地址为 1），主站需通过该地址识别 PLC；</p>
+</li>
+<li><p>确认配置并下载：将上述参数配置完成后，下载至 PLC，重启 PLC 使参数生效；</p>
+</li>
+<li><p>通信测试：主站（如触摸屏）设置相同的通信参数和从站地址，发送读取&#x2F;写入指令，测试是否能正常与 PLC 通信（如触摸屏读取 PLC D100 寄存器的数据，或控制 Y0 输出）。</p>
+</li>
+</ol>
+<p>关键说明：台达 PLC 作为 Modbus RTU 从站时，无需写任何通信相关的代码（例如 RS 指令、SEND&#x2F;RECV 指令，或者置位通信标志等都不需要），参数配置完成后，PLC 会自动识别主站指令并响应。</p>
+<h2 id="9-3-Modbus-RTU-主站"><a href="#9-3-Modbus-RTU-主站" class="headerlink" title="9.3 Modbus RTU 主站"></a>9.3 Modbus RTU 主站</h2><p>台达 PLC 作为 Modbus RTU 主站时，需编写通信程序，通过 Modbus RTU 主站指令，发送指令至从站设备，读取&#x2F;写入从站数据，实操步骤如下：</p>
+<ol>
+<li><p>配置串口参数：与从站配置一致（波特率、校验位、数据长度、停止位），设置主站自身的串口参数；</p>
+</li>
+<li><p>编写主站程序：使用台达 PLC 内置的 Modbus RTU 主站指令（如 MODBUS_RTU_MASTER），配置从站地址、功能码、寄存器地址、数据长度等参数；</p>
+</li>
+<li><p>数据处理：将从站读取的数据存储至 PLC 内部寄存器（如 D 寄存器），或将 PLC 内部数据写入从站寄存器，编写逻辑处理程序（如数据校验、异常报警）；</p>
+</li>
+<li><p>通信测试：连接主站与从站设备（RS-485 总线连接），运行程序，测试主站是否能正常读取&#x2F;写入从站数据，排查通信故障。</p>
+</li>
+</ol>
+<h2 id="9-4-Modbus-TCP-主站-从站"><a href="#9-4-Modbus-TCP-主站-从站" class="headerlink" title="9.4 Modbus TCP 主站&#x2F;从站"></a>9.4 Modbus TCP 主站&#x2F;从站</h2><p>Modbus TCP 协议基于以太网，传输速度快、距离远，台达 PLC 作为 Modbus TCP 主站&#x2F;从站的配置与 Modbus RTU 类似，核心区别在于“通信参数设置为网口参数”：</p>
+<ul>
+<li><p>Modbus TCP 从站：配置 PLC 网口 IP 地址、子网掩码、网关，设置协议为 Modbus TCP，端口号默认 502，分配从站地址，无需编写通信代码，主站（如电脑、触摸屏）通过网口访问 PLC；</p>
+</li>
+<li><p>Modbus TCP 主站：配置网口参数，编写主站程序（使用 MB_TCP_MASTER 指令），设置从站 IP 地址、端口号、功能码、寄存器地址等，实现与从站的高速通信。</p>
+</li>
+</ul>
+<h2 id="9-5-注意事项"><a href="#9-5-注意事项" class="headerlink" title="9.5 注意事项"></a>9.5 注意事项</h2><ol>
+<li><p>主站与从站的通信参数（波特率、校验位、协议类型）必须完全一致，否则无法正常通信；</p>
+</li>
+<li><p>从站地址必须唯一，多个从站连接时，避免地址冲突；</p>
+</li>
+<li><p>Modbus RTU 通信需注意 RS-485 接线（A 接 A、B 接 B），远距离通信需加终端电阻；</p>
+</li>
+<li><p>编程时需增加通信异常处理逻辑（如通信超时、数据校验错误），避免 PLC 因通信故障影响正常运行；</p>
+</li>
+<li><p>读取&#x2F;写入寄存器时，需注意 Modbus 寄存器地址与 PLC 内部寄存器地址的对应关系（如 Modbus 保持寄存器地址 40001 对应 PLC D0 寄存器）。</p>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 邮件 970782239@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023-2030 gzx
+</p>
+<p class="footer-entry">作者: <a href="https://hexo.io/" target="_blank">FenJE</a></p>
+
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
